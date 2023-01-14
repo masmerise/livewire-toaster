@@ -1,0 +1,10 @@
+{
+    "private": true,
+    "devDependencies": {
+        "laravel-mix": "^6.0"
+    },
+    "scripts": {
+        "build": "mix --production",
+        "watch": "mix watch"
+    }
+}
