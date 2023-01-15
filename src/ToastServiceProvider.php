@@ -27,14 +27,18 @@ final class ToastServiceProvider extends AggregateServiceProvider
         $this->app->singleton(Collector::class, QueuingCollector::class);
         $this->app->alias(Collector::class, self::NAME);
 
+        if (! $this->app['config']['toast.translate']) {
+            return;
+        }
+
         $this->app->extend(Collector::class,
-            fn (QueuingCollector $next) => new TranslatingCollector($next, $this->app->make('translator'))
+            fn (QueuingCollector $next) => new TranslatingCollector($next, $this->app['translator'])
         );
     }
 
     private function registerRelays(): void
     {
         $this->app->make('events')->listen(RequestHandled::class, SessionRelay::class);
-        $this->app->make('livewire')->listen('component.dehydrate', $this->app->make(LivewireRelay::class));
+        $this->app->make('livewire')->listen('component.dehydrate', $this->app[LivewireRelay::class]);
     }
 }
