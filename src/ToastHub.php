@@ -6,6 +6,7 @@ use Illuminate\Contracts\Session\Session;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
+/** @internal */
 final class ToastHub extends Component
 {
     public function __construct(
