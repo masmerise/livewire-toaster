@@ -5,19 +5,19 @@ namespace MAS\Toast;
 /** @internal */
 final class QueuingCollector implements Collector
 {
-    /** @var array<Message> */
-    private array $messages = [];
+    /** @var array<Toast> */
+    private array $toasts = [];
 
-    public static function make(): self
+    public function add(Toast $toast): void
     {
-        return new self();
+        $this->toasts[] = $toast;
     }
 
     public function flush(): array
     {
-        $messages = $this->messages;
-        $this->messages = [];
+        $toasts = $this->toasts;
+        $this->toasts = [];
 
-        return $messages;
+        return $toasts;
     }
 }

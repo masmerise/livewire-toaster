@@ -2,12 +2,24 @@
 
 namespace MAS\Toast;
 
-use Illuminate\Support\Facades\Facade;
+use JsonSerializable;
 
-final class Toast extends Facade
+final readonly class Toast implements JsonSerializable
 {
-    protected static function getFacadeAccessor(): string
+    public function __construct(
+        public Message $message,
+        public Duration $duration,
+        public ToastType $type,
+    ) {}
+
+    public function clone(string $replacement): self
     {
-        return ToastServiceProvider::NAME;
+        return new self(new Message($replacement), $this->duration, $this->type);
+    }
+
+    /** @return array<string, mixed> */
+    public function jsonSerialize(): array
+    {
+        return get_object_vars($this);
     }
 }

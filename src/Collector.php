@@ -4,10 +4,12 @@ namespace MAS\Toast;
 
 interface Collector
 {
+    public function add(Toast $toast): void;
+
     /**
      * @internal
      *
-     * @return array<Message>
+     * @return array<Toast>
      */
     public function flush(): array;
 }
