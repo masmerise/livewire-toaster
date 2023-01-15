@@ -9,6 +9,7 @@ final readonly class Toast implements JsonSerializable
     public function __construct(
         public Message $message,
         public Duration $duration,
+        public Position $position,
         public ToastType $type,
     ) {}
 
@@ -19,7 +20,7 @@ final readonly class Toast implements JsonSerializable
 
     public function clone(string $replacement): self
     {
-        return new self(new Message($replacement), $this->duration, $this->type);
+        return new self(new Message($replacement), $this->duration, $this->position, $this->type);
     }
 
     /** @return array<string, mixed> */

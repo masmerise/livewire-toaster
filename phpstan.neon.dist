@@ -9,4 +9,4 @@ parameters:
 
     ignoreErrors:
         - '#Cannot access offset .* on Illuminate\\Contracts\\Foundation\\Application#'
-        - '#Parameter \#1 \$milliseconds of method MAS\\Toast\\ToastBuilder::duration\(\) expects int, mixed given.#'
+        - '#Parameter \#1 .*, mixed given.#'

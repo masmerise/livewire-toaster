@@ -3,5 +3,7 @@
 return [
     'duration' => 5000, // The default visibility duration in ms
 
-    'translate' => true, // Automatically translate messages
+    'position' => 'right', // The default toast position
+
+    'translate' => true, // Translate messages passed as translation keys
 ];

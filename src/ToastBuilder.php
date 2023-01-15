@@ -13,11 +13,20 @@ final class ToastBuilder
 
     private ?Message $message = null;
 
+    private ?Position $position = null;
+
     private ?ToastType $type = null;
 
     public static function create(): self
     {
         return new self();
+    }
+
+    public function center(): self
+    {
+        $this->position = Position::Center;
+
+        return $this;
     }
 
     public function duration(int $milliseconds): self
@@ -41,9 +50,23 @@ final class ToastBuilder
         return $this;
     }
 
+    public function left(): self
+    {
+        $this->position = Position::Left;
+
+        return $this;
+    }
+
     public function message(string $message): self
     {
         $this->message = new Message($message);
+
+        return $this;
+    }
+
+    public function right(): self
+    {
+        $this->position = Position::Right;
 
         return $this;
     }
@@ -65,26 +88,34 @@ final class ToastBuilder
     public function dispatch(): void
     {
         if (! $this->duration instanceof Duration) {
-            $this->duration(config('toast.duration'));
+            $this->duration = new Duration(config('toast.duration'));
         }
 
-        app(ToastServiceProvider::NAME)->add($this->get());
+        if (! $this->position instanceof Position) {
+            $this->position = Position::from(config('toast.position'));
+        }
+
+        app('toast')->add($this->get());
     }
 
     public function get(): Toast
     {
         if (! $this->duration instanceof Duration) {
-            throw new UnexpectedValueException('You must provide a valid duration to create a Toast.');
+            throw new UnexpectedValueException('You must provide a valid duration.');
         }
 
         if (! $this->message instanceof Message) {
-            throw new UnexpectedValueException('You must provide a valid message to create a Toast.');
+            throw new UnexpectedValueException('You must provide a valid message.');
+        }
+
+        if (! $this->position instanceof Position) {
+            throw new UnexpectedValueException('You must choose a valid position.');
         }
 
         if (! $this->type instanceof ToastType) {
-            throw new UnexpectedValueException('You must choose a valid type to create a Toast.');
+            throw new UnexpectedValueException('You must choose a valid type.');
         }
 
-        return new Toast($this->message, $this->duration, $this->type);
+        return new Toast($this->message, $this->duration, $this->position, $this->type);
     }
 }
