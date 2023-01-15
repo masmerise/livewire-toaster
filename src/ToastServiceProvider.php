@@ -2,25 +2,29 @@
 
 namespace MAS\Toast;
 
-use Illuminate\Contracts\Events\Dispatcher;
-use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Foundation\Http\Events\RequestHandled;
-use Illuminate\Support\ServiceProvider;
-use Livewire\LivewireManager;
+use Illuminate\Support\AggregateServiceProvider;
+use Livewire\LivewireServiceProvider;
 
-final class ToastServiceProvider extends ServiceProvider implements DeferrableProvider
+final class ToastServiceProvider extends AggregateServiceProvider
 {
     public const NAME = 'toast';
 
-    public function boot(Dispatcher $events, LivewireManager $livewire): void
+    /** @var array<string> */
+    protected $providers = [LivewireServiceProvider::class];
+
+    public function boot(): void
     {
-        $events->listen(RequestHandled::class, SessionRelay::class);
-        $livewire->listen('component.dehydrate', $this->app->make(LivewireRelay::class));
+        $this->callAfterResolving(Collector::class, $this->registerRelays(...));
     }
 
     public function register(): void
     {
-        $this->app->singleton(Collector::class, QueuingCollector::make(...));
+        parent::register();
+
+        $this->mergeConfigFrom(__DIR__ . '/../config/toast.php', self::NAME);
+
+        $this->app->singleton(Collector::class, QueuingCollector::class);
         $this->app->alias(Collector::class, self::NAME);
 
         $this->app->extend(Collector::class,
@@ -28,9 +32,9 @@ final class ToastServiceProvider extends ServiceProvider implements DeferrablePr
         );
     }
 
-    /** @return array<string> */
-    public function provides(): array
+    private function registerRelays(): void
     {
-        return [Collector::class, self::NAME];
+        $this->app->make('events')->listen(RequestHandled::class, SessionRelay::class);
+        $this->app->make('livewire')->listen('component.dehydrate', $this->app->make(LivewireRelay::class));
     }
 }
