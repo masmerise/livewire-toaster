@@ -38,7 +38,7 @@ final class ToastServiceProvider extends AggregateServiceProvider
 
     private function registerRelays(): void
     {
-        $this->app->make('events')->listen(RequestHandled::class, SessionRelay::class);
-        $this->app->make('livewire')->listen('component.dehydrate', $this->app[LivewireRelay::class]);
+        $this->app['events']->listen(RequestHandled::class, SessionRelay::class);
+        $this->app['livewire']->listen('component.dehydrate', $this->app[LivewireRelay::class]);
     }
 }

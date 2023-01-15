@@ -65,7 +65,7 @@ final class ToastBuilder
     public function dispatch(): void
     {
         if (! $this->duration instanceof Duration) {
-            $this->duration(config('toast.duration')); // @phpstan-ignore-line
+            $this->duration(config('toast.duration'));
         }
 
         app(ToastServiceProvider::NAME)->add($this->get());

@@ -6,3 +6,7 @@ parameters:
         - src
 
     level: max
+
+    ignoreErrors:
+        - '#Cannot access offset .* on Illuminate\\Contracts\\Foundation\\Application#'
+        - '#Parameter \#1 \$milliseconds of method MAS\\Toast\\ToastBuilder::duration\(\) expects int, mixed given.#'
