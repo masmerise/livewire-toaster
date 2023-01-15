@@ -95,7 +95,7 @@ final class ToastBuilder
             $this->position = Position::from(config('toast.position'));
         }
 
-        app('toast')->add($this->get());
+        app(Collector::class)->add($this->get());
     }
 
     public function get(): Toast
