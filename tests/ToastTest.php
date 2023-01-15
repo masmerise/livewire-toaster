@@ -2,11 +2,6 @@
 
 namespace Tests;
 
-use MAS\Toast\Duration;
-use MAS\Toast\Message;
-use MAS\Toast\Position;
-use MAS\Toast\Toast;
-use MAS\Toast\ToastType;
 use PHPUnit\Framework\TestCase;
 
 final class ToastTest extends TestCase

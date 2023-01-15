@@ -20,7 +20,12 @@ final readonly class Toast implements JsonSerializable
 
     public function clone(string $replacement): self
     {
-        return new self(new Message($replacement), $this->duration, $this->position, $this->type);
+        return new self(
+            Message::fromString($replacement),
+            $this->duration,
+            $this->position,
+            $this->type,
+        );
     }
 
     /** @return array<string, mixed> */

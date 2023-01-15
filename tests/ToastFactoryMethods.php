@@ -13,8 +13,8 @@ trait ToastFactoryMethods
     private function aToast(): Toast
     {
         return new Toast(
-            new Message('Crispy toasts'),
-            new Duration(1000),
+            Message::fromString('Crispy toasts'),
+            Duration::fromMillis(1000),
             Position::Right,
             ToastType::Success
         );

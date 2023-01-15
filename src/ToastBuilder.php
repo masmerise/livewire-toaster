@@ -31,7 +31,7 @@ final class ToastBuilder
 
     public function duration(int $milliseconds): self
     {
-        $this->duration = new Duration($milliseconds);
+        $this->duration = Duration::fromMillis($milliseconds);
 
         return $this;
     }
@@ -59,7 +59,7 @@ final class ToastBuilder
 
     public function message(string $message): self
     {
-        $this->message = new Message($message);
+        $this->message = Message::fromString($message);
 
         return $this;
     }
@@ -88,7 +88,7 @@ final class ToastBuilder
     public function dispatch(): void
     {
         if (! $this->duration instanceof Duration) {
-            $this->duration = new Duration(config('toast.duration'));
+            $this->duration = Duration::fromMillis(config('toast.duration'));
         }
 
         if (! $this->position instanceof Position) {
