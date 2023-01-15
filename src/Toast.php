@@ -13,9 +13,9 @@ final readonly class Toast implements JsonSerializable
         public ToastType $type,
     ) {}
 
-    public static function create(): ToastBuilder
+    public static function create(): PendingToast
     {
-        return ToastBuilder::create();
+        return new PendingToast(config('toast.duration'), config('toast.position'));
     }
 
     public function clone(string $replacement): self

@@ -64,6 +64,13 @@ final class ToastBuilder
         return $this;
     }
 
+    public function position(string $position): self
+    {
+        $this->position = Position::from($position);
+
+        return $this;
+    }
+
     public function right(): self
     {
         $this->position = Position::Right;
@@ -78,24 +85,18 @@ final class ToastBuilder
         return $this;
     }
 
+    public function type(string $type): self
+    {
+        $this->type = ToastType::from($type);
+
+        return $this;
+    }
+
     public function warning(): self
     {
         $this->type = ToastType::Warning;
 
         return $this;
-    }
-
-    public function dispatch(): void
-    {
-        if (! $this->duration instanceof Duration) {
-            $this->duration = Duration::fromMillis(config('toast.duration'));
-        }
-
-        if (! $this->position instanceof Position) {
-            $this->position = Position::from(config('toast.position'));
-        }
-
-        app(Collector::class)->add($this->get());
     }
 
     public function get(): Toast
