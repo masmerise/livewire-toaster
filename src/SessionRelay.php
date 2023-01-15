@@ -16,8 +16,8 @@ final readonly class SessionRelay
 
     public function handle(): void
     {
-        if ($messages = $this->toasts->flush()) {
-            $this->session->put(self::NAME, $messages);
+        if ($toasts = $this->toasts->flush()) {
+            $this->session->put(self::NAME, $toasts);
         }
     }
 }

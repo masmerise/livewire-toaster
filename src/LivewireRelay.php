@@ -10,7 +10,7 @@ use Livewire\Response;
 /** @internal */
 final readonly class LivewireRelay
 {
-    public const EVENT = 'toast-message';
+    public const EVENT = 'toast-received';
 
     public function __construct(
         private LivewireManager $livewire,
@@ -27,9 +27,9 @@ final readonly class LivewireRelay
             return $response;
         }
 
-        if ($messages = $this->toasts->flush()) {
-            foreach ($messages as $message) {
-                $component->dispatchBrowserEvent(self::EVENT, $message);
+        if ($toasts = $this->toasts->flush()) {
+            foreach ($toasts as $toast) {
+                $component->dispatchBrowserEvent(self::EVENT, $toast);
             }
         }
 
