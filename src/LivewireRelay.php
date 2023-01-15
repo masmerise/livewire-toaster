@@ -19,7 +19,7 @@ final readonly class LivewireRelay
 
     public function __invoke(Component $component, Response $response): Response
     {
-        if (! $this->livewire->isProbablyLivewireRequest()) {
+        if (! $this->livewire->isLivewireRequest()) {
             return $response;
         }
 
