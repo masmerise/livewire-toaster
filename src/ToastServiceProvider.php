@@ -32,7 +32,7 @@ final class ToastServiceProvider extends AggregateServiceProvider
         }
 
         $this->app->extend(Collector::class,
-            fn (QueuingCollector $next) => new TranslatingCollector($next, $this->app['translator'])
+            fn (Collector $next) => new TranslatingCollector($next, $this->app['translator'])
         );
     }
 
