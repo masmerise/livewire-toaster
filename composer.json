@@ -28,9 +28,6 @@
         "phpunit/phpunit": "^9.0"
     },
     "autoload": {
-        "files": [
-            "helpers.php"
-        ],
         "psr-4": {
             "MAS\\Toast\\": "src"
         }
