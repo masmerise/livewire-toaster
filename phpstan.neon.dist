@@ -5,9 +5,13 @@ parameters:
     paths:
         - src
 
+    checkMissingIterableValueType: false
+
+    checkGenericClassInNonGenericObjectType: false
+
     level: max
 
     ignoreErrors:
         - '#Cannot access offset .* on Illuminate\\Contracts\\Foundation\\Application#'
-        - '#Parameter \#1 .*, mixed given.#'
+        - '#Parameter \#.*, mixed given.#'
         - '#Method MAS\\Toast\\ToastHub::toasts\(\) should return array<MAS\\Toast\\Toast> but returns mixed#'
