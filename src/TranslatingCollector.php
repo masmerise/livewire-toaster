@@ -12,6 +12,17 @@ final readonly class TranslatingCollector implements Collector
         private Translator $translator,
     ) {}
 
+    public function add(Toast $toast): void
+    {
+        $message = $this->translator->get($toast->message->value);
+
+        if (is_string($message)) {
+            $toast = $toast->clone($message);
+        }
+
+        $this->next->add($toast);
+    }
+
     public function flush(): array
     {
         return $this->next->flush();
