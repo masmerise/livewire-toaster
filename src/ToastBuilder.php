@@ -2,10 +2,13 @@
 
 namespace MAS\Toast;
 
+use Illuminate\Support\Traits\Conditionable;
 use UnexpectedValueException;
 
 final class ToastBuilder
 {
+    use Conditionable;
+
     private ?Duration $duration = null;
 
     private ?Message $message = null;
