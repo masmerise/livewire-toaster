@@ -28,7 +28,7 @@ final class ToastServiceProviderTest extends TestCase
         $events = Crowbar::pry($this->app['events']);
         $livewire = Crowbar::pry($this->app['livewire']);
 
-        $this->assertNotContains(SessionRelay::class, $events->listeners[RequestHandled::class]);
+        $this->assertNotContains(SessionRelay::class, $events->listeners[RequestHandled::class] ?? []);
         $this->assertNotContains(LivewireRelay::class, $livewire->listeners['component.dehydrate']);
 
         $this->app[ToastServiceProvider::NAME];
