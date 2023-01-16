@@ -47,9 +47,9 @@ final class ToastBuilder
         return $this->modify('position', Position::Left);
     }
 
-    public function message(string $message): self
+    public function message(string $message, array $replace = []): self
     {
-        return $this->modify('message', Message::fromString($message));
+        return $this->modify('message', Message::fromTranslatable($message, $replace));
     }
 
     public function position(string $position): self

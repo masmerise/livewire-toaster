@@ -14,10 +14,10 @@ final readonly class TranslatingCollector implements Collector
 
     public function add(Toast $toast): void
     {
-        $message = $this->translator->get($original = $toast->message->value);
+        $replacement = $this->translator->get($original = $toast->message->value, $toast->message->replace);
 
-        if (is_string($message) && $message !== $original) {
-            $toast = $toast->clone($message);
+        if (is_string($replacement) && $replacement !== $original) {
+            $toast = $toast->clone($replacement);
         }
 
         $this->next->add($toast);
