@@ -41,7 +41,7 @@ final readonly class Toast implements JsonSerializable
         return get_object_vars($this);
     }
 
-    public static function __callStatic(string $name, array $arguments): mixed
+    public static function __callStatic(string $name, array $arguments): PendingToast
     {
         if (! in_array($name, ToastType::toValues()) || ! count($arguments) || count($arguments) > 2) {
             throw new BadMethodCallException("Call to undefined method MAS\Toast\Toast::{$name}()");
