@@ -24,79 +24,90 @@ final class ToastBuilder
 
     public function center(): self
     {
-        $this->position = Position::Center;
+        $that = clone $this;
+        $that->position = Position::Center;
 
-        return $this;
+        return $that;
     }
 
     public function duration(int $milliseconds): self
     {
-        $this->duration = Duration::fromMillis($milliseconds);
+        $that = clone $this;
+        $that->duration = Duration::fromMillis($milliseconds);
 
-        return $this;
+        return $that;
     }
 
     public function error(): self
     {
-        $this->type = ToastType::Error;
+        $that = clone $this;
+        $that->type = ToastType::Error;
 
-        return $this;
+        return $that;
     }
 
     public function info(): self
     {
-        $this->type = ToastType::Info;
+        $that = clone $this;
+        $that->type = ToastType::Info;
 
-        return $this;
+        return $that;
     }
 
     public function left(): self
     {
-        $this->position = Position::Left;
+        $that = clone $this;
+        $that->position = Position::Left;
 
-        return $this;
+        return $that;
     }
 
     public function message(string $message): self
     {
-        $this->message = Message::fromString($message);
+        $that = clone $this;
+        $that->message = Message::fromString($message);
 
-        return $this;
+        return $that;
     }
 
     public function position(string $position): self
     {
-        $this->position = Position::from($position);
+        $that = clone $this;
+        $that->position = Position::from($position);
 
-        return $this;
+        return $that;
     }
 
     public function right(): self
     {
-        $this->position = Position::Right;
+        $that = clone $this;
+        $that->position = Position::Right;
 
-        return $this;
+        return $that;
     }
 
     public function success(): self
     {
-        $this->type = ToastType::Success;
+        $that = clone $this;
+        $that->type = ToastType::Success;
 
-        return $this;
+        return $that;
     }
 
     public function type(string $type): self
     {
-        $this->type = ToastType::from($type);
+        $that = clone $this;
+        $that->type = ToastType::from($type);
 
-        return $this;
+        return $that;
     }
 
     public function warning(): self
     {
-        $this->type = ToastType::Warning;
+        $that = clone $this;
+        $that->type = ToastType::Warning;
 
-        return $this;
+        return $that;
     }
 
     public function get(): Toast
