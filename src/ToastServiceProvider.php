@@ -2,9 +2,11 @@
 
 namespace MAS\Toast;
 
+use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Foundation\Http\Events\RequestHandled;
 use Illuminate\Support\AggregateServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
+use Livewire\LivewireManager;
 use Livewire\LivewireServiceProvider;
 
 final class ToastServiceProvider extends AggregateServiceProvider
@@ -22,15 +24,15 @@ final class ToastServiceProvider extends AggregateServiceProvider
 
         $this->loadViewsFrom(__DIR__ . '/../resources/views', self::NAME);
 
-        $this->callAfterResolving('blade.compiler', $this->registerHub(...));
+        $this->callAfterResolving(BladeCompiler::class, $this->registerHub(...));
         $this->callAfterResolving(Collector::class, $this->registerRelays(...));
     }
 
     public function register(): void
     {
-        parent::register();
-
         $this->mergeConfigFrom(__DIR__ . '/../config/toast.php', self::NAME);
+
+        parent::register();
 
         $this->app->singleton(Collector::class, QueuingCollector::class);
         $this->app->alias(Collector::class, self::NAME);
@@ -62,7 +64,7 @@ final class ToastServiceProvider extends AggregateServiceProvider
 
     private function registerRelays(): void
     {
-        $this->app['events']->listen(RequestHandled::class, SessionRelay::class);
-        $this->app['livewire']->listen('component.dehydrate', $this->app[LivewireRelay::class]);
+        $this->app[Dispatcher::class]->listen(RequestHandled::class, SessionRelay::class);
+        $this->app[LivewireManager::class]->listen('component.dehydrate', $this->app[LivewireRelay::class]);
     }
 }
