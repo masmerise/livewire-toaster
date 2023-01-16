@@ -17,7 +17,17 @@ final readonly class SessionRelay
     public function handle(): void
     {
         if ($toasts = $this->toasts->flush()) {
-            $this->session->put(self::NAME, $toasts);
+            $this->session->put(self::NAME, $this->serialize($toasts));
         }
+    }
+
+    /**
+     * @param array<Toast> $toasts
+     *
+     * @return array<array>
+     */
+    private function serialize(array $toasts): array
+    {
+        return array_map(static fn (Toast $toast) => $toast->toArray(), $toasts);
     }
 }

@@ -10,13 +10,14 @@ use MAS\Toast\ToastType;
 
 trait ToastFactoryMethods
 {
-    private function aToast(): Toast
+    private function aToast(...$values): Toast
     {
-        return new Toast(
-            Message::fromString('Crispy toasts'),
-            Duration::fromMillis(1000),
-            Position::Right,
-            ToastType::Success
-        );
+        return new Toast(...[
+            'message' => Message::fromString('Crispy toasts'),
+            'duration' => Duration::fromMillis(1000),
+            'position' => Position::Right,
+            'type' => ToastType::Success,
+            ...$values,
+        ]);
     }
 }

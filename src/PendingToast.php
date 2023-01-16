@@ -29,15 +29,17 @@ final class PendingToast
         $this->dispatched = true;
     }
 
-    public function __call(string $name, array $arguments): self
+    public function __call(string $name, array $arguments): mixed
     {
         $result = $this->forwardCallTo($this->builder, $name, $arguments);
 
         if ($result instanceof ToastBuilder) {
             $this->builder = $result;
+
+            return $this;
         }
 
-        return $this;
+        return $result;
     }
 
     public function __destruct()

@@ -3,6 +3,7 @@
 namespace MAS\Toast;
 
 use BadMethodCallException;
+use Illuminate\Contracts\Support\Arrayable;
 use JsonSerializable;
 
 /**
@@ -11,7 +12,7 @@ use JsonSerializable;
  * @method static PendingToast success(string $message, array $replace = [])
  * @method static PendingToast warning(string $message, array $replace = [])
  */
-final readonly class Toast implements JsonSerializable
+final readonly class Toast implements Arrayable, JsonSerializable
 {
     public function __construct(
         public Message $message,
@@ -38,7 +39,17 @@ final readonly class Toast implements JsonSerializable
     /** @return array<string, mixed> */
     public function jsonSerialize(): array
     {
-        return get_object_vars($this);
+        return $this->toArray();
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'duration' => $this->duration->value,
+            'message' => $this->message->value,
+            'position' => $this->position->value,
+            'type' => $this->type->value,
+        ];
     }
 
     public static function __callStatic(string $name, array $arguments): PendingToast

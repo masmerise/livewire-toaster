@@ -14,5 +14,4 @@ parameters:
     ignoreErrors:
         - '#Cannot access offset .* on Illuminate\\Contracts\\Foundation\\Application#'
         - '#Parameter \#.*, mixed given.#'
-        - '#Method MAS\\Toast\\ToastHub::toasts\(\) should return array<MAS\\Toast\\Toast> but returns mixed#'
         - '#Method MAS\\Toast\\Toast::__callStatic\(\) should return MAS\\Toast\\PendingToast but returns MAS\\Toast\\ToastBuilder#'

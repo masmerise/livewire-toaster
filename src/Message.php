@@ -13,7 +13,7 @@ final readonly class Message implements JsonSerializable
 
     private function __construct(string $value, array $replace = [])
     {
-        if (empty($value)) {
+        if (empty($value = trim($value))) {
             throw new InvalidArgumentException('The message value cannot be empty.');
         }
 
@@ -26,7 +26,7 @@ final readonly class Message implements JsonSerializable
         return new self($value);
     }
 
-    public static function fromTranslatable(string $value, array $replace): self
+    public static function fromTranslatable(string $value, array $replace = []): self
     {
         return new self($value, $replace);
     }

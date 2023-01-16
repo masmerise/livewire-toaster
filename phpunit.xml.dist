@@ -22,4 +22,10 @@
             <directory suffix=".php">src</directory>
         </include>
     </coverage>
+
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="APP_KEY" value="base64:TaUN5M30kEy4U+fj7RDG0+ppdVWwI9apTf1a0inKdP0="/>
+        <env name="SESSION_DRIVER" value="array"/>
+    </php>
 </phpunit>

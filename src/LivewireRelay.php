@@ -4,7 +4,6 @@ namespace MAS\Toast;
 
 use Livewire\Component;
 use Livewire\LivewireManager;
-use Livewire\Redirector;
 use Livewire\Response;
 
 /** @internal */
@@ -23,13 +22,15 @@ final readonly class LivewireRelay
             return $response;
         }
 
-        if ($component->redirectTo instanceof Redirector) {
+        if ($component->redirectTo !== null) {
             return $response;
         }
 
         if ($toasts = $this->toasts->flush()) {
+            $response->effects['dispatches'] ??= [];
+
             foreach ($toasts as $toast) {
-                $component->dispatchBrowserEvent(self::EVENT, $toast);
+                $response->effects['dispatches'][] = ['event' => self::EVENT, 'data' => $toast];
             }
         }
 

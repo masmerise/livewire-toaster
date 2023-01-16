@@ -13,13 +13,13 @@ final class ToastTest extends TestCase
     {
         $toast = $this->aToast();
 
-        $json = json_encode($toast, JSON_THROW_ON_ERROR);
+        $result = json_decode(json_encode($toast, JSON_THROW_ON_ERROR), true);
 
         $this->assertSame([
-            'message' => 'Crispy toasts',
             'duration' => 1000,
+            'message' => 'Crispy toasts',
             'position' => 'right',
             'type' => 'success',
-        ], json_decode($json, true));
+        ], $result);
     }
 }

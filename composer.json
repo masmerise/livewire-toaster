@@ -22,9 +22,10 @@
         "livewire/livewire": "^2.0"
     },
     "require-dev": {
+        "dive-be/php-crowbar": "^1.1",
         "laravel/pint": "^1.0",
         "nunomaduro/larastan": "^2.0",
-        "orchestra/testbench":"^7.0",
+        "orchestra/testbench": "^7.0",
         "phpunit/phpunit": "^9.0"
     },
     "autoload": {

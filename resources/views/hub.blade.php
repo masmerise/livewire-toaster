@@ -1,6 +1,6 @@
 <div role="status"
      id="toasts"
-     x-data="toastHub(@js($toasts)))"
+     x-data="toastHub(@js($toasts))"
      class="fixed bottom-0 z-50 p-4 space-y-3 w-full pointer-events-none sm:p-6 pointer-events-none flex flex-col items-center"
 >
     <template x-for="toast in toasts" :key="toast.id">
