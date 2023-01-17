@@ -21,11 +21,6 @@ final readonly class SessionRelay
         }
     }
 
-    /**
-     * @param array<Toast> $toasts
-     *
-     * @return array<array>
-     */
     private function serialize(array $toasts): array
     {
         return array_map(static fn (Toast $toast) => $toast->toArray(), $toasts);

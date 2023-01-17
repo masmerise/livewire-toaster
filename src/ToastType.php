@@ -8,9 +8,4 @@ enum ToastType: string
     case Info = 'info';
     case Success = 'success';
     case Warning = 'warning';
-
-    public static function toValues(): array
-    {
-        return array_map(static fn (ToastType $enum) => $enum->value, self::cases());
-    }
 }

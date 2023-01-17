@@ -6,10 +6,6 @@ interface Collector
 {
     public function add(Toast $toast): void;
 
-    /**
-     * @internal
-     *
-     * @return array<Toast>
-     */
+    /** @internal */
     public function flush(): array;
 }

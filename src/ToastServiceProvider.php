@@ -13,7 +13,6 @@ final class ToastServiceProvider extends AggregateServiceProvider
 {
     public const NAME = 'toast';
 
-    /** @var array<string> */
     protected $providers = [LivewireServiceProvider::class];
 
     public function boot(): void

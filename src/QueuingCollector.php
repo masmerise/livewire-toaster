@@ -5,7 +5,6 @@ namespace MAS\Toast;
 /** @internal */
 final class QueuingCollector implements Collector
 {
-    /** @var array<Toast> */
     private array $toasts = [];
 
     public function add(Toast $toast): void

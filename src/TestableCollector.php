@@ -6,7 +6,6 @@ use PHPUnit\Framework\Assert as PHPUnit;
 
 final class TestableCollector implements Collector
 {
-    /** @var array<Toast> */
     private array $toasts = [];
 
     public function add(Toast $toast): void
