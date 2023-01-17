@@ -31,6 +31,15 @@ final readonly class Message implements JsonSerializable
         return new self($value, $replace);
     }
 
+    public function equals(Message|string $other): bool
+    {
+        if ($other instanceof Message) {
+            $other = $other->value;
+        }
+
+        return $other === $this->value;
+    }
+
     public function jsonSerialize(): string
     {
         return $this->value;

@@ -1,9 +1,11 @@
 <?php declare(strict_types=1);
 
 return [
-    'duration' => 5000, // The default visibility duration in ms
+    'default' => [
+        'duration' => 5000, // in milliseconds, at least 1000
 
-    'position' => 'right', // The default toast position
+        'position' => 'right', // center, left or right
+    ],
 
     'translate' => true, // Translate messages passed as translation keys
 ];

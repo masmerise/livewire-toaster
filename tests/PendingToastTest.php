@@ -2,15 +2,14 @@
 
 namespace Tests;
 
-use MAS\Toast\Collector;
-use MAS\Toast\Toast;
+use MAS\Toast\Toaster;
 
 final class PendingToastTest extends TestCase
 {
     /** @test */
-    public function it_can_be_instantiated_through_static_factory_on_toast(): void
+    public function it_can_be_instantiated_through_static_factory_on_toaster(): void
     {
-        $pending = Toast::create()->message('lol')->error();
+        $pending = Toaster::toast()->message('lol')->error();
 
         $toast = $pending->get();
 
@@ -25,7 +24,7 @@ final class PendingToastTest extends TestCase
     /** @test */
     public function it_can_be_instantiated_thru_magic_methods_on_toast(): void
     {
-        $error = Toast::error('validation.accepted', ['attribute' => 'terms'])->get();
+        $error = Toaster::error('validation.accepted', ['attribute' => 'terms'])->get();
         $this->assertSame([
             'duration' => 5000,
             'message' => 'validation.accepted',
@@ -33,7 +32,7 @@ final class PendingToastTest extends TestCase
             'type' => 'error',
         ], $error->toArray());
 
-        $info = Toast::info('Informational')->duration(1500)->get();
+        $info = Toaster::info('Informational')->duration(1500)->get();
         $this->assertSame([
             'duration' => 1500,
             'message' => 'Informational',
@@ -41,7 +40,7 @@ final class PendingToastTest extends TestCase
             'type' => 'info',
         ], $info->toArray());
 
-        $success = Toast::success('Successful')->center()->get();
+        $success = Toaster::success('Successful')->center()->get();
         $this->assertSame([
             'duration' => 5000,
             'message' => 'Successful',
@@ -49,7 +48,7 @@ final class PendingToastTest extends TestCase
             'type' => 'success',
         ], $success->toArray());
 
-        $warning = Toast::warning('passwords.reset')->left()->get();
+        $warning = Toaster::warning('passwords.reset')->left()->get();
         $this->assertSame([
             'duration' => 5000,
             'message' => 'passwords.reset',
@@ -61,16 +60,16 @@ final class PendingToastTest extends TestCase
     /** @test */
     public function it_will_automatically_dispatch_the_toast_upon_destruction(): void
     {
-        $this->mock(Collector::class)->shouldReceive('add')->once();
+        Toaster::shouldReceive('add')->once();
 
-        Toast::error('Uvuvuvwevwe Onyetenyevwe Ughemuhwem Osas');
+        Toaster::error('Uvuvuvwevwe Onyetenyevwe Ughemuhwem Osas');
     }
 
     /** @test */
     public function it_will_only_dispatch_once(): void
     {
-        $this->mock(Collector::class)->shouldReceive('add')->once();
+        Toaster::shouldReceive('add')->once();
 
-        Toast::success('OK!')->dispatch();
+        Toaster::success('OK!')->dispatch();
     }
 }

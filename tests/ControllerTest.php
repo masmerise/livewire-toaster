@@ -3,7 +3,7 @@
 namespace Tests;
 
 use MAS\Toast\Collector;
-use MAS\Toast\Toast;
+use MAS\Toast\Toaster;
 use MAS\Toast\Toastable;
 use MAS\Toast\ToastBuilder;
 
@@ -72,7 +72,7 @@ final class ToastController
             ->message('The biggest battle is the war against ignorance. - Mustafa Kemal Atatürk')
             ->warning();
 
-        Toast::create()
+        Toaster::toast()
             ->duration(3333)
             ->message('Life is available only in the present moment. - Thich Nhat Hanh')
             ->error()

@@ -13,18 +13,23 @@ final class PendingToast
 
     private bool $dispatched = false;
 
-    public function __construct(int $duration, string $position)
+    private function __construct(int $duration, string $position)
     {
         $this->builder = ToastBuilder::create()
             ->duration($duration)
             ->position($position);
     }
 
+    public static function make(int $duration, string $position): self
+    {
+        return new self($duration, $position);
+    }
+
     public function dispatch(): void
     {
         $toast = $this->builder->get();
 
-        app(Collector::class)->add($toast);
+        Toaster::add($toast);
 
         $this->dispatched = true;
     }

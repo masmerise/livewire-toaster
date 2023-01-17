@@ -2,17 +2,9 @@
 
 namespace MAS\Toast;
 
-use BadMethodCallException;
 use Illuminate\Contracts\Support\Arrayable;
-use JsonSerializable;
 
-/**
- * @method static PendingToast error(string $message, array $replace = [])
- * @method static PendingToast info(string $message, array $replace = [])
- * @method static PendingToast success(string $message, array $replace = [])
- * @method static PendingToast warning(string $message, array $replace = [])
- */
-final readonly class Toast implements Arrayable, JsonSerializable
+final readonly class Toast implements Arrayable
 {
     public function __construct(
         public Message $message,
@@ -20,11 +12,6 @@ final readonly class Toast implements Arrayable, JsonSerializable
         public Position $position,
         public ToastType $type,
     ) {}
-
-    public static function create(): PendingToast
-    {
-        return new PendingToast(config('toast.duration'), config('toast.position'));
-    }
 
     public function clone(string $replacement): self
     {
@@ -36,12 +23,6 @@ final readonly class Toast implements Arrayable, JsonSerializable
         );
     }
 
-    /** @return array<string, mixed> */
-    public function jsonSerialize(): array
-    {
-        return $this->toArray();
-    }
-
     public function toArray(): array
     {
         return [
@@ -50,14 +31,5 @@ final readonly class Toast implements Arrayable, JsonSerializable
             'position' => $this->position->value,
             'type' => $this->type->value,
         ];
-    }
-
-    public static function __callStatic(string $name, array $arguments): PendingToast
-    {
-        if (! in_array($name, ToastType::toValues()) || ! count($arguments) || count($arguments) > 2) {
-            throw new BadMethodCallException("Call to undefined method MAS\Toast\Toast::{$name}()");
-        }
-
-        return self::create()->type($name)->message($arguments[0], $arguments[1] ?? []);
     }
 }

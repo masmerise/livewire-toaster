@@ -6,26 +6,26 @@ trait Toastable
 {
     protected function error(string $message, array $replace = []): PendingToast
     {
-        return Toast::error($message, $replace);
+        return Toaster::error($message, $replace);
     }
 
     protected function info(string $message, array $replace = []): PendingToast
     {
-        return Toast::info($message, $replace);
+        return Toaster::info($message, $replace);
     }
 
     protected function success(string $message, array $replace = []): PendingToast
     {
-        return Toast::success($message, $replace);
+        return Toaster::success($message, $replace);
     }
 
     protected function toast(): PendingToast
     {
-        return Toast::create();
+        return Toaster::toast();
     }
 
     protected function warning(string $message, array $replace = []): PendingToast
     {
-        return Toast::success($message, $replace);
+        return Toaster::warning($message, $replace);
     }
 }
