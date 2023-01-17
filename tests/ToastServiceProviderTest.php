@@ -7,19 +7,27 @@ use Illuminate\Foundation\Http\Events\RequestHandled;
 use Illuminate\Support\Arr;
 use MAS\Toast\Collector;
 use MAS\Toast\LivewireRelay;
+use MAS\Toast\QueuingCollector;
 use MAS\Toast\SessionRelay;
 use MAS\Toast\ToastHub;
 use MAS\Toast\TranslatingCollector;
 use MAS\Toast\ToastServiceProvider;
+use Orchestra\Testbench\TestCase;
 
 final class ToastServiceProviderTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->app->register(ToastServiceProvider::class);
+    }
+
     /** @test */
     public function it_binds_the_service_as_a_singleton(): void
     {
         $this->assertTrue($this->app->isShared(Collector::class));
         $this->assertTrue($this->app->isAlias(ToastServiceProvider::NAME));
-        $this->assertInstanceOf(TranslatingCollector::class, $this->app[ToastServiceProvider::NAME]);
     }
 
     /** @test */
@@ -46,5 +54,15 @@ final class ToastServiceProviderTest extends TestCase
         $this->assertSame(ToastHub::class, $blade->classComponentAliases['toast-hub']);
     }
 
+    /** @test */
+    public function it_registers_the_translating_behaviour_only_if_enabled_in_the_config(): void
+    {
+        $this->assertInstanceOf(TranslatingCollector::class, $this->app[ToastServiceProvider::NAME]);
 
+        $this->refreshApplication();
+        $this->app['config']->set('toast.translate', false);
+        $this->app->register(ToastServiceProvider::class);
+
+        $this->assertInstanceOf(QueuingCollector::class, $this->app[ToastServiceProvider::NAME]);
+    }
 }
