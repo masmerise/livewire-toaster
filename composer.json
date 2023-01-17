@@ -50,7 +50,7 @@
     "extra": {
         "laravel": {
             "aliases": {
-                "Toast": "MAS\\Toast\\Toast"
+                "Toaster": "MAS\\Toast\\Toaster"
             },
             "providers": [
                 "MAS\\Toast\\ToastServiceProvider"
