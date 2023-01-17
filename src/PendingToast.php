@@ -4,7 +4,19 @@ namespace MAS\Toast;
 
 use Illuminate\Support\Traits\ForwardsCalls;
 
-/** @mixin ToastBuilder */
+/**
+ * @method PendingToast center()
+ * @method PendingToast duration(int $milliseconds)
+ * @method PendingToast error()
+ * @method PendingToast info()
+ * @method PendingToast left()
+ * @method PendingToast message(string $message, array $replace = [])
+ * @method PendingToast position(string $position)
+ * @method PendingToast right()
+ * @method PendingToast success()
+ * @method PendingToast type(string $type)
+ * @method PendingToast warning()
+ */
 final class PendingToast
 {
     use ForwardsCalls;

@@ -13,4 +13,3 @@ parameters:
 
     ignoreErrors:
         - '#Cannot access offset .* on Illuminate\\Contracts\\Foundation\\Application#'
-        - '#Method MAS\\Toast\\Toaster::.*\(\) should return MAS\\Toast\\PendingToast but returns MAS\\Toast\\ToastBuilder.#'

@@ -5,7 +5,6 @@ namespace MAS\Toast;
 use Illuminate\Support\Traits\Conditionable;
 use UnexpectedValueException;
 
-/** @method void dispatch() */
 final class ToastBuilder
 {
     use Conditionable;
