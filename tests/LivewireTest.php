@@ -31,8 +31,8 @@ final class LivewireTest extends TestCase
         $this->assertCount(2, $effects = $this->component->payload['effects']['dispatches']);
 
         [$effectA, $effectB] = $effects;
-        $this->assertSame('toast-received', $effectA['event']);
-        $this->assertSame('toast-received', $effectB['event']);
+        $this->assertSame('toast:received', $effectA['event']);
+        $this->assertSame('toast:received', $effectB['event']);
         $this->assertSame([
             'duration' => 5000,
             'message' => 'The biggest battle is the war against ignorance. - Mustafa Kemal Atatürk',

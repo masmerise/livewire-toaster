@@ -9,7 +9,7 @@ use Livewire\Response;
 /** @internal */
 final class LivewireRelay
 {
-    public const EVENT = 'toast-received';
+    public const EVENT = 'toast:received';
 
     public function __construct(
         private readonly LivewireManager $livewire,

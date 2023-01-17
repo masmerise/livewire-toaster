@@ -1,5 +1,5 @@
 const ANIMATION_DURATION_MILLIS = 500;
-const EVENT = 'toast-received';
+const EVENT = 'toast:received';
 const MAX_VISIBLE_TOASTS = 3;
 
 export default function (Alpine) {
