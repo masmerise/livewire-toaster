@@ -30,7 +30,7 @@ final readonly class LivewireRelay
             $response->effects['dispatches'] ??= [];
 
             foreach ($toasts as $toast) {
-                $response->effects['dispatches'][] = ['event' => self::EVENT, 'data' => $toast];
+                $response->effects['dispatches'][] = ['event' => self::EVENT, 'data' => $toast->toArray()];
             }
         }
 
