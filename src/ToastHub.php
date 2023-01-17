@@ -11,11 +11,12 @@ final class ToastHub extends Component
 {
     public function __construct(
         private readonly Session $session,
+        private readonly string $view = 'toast::hub',
     ) {}
 
     public function render(): View
     {
-        return $this->view('toast::hub', [
+        return $this->view($this->view, [
             SessionRelay::NAME => $this->session->pull(SessionRelay::NAME, []),
         ]);
     }
