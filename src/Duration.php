@@ -5,9 +5,9 @@ namespace MAS\Toast;
 use InvalidArgumentException;
 use JsonSerializable;
 
-final readonly class Duration implements JsonSerializable
+final class Duration implements JsonSerializable
 {
-    public int $value;
+    public readonly int $value;
 
     private function __construct(int $value)
     {

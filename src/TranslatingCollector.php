@@ -5,11 +5,11 @@ namespace MAS\Toast;
 use Illuminate\Contracts\Translation\Translator;
 
 /** @internal */
-final readonly class TranslatingCollector implements Collector
+final class TranslatingCollector implements Collector
 {
     public function __construct(
-        private Collector $next,
-        private Translator $translator,
+        private readonly Collector $next,
+        private readonly Translator $translator,
     ) {}
 
     public function add(Toast $toast): void

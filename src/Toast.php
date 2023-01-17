@@ -4,13 +4,13 @@ namespace MAS\Toast;
 
 use Illuminate\Contracts\Support\Arrayable;
 
-final readonly class Toast implements Arrayable
+final class Toast implements Arrayable
 {
     public function __construct(
-        public Message $message,
-        public Duration $duration,
-        public Position $position,
-        public ToastType $type,
+        public readonly Message $message,
+        public readonly Duration $duration,
+        public readonly Position $position,
+        public readonly ToastType $type,
     ) {}
 
     public function clone(string $replacement): self

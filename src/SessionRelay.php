@@ -5,13 +5,13 @@ namespace MAS\Toast;
 use Illuminate\Contracts\Session\Session;
 
 /** @internal */
-final readonly class SessionRelay
+final class SessionRelay
 {
     public const NAME = 'toasts';
 
     public function __construct(
-        private Session $session,
-        private Collector $toasts,
+        private readonly Session $session,
+        private readonly Collector $toasts,
     ) {}
 
     public function handle(): void

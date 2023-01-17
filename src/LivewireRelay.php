@@ -7,13 +7,13 @@ use Livewire\LivewireManager;
 use Livewire\Response;
 
 /** @internal */
-final readonly class LivewireRelay
+final class LivewireRelay
 {
     public const EVENT = 'toast-received';
 
     public function __construct(
-        private LivewireManager $livewire,
-        private Collector $toasts,
+        private readonly LivewireManager $livewire,
+        private readonly Collector $toasts,
     ) {}
 
     public function __invoke(Component $component, Response $response): Response
