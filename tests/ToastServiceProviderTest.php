@@ -8,8 +8,10 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 use MAS\Toast\Collector;
 use MAS\Toast\LivewireRelay;
+use MAS\Toast\Position;
 use MAS\Toast\QueuingCollector;
 use MAS\Toast\SessionRelay;
+use MAS\Toast\ToastConfig;
 use MAS\Toast\ToastHub;
 use MAS\Toast\TranslatingCollector;
 use MAS\Toast\ToastServiceProvider;
@@ -74,5 +76,17 @@ final class ToastServiceProviderTest extends TestCase
         $this->assertTrue(RedirectResponse::hasMacro('info'));
         $this->assertTrue(RedirectResponse::hasMacro('success'));
         $this->assertTrue(RedirectResponse::hasMacro('warning'));
+    }
+
+    /** @test */
+    public function it_registers_custom_config_object(): void
+    {
+        $this->assertTrue($this->app->bound(ToastConfig::class));
+
+        $config = $this->app[ToastConfig::class];
+
+        $this->assertSame(5000, $config->duration());
+        $this->assertTrue($config->shouldTranslateMessages());
+        $this->assertSame(Position::Right, $config->position());
     }
 }

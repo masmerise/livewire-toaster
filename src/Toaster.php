@@ -35,7 +35,7 @@ final class Toaster extends Facade
 
     public static function toast(): PendingToast
     {
-        return PendingToast::make(self::$app['config']['toast.duration']);
+        return PendingToast::make(self::$app[ToastConfig::class]->duration());
     }
 
     public static function warning(string $message, array $replace = []): PendingToast

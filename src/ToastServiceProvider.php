@@ -24,33 +24,39 @@ final class ToastServiceProvider extends AggregateServiceProvider
 
         $this->loadViewsFrom(__DIR__ . '/../resources/views', self::NAME);
 
-        $this->callAfterResolving(BladeCompiler::class, $this->registerHub(...));
-        $this->callAfterResolving(Collector::class, $this->registerRelays(...));
+        $this->callAfterResolving(BladeCompiler::class, $this->aliasToastHub(...));
+        $this->callAfterResolving(Collector::class, $this->relayToasts(...));
 
         RedirectResponse::mixin(new ToastableMacros());
     }
 
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/toast.php', self::NAME);
+        $config = $this->configureService();
 
         parent::register();
 
         $this->app->singleton(Collector::class, QueuingCollector::class);
         $this->app->alias(Collector::class, self::NAME);
 
-        if (! $this->app['config']['toast.translate']) {
-            return;
+        if ($config->shouldTranslateMessages()) {
+            $this->app->extend(Collector::class, $this->translateMessages(...));
         }
-
-        $this->app->extend(Collector::class,
-            fn (Collector $next) => new TranslatingCollector($next, $this->app['translator'])
-        );
     }
 
-    private function registerHub(BladeCompiler $blade): void
+    private function aliasToastHub(BladeCompiler $blade): void
     {
         $blade->component('toast-hub', ToastHub::class);
+    }
+
+    private function configureService(): ToastConfig
+    {
+        $this->mergeConfigFrom(__DIR__ . '/../config/toast.php', self::NAME);
+
+        $config = ToastConfig::fromArray($this->app['config'][self::NAME]);
+        $this->app->instance(ToastConfig::class, $config);
+
+        return $config;
     }
 
     private function registerPublishing(): void
@@ -64,9 +70,14 @@ final class ToastServiceProvider extends AggregateServiceProvider
         ], 'views');
     }
 
-    private function registerRelays(): void
+    private function relayToasts(): void
     {
         $this->app[Dispatcher::class]->listen(RequestHandled::class, SessionRelay::class);
         $this->app[LivewireManager::class]->listen('component.dehydrate', $this->app[LivewireRelay::class]);
+    }
+
+    private function translateMessages(Collector $next): TranslatingCollector
+    {
+        return new TranslatingCollector($next, $this->app['translator']);
     }
 }
