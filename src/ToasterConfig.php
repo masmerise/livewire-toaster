@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace MAS\Toast;
+namespace MAS\Toaster;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Arr;
 
 /** @internal */
-final class ToastConfig implements Arrayable
+final class ToasterConfig implements Arrayable
 {
     private function __construct(
         private readonly int $duration,

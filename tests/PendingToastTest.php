@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use MAS\Toast\Toaster;
+use MAS\Toaster\Toaster;
 
 final class PendingToastTest extends TestCase
 {

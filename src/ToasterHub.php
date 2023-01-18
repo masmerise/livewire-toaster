@@ -1,18 +1,18 @@
 <?php declare(strict_types=1);
 
-namespace MAS\Toast;
+namespace MAS\Toaster;
 
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 /** @internal */
-final class ToastHub extends Component
+final class ToasterHub extends Component
 {
     public function __construct(
-        private readonly ToastConfig $config,
+        private readonly ToasterConfig $config,
         private readonly Session $session,
-        private readonly string $view = 'toast::hub',
+        private readonly string $view = 'toaster::hub',
     ) {}
 
     public function render(): View

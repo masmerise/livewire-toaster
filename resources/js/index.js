@@ -1,9 +1,9 @@
 export default function (Alpine) {
-    Alpine.data('toastHub', (initialToasts, config) => ({
+    Alpine.data('toasterHub', (initialToasts, config) => ({
         toasts: [],
 
         init() {
-            window.addEventListener('toast:received', event => {
+            window.addEventListener('toaster:received', event => {
                 this.add({ ...config.defaults, ...event.detail });
             });
 
@@ -53,7 +53,7 @@ export default function (Alpine) {
 
     Alpine.magic('toaster', (el) => {
         const toast = (message, type) => {
-            window.dispatchEvent(new CustomEvent('toast:received', { detail: { message, type }}));
+            window.dispatchEvent(new CustomEvent('toaster:received', { detail: { message, type }}));
         };
 
         return {

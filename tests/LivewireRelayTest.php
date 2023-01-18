@@ -5,8 +5,8 @@ namespace Tests;
 use Livewire\Component;
 use Livewire\Livewire;
 use Livewire\LivewireManager;
-use MAS\Toast\LivewireRelay;
-use MAS\Toast\ToastServiceProvider;
+use MAS\Toaster\LivewireRelay;
+use MAS\Toaster\ToasterServiceProvider;
 
 final class LivewireRelayTest extends TestCase
 {
@@ -49,7 +49,7 @@ final class TestComponent extends Component
 
     public function render(): string
     {
-        app(ToastServiceProvider::NAME)->add($this->aToast()); // trigger relay registration
+        app(ToasterServiceProvider::NAME)->add($this->aToast()); // trigger relay registration
 
         return '<div></div>';
     }

@@ -2,13 +2,13 @@
 
 namespace Tests;
 
-use MAS\Toast\ToastServiceProvider;
+use MAS\Toaster\ToasterServiceProvider;
 use Orchestra\Testbench\TestCase as TestCaseBase;
 
 abstract class TestCase extends TestCaseBase
 {
     protected function getPackageProviders($app): array
     {
-        return [ToastServiceProvider::class];
+        return [ToasterServiceProvider::class];
     }
 }

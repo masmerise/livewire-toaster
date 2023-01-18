@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use MAS\Toast\SessionRelay;
+use MAS\Toaster\SessionRelay;
 
 final class SessionRelayTest extends TestCase
 {

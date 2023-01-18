@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace MAS\Toast;
+namespace MAS\Toaster;
 
 use Livewire\Component;
 use Livewire\LivewireManager;
@@ -9,7 +9,7 @@ use Livewire\Response;
 /** @internal */
 final class LivewireRelay
 {
-    public const EVENT = 'toast:received';
+    public const EVENT = 'toaster:received';
 
     public function __construct(
         private readonly LivewireManager $livewire,

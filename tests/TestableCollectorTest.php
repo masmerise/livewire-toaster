@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use MAS\Toast\TestableCollector;
+use MAS\Toaster\TestableCollector;
 use PHPUnit\Framework\TestCase;
 
 final class TestableCollectorTest extends TestCase

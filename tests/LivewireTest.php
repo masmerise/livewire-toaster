@@ -6,10 +6,10 @@ use Livewire\Component;
 use Livewire\Livewire;
 use Livewire\LivewireManager;
 use Livewire\Testing\TestableLivewire;
-use MAS\Toast\Collector;
-use MAS\Toast\Toaster;
-use MAS\Toast\Toastable;
-use MAS\Toast\ToastBuilder;
+use MAS\Toaster\Collector;
+use MAS\Toaster\Toaster;
+use MAS\Toaster\Toastable;
+use MAS\Toaster\ToastBuilder;
 
 final class LivewireTest extends TestCase
 {
@@ -31,8 +31,8 @@ final class LivewireTest extends TestCase
         $this->assertCount(2, $effects = $this->component->payload['effects']['dispatches']);
 
         [$effectA, $effectB] = $effects;
-        $this->assertSame('toast:received', $effectA['event']);
-        $this->assertSame('toast:received', $effectB['event']);
+        $this->assertSame('toaster:received', $effectA['event']);
+        $this->assertSame('toaster:received', $effectB['event']);
         $this->assertSame([
             'duration' => 5000,
             'message' => 'The biggest battle is the war against ignorance. - Mustafa Kemal Atatürk',

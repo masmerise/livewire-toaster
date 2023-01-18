@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace MAS\Toast;
+namespace MAS\Toaster;
 
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Foundation\Http\Events\RequestHandled;
@@ -10,9 +10,9 @@ use Illuminate\View\Compilers\BladeCompiler;
 use Livewire\LivewireManager;
 use Livewire\LivewireServiceProvider;
 
-final class ToastServiceProvider extends AggregateServiceProvider
+final class ToasterServiceProvider extends AggregateServiceProvider
 {
-    public const NAME = 'toast';
+    public const NAME = 'toaster';
 
     protected $providers = [LivewireServiceProvider::class];
 
@@ -24,7 +24,7 @@ final class ToastServiceProvider extends AggregateServiceProvider
 
         $this->loadViewsFrom(__DIR__ . '/../resources/views', self::NAME);
 
-        $this->callAfterResolving(BladeCompiler::class, $this->aliasToastHub(...));
+        $this->callAfterResolving(BladeCompiler::class, $this->aliasToasterHub(...));
         $this->callAfterResolving(Collector::class, $this->relayToasts(...));
 
         RedirectResponse::mixin(new ToastableMacros());
@@ -44,17 +44,17 @@ final class ToastServiceProvider extends AggregateServiceProvider
         }
     }
 
-    private function aliasToastHub(BladeCompiler $blade): void
+    private function aliasToasterHub(BladeCompiler $blade): void
     {
-        $blade->component('toast-hub', ToastHub::class);
+        $blade->component('toaster-hub', ToasterHub::class);
     }
 
-    private function configureService(): ToastConfig
+    private function configureService(): ToasterConfig
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/toast.php', self::NAME);
+        $this->mergeConfigFrom(__DIR__ . '/../config/toaster.php', self::NAME);
 
-        $config = ToastConfig::fromArray($this->app['config'][self::NAME]);
-        $this->app->instance(ToastConfig::class, $config);
+        $config = ToasterConfig::fromArray($this->app['config'][self::NAME]);
+        $this->app->instance(ToasterConfig::class, $config);
 
         return $config;
     }
@@ -62,11 +62,11 @@ final class ToastServiceProvider extends AggregateServiceProvider
     private function registerPublishing(): void
     {
         $this->publishes([
-            __DIR__ . '/../config/toast.php' => $this->app->configPath('toast.php'),
+            __DIR__ . '/../config/toaster.php' => $this->app->configPath('toaster.php'),
         ], 'config');
 
         $this->publishes([
-            __DIR__ . '/../resources/views' => $this->app->resourcePath('views/vendor/toast'),
+            __DIR__ . '/../resources/views' => $this->app->resourcePath('views/vendor/toaster'),
         ], 'views');
     }
 

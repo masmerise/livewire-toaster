@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace MAS\Toast;
+namespace MAS\Toaster;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -35,7 +35,7 @@ final class Toaster extends Facade
 
     public static function toast(): PendingToast
     {
-        return PendingToast::make(self::$app[ToastConfig::class]->duration());
+        return PendingToast::make(self::$app[ToasterConfig::class]->duration());
     }
 
     public static function warning(string $message, array $replace = []): PendingToast
@@ -45,7 +45,7 @@ final class Toaster extends Facade
 
     protected static function getFacadeAccessor(): string
     {
-        return ToastServiceProvider::NAME;
+        return ToasterServiceProvider::NAME;
     }
 
     protected static function getMockableClass(): string

@@ -6,31 +6,31 @@ use Dive\Crowbar\Crowbar;
 use Illuminate\Foundation\Http\Events\RequestHandled;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
-use MAS\Toast\Collector;
-use MAS\Toast\LivewireRelay;
-use MAS\Toast\Position;
-use MAS\Toast\QueuingCollector;
-use MAS\Toast\SessionRelay;
-use MAS\Toast\ToastConfig;
-use MAS\Toast\ToastHub;
-use MAS\Toast\TranslatingCollector;
-use MAS\Toast\ToastServiceProvider;
+use MAS\Toaster\Collector;
+use MAS\Toaster\LivewireRelay;
+use MAS\Toaster\Position;
+use MAS\Toaster\QueuingCollector;
+use MAS\Toaster\SessionRelay;
+use MAS\Toaster\ToasterConfig;
+use MAS\Toaster\ToasterHub;
+use MAS\Toaster\TranslatingCollector;
+use MAS\Toaster\ToasterServiceProvider;
 use Orchestra\Testbench\TestCase;
 
-final class ToastServiceProviderTest extends TestCase
+final class ToasterServiceProviderTest extends TestCase
 {
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->app->register(ToastServiceProvider::class);
+        $this->app->register(ToasterServiceProvider::class);
     }
 
     /** @test */
     public function it_binds_the_service_as_a_singleton(): void
     {
         $this->assertTrue($this->app->isShared(Collector::class));
-        $this->assertTrue($this->app->isAlias(ToastServiceProvider::NAME));
+        $this->assertTrue($this->app->isAlias(ToasterServiceProvider::NAME));
     }
 
     /** @test */
@@ -42,7 +42,7 @@ final class ToastServiceProviderTest extends TestCase
         $this->assertNotContains(SessionRelay::class, $events->listeners[RequestHandled::class] ?? []);
         $this->assertNotContains(LivewireRelay::class, $livewire->listeners['component.dehydrate']);
 
-        $this->app[ToastServiceProvider::NAME];
+        $this->app[ToasterServiceProvider::NAME];
 
         $this->assertContains(SessionRelay::class, $events->listeners[RequestHandled::class]);
         $this->assertInstanceOf(LivewireRelay::class, Arr::last($livewire->listeners['component.dehydrate']));
@@ -53,20 +53,20 @@ final class ToastServiceProviderTest extends TestCase
     {
         $blade = Crowbar::pry($this->app['blade.compiler']);
 
-        $this->assertArrayHasKey('toast-hub', $blade->classComponentAliases);
-        $this->assertSame(ToastHub::class, $blade->classComponentAliases['toast-hub']);
+        $this->assertArrayHasKey('toaster-hub', $blade->classComponentAliases);
+        $this->assertSame(ToasterHub::class, $blade->classComponentAliases['toaster-hub']);
     }
 
     /** @test */
     public function it_registers_the_translating_behaviour_only_if_enabled_in_the_config(): void
     {
-        $this->assertInstanceOf(TranslatingCollector::class, $this->app[ToastServiceProvider::NAME]);
+        $this->assertInstanceOf(TranslatingCollector::class, $this->app[ToasterServiceProvider::NAME]);
 
         $this->refreshApplication();
-        $this->app['config']->set('toast.translate', false);
-        $this->app->register(ToastServiceProvider::class);
+        $this->app['config']->set('toaster.translate', false);
+        $this->app->register(ToasterServiceProvider::class);
 
-        $this->assertInstanceOf(QueuingCollector::class, $this->app[ToastServiceProvider::NAME]);
+        $this->assertInstanceOf(QueuingCollector::class, $this->app[ToasterServiceProvider::NAME]);
     }
 
     /** @test */
@@ -81,9 +81,9 @@ final class ToastServiceProviderTest extends TestCase
     /** @test */
     public function it_registers_custom_config_object(): void
     {
-        $this->assertTrue($this->app->bound(ToastConfig::class));
+        $this->assertTrue($this->app->bound(ToasterConfig::class));
 
-        $config = $this->app[ToastConfig::class];
+        $config = $this->app[ToasterConfig::class];
 
         $this->assertSame(5000, $config->duration());
         $this->assertTrue($config->shouldTranslateMessages());

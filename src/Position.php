@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace MAS\Toast;
+namespace MAS\Toaster;
 
 enum Position: string
 {

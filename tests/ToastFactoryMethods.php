@@ -2,10 +2,10 @@
 
 namespace Tests;
 
-use MAS\Toast\Duration;
-use MAS\Toast\Message;
-use MAS\Toast\Toast;
-use MAS\Toast\ToastType;
+use MAS\Toaster\Duration;
+use MAS\Toaster\Message;
+use MAS\Toaster\Toast;
+use MAS\Toaster\ToastType;
 
 trait ToastFactoryMethods
 {

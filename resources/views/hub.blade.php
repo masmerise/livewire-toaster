@@ -1,4 +1,4 @@
-<div role="status" id="toasts" x-data="toastHub(@js($toasts), @js($config))" @class([
+<div role="status" id="toaster" x-data="toasterHub(@js($toasts), @js($config))" @class([
     'fixed z-50 p-4 space-y-3 bottom-0 w-full pointer-events-none flex flex-col sm:p-6',
     'items-start' => $position->is('left'),
     'items-center' => $position->is('center'),

@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use MAS\Toast\ToastBuilder;
-use MAS\Toast\ToastType;
+use MAS\Toaster\ToastBuilder;
+use MAS\Toaster\ToastType;
 use PHPUnit\Framework\TestCase;
 use UnexpectedValueException;
 

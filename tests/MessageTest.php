@@ -3,7 +3,7 @@
 namespace Tests;
 
 use InvalidArgumentException;
-use MAS\Toast\Message;
+use MAS\Toaster\Message;
 use PHPUnit\Framework\TestCase;
 
 final class MessageTest extends TestCase
