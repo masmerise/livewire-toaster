@@ -7,7 +7,6 @@ use Illuminate\Foundation\Http\Events\RequestHandled;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\AggregateServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
-use Illuminate\View\View;
 use Livewire\LivewireManager;
 use Livewire\LivewireServiceProvider;
 
@@ -28,8 +27,7 @@ final class ToastServiceProvider extends AggregateServiceProvider
         $this->callAfterResolving(BladeCompiler::class, $this->registerHub(...));
         $this->callAfterResolving(Collector::class, $this->registerRelays(...));
 
-        RedirectResponse::mixin($macros = new ToastableMacros());
-        View::mixin($macros);
+        RedirectResponse::mixin(new ToastableMacros());
     }
 
     public function register(): void

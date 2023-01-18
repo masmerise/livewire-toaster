@@ -6,7 +6,6 @@ use Dive\Crowbar\Crowbar;
 use Illuminate\Foundation\Http\Events\RequestHandled;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
-use Illuminate\View\View;
 use MAS\Toast\Collector;
 use MAS\Toast\LivewireRelay;
 use MAS\Toast\QueuingCollector;
@@ -75,10 +74,5 @@ final class ToastServiceProviderTest extends TestCase
         $this->assertTrue(RedirectResponse::hasMacro('info'));
         $this->assertTrue(RedirectResponse::hasMacro('success'));
         $this->assertTrue(RedirectResponse::hasMacro('warning'));
-
-        $this->assertTrue(View::hasMacro('error'));
-        $this->assertTrue(View::hasMacro('info'));
-        $this->assertTrue(View::hasMacro('success'));
-        $this->assertTrue(View::hasMacro('warning'));
     }
 }
