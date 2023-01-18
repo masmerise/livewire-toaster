@@ -22,13 +22,11 @@ final class ControllerTest extends TestCase
             [
                 'duration' => 5000,
                 'message' => 'The biggest battle is the war against ignorance. - Mustafa Kemal Atatürk',
-                'position' => 'center',
                 'type' => 'warning',
             ],
             [
                 'duration' => 3333,
                 'message' => 'Life is available only in the present moment. - Thich Nhat Hanh',
-                'position' => 'right',
                 'type' => 'error',
             ]
         ]);
@@ -40,7 +38,6 @@ final class ControllerTest extends TestCase
         $this->get('inject')->assertOk()->assertSessionHas('toasts', [[
             'duration' => 2000,
             'message' => 'The biggest battle is the war against ignorance. - Mustafa Kemal Atatürk',
-            'position' => 'left',
             'type' => 'success',
         ]]);
     }
@@ -56,7 +53,6 @@ final class ToastController
             ->success()
             ->duration(2000)
             ->message('The biggest battle is the war against ignorance. - Mustafa Kemal Atatürk')
-            ->left()
             ->get();
 
         $toasts->add($toast);
@@ -68,7 +64,6 @@ final class ToastController
     {
         $this
             ->toast()
-            ->center()
             ->message('The biggest battle is the war against ignorance. - Mustafa Kemal Atatürk')
             ->warning();
 

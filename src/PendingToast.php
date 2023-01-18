@@ -5,14 +5,10 @@ namespace MAS\Toast;
 use Illuminate\Support\Traits\ForwardsCalls;
 
 /**
- * @method PendingToast center()
  * @method PendingToast duration(int $milliseconds)
  * @method PendingToast error()
  * @method PendingToast info()
- * @method PendingToast left()
  * @method PendingToast message(string $message, array $replace = [])
- * @method PendingToast position(string $position)
- * @method PendingToast right()
  * @method PendingToast success()
  * @method PendingToast type(string $type)
  * @method PendingToast warning()
@@ -25,16 +21,14 @@ final class PendingToast
 
     private bool $dispatched = false;
 
-    private function __construct(int $duration, string $position)
+    private function __construct(int $duration)
     {
-        $this->builder = ToastBuilder::create()
-            ->duration($duration)
-            ->position($position);
+        $this->builder = ToastBuilder::create()->duration($duration);
     }
 
-    public static function make(int $duration, string $position): self
+    public static function make(int $duration): self
     {
-        return new self($duration, $position);
+        return new self($duration);
     }
 
     public function dispatch(): void

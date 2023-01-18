@@ -16,7 +16,6 @@ final class PendingToastTest extends TestCase
         $this->assertSame([
             'duration' => 5000, // config default
             'message' => 'lol',
-            'position' => 'right', // config default
             'type' => 'error',
         ], $toast->toArray());
     }
@@ -28,7 +27,6 @@ final class PendingToastTest extends TestCase
         $this->assertSame([
             'duration' => 5000,
             'message' => 'validation.accepted',
-            'position' => 'right',
             'type' => 'error',
         ], $error->toArray());
 
@@ -36,23 +34,20 @@ final class PendingToastTest extends TestCase
         $this->assertSame([
             'duration' => 1500,
             'message' => 'Informational',
-            'position' => 'right',
             'type' => 'info',
         ], $info->toArray());
 
-        $success = Toaster::success('Successful')->center()->get();
+        $success = Toaster::success('Successful')->get();
         $this->assertSame([
             'duration' => 5000,
             'message' => 'Successful',
-            'position' => 'center',
             'type' => 'success',
         ], $success->toArray());
 
-        $warning = Toaster::warning('passwords.reset')->left()->get();
+        $warning = Toaster::warning('passwords.reset')->get();
         $this->assertSame([
             'duration' => 5000,
             'message' => 'passwords.reset',
-            'position' => 'left',
             'type' => 'warning',
         ], $warning->toArray());
     }

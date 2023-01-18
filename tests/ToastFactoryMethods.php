@@ -4,7 +4,6 @@ namespace Tests;
 
 use MAS\Toast\Duration;
 use MAS\Toast\Message;
-use MAS\Toast\Position;
 use MAS\Toast\Toast;
 use MAS\Toast\ToastType;
 
@@ -15,7 +14,6 @@ trait ToastFactoryMethods
         return new Toast(...[
             'message' => Message::fromString('Crispy toasts'),
             'duration' => Duration::fromMillis(1000),
-            'position' => Position::Right,
             'type' => ToastType::Success,
             ...$values,
         ]);

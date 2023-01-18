@@ -18,7 +18,6 @@ final class ToastTest extends TestCase
         $this->assertSame([
             'duration' => 1000,
             'message' => 'Crispy toasts',
-            'position' => 'right',
             'type' => 'success',
         ], $result);
     }

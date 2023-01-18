@@ -2,7 +2,6 @@
 
 namespace Tests;
 
-use MAS\Toast\Position;
 use MAS\Toast\ToastBuilder;
 use MAS\Toast\ToastType;
 use PHPUnit\Framework\TestCase;
@@ -16,18 +15,15 @@ final class ToastBuilderTest extends TestCase
         $builderA = ToastBuilder::create();
         $builderB = $builderA->message('Rice cooker');
         $builderC = $builderB->success();
-        $builderD = $builderC->center();
-        $builderE = $builderD->duration(4000);
+        $builderD = $builderC->duration(4000);
 
-        $toast = $builderE->get();
+        $toast = $builderD->get();
 
         $this->assertNotSame($builderA, $builderB);
         $this->assertNotSame($builderB, $builderC);
         $this->assertNotSame($builderC, $builderD);
-        $this->assertNotSame($builderD, $builderE);
         $this->assertSame('Rice cooker', $toast->message->value);
         $this->assertSame(ToastType::Success, $toast->type);
-        $this->assertSame(Position::Center, $toast->position);
         $this->assertSame(4000, $toast->duration->value);
     }
 

@@ -13,18 +13,11 @@ final class ToastBuilder
 
     private ?Message $message = null;
 
-    private ?Position $position = null;
-
     private ?ToastType $type = null;
 
     public static function create(): self
     {
         return new self();
-    }
-
-    public function center(): self
-    {
-        return $this->modify('position', Position::Center);
     }
 
     public function duration(int $milliseconds): self
@@ -42,24 +35,9 @@ final class ToastBuilder
         return $this->modify('type', ToastType::Info);
     }
 
-    public function left(): self
-    {
-        return $this->modify('position', Position::Left);
-    }
-
     public function message(string $message, array $replace = []): self
     {
         return $this->modify('message', Message::fromTranslatable($message, $replace));
-    }
-
-    public function position(string $position): self
-    {
-        return $this->modify('position', Position::from($position));
-    }
-
-    public function right(): self
-    {
-        return $this->modify('position', Position::Right);
     }
 
     public function success(): self
@@ -87,15 +65,11 @@ final class ToastBuilder
             throw new UnexpectedValueException('You must provide a valid message.');
         }
 
-        if (! $this->position instanceof Position) {
-            throw new UnexpectedValueException('You must choose a valid position.');
-        }
-
         if (! $this->type instanceof ToastType) {
             throw new UnexpectedValueException('You must choose a valid type.');
         }
 
-        return new Toast($this->message, $this->duration, $this->position, $this->type);
+        return new Toast($this->message, $this->duration, $this->type);
     }
 
     private function modify(string $property, mixed $value): self

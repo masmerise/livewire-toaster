@@ -31,7 +31,6 @@ final class SessionRelayTest extends TestCase
         $this->assertIsArray($toast = $toasts[0]);
         $this->assertArrayHasKey('duration', $toast);
         $this->assertArrayHasKey('message', $toast);
-        $this->assertArrayHasKey('position', $toast);
         $this->assertArrayHasKey('type', $toast);
     }
 }

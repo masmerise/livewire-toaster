@@ -28,7 +28,6 @@ final class LivewireRelayTest extends TestCase
         $component->assertDispatchedBrowserEvent(LivewireRelay::EVENT, [
             'duration' => 1000,
             'message' => 'Crispy toasts',
-            'position' => 'right',
             'type' => 'success',
         ]);
     }

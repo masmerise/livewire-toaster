@@ -9,7 +9,6 @@ final class Toast implements Arrayable
     public function __construct(
         public readonly Message $message,
         public readonly Duration $duration,
-        public readonly Position $position,
         public readonly ToastType $type,
     ) {}
 
@@ -18,7 +17,6 @@ final class Toast implements Arrayable
         return new self(
             Message::fromString($replacement),
             $this->duration,
-            $this->position,
             $this->type,
         );
     }
@@ -28,7 +26,6 @@ final class Toast implements Arrayable
         return [
             'duration' => $this->duration->value,
             'message' => $this->message->value,
-            'position' => $this->position->value,
             'type' => $this->type->value,
         ];
     }

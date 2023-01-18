@@ -36,13 +36,11 @@ final class LivewireTest extends TestCase
         $this->assertSame([
             'duration' => 5000,
             'message' => 'The biggest battle is the war against ignorance. - Mustafa Kemal Atatürk',
-            'position' => 'center',
             'type' => 'warning',
         ], $effectA['data']);
         $this->assertSame([
             'duration' => 3333,
             'message' => 'Life is available only in the present moment. - Thich Nhat Hanh',
-            'position' => 'right',
             'type' => 'error',
         ], $effectB['data']);
     }
@@ -58,7 +56,6 @@ final class LivewireTest extends TestCase
         $this->assertSame([
             'duration' => 2000,
             'message' => 'The biggest battle is the war against ignorance. - Mustafa Kemal Atatürk',
-            'position' => 'left',
             'type' => 'success',
         ], $effect['data']);
     }
@@ -74,7 +71,6 @@ final class ToastComponent extends Component
             ->success()
             ->duration(2000)
             ->message('The biggest battle is the war against ignorance. - Mustafa Kemal Atatürk')
-            ->left()
             ->get();
 
         $toasts->add($toast);
@@ -84,7 +80,6 @@ final class ToastComponent extends Component
     {
         $this
             ->toast()
-            ->center()
             ->message('The biggest battle is the war against ignorance. - Mustafa Kemal Atatürk')
             ->warning();
 
