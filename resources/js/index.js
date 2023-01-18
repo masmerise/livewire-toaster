@@ -1,61 +1,133 @@
-const ANIMATION_DURATION_MILLIS = 500;
-const EVENT = 'toast:received';
-const MAX_VISIBLE_TOASTS = 3;
-
 export default function (Alpine) {
-    Alpine.magic('toast', () => ({
-        // wip
-    }));
-
-    Alpine.data('toastHub', (initialToasts = []) => ({
+    Alpine.data('toastHub', (initialToasts, config) => ({
         toasts: [],
 
         init() {
-            window.addEventListener(EVENT, event => {
-                this.addToast(event.detail);
+            window.addEventListener('toast:received', event => {
+                this.add({ ...config.defaults, ...event.detail });
             });
 
-            if (! initialToasts.length) {
-                return;
+            for (const toast of initialToasts) {
+                this.add(toast);
             }
 
-            window.addEventListener('load', () => {
-                for (const toast of initialToasts) {
-                    this.addToast(toast);
-                }
-            });
+            this.incinerate = this.incinerate.bind(this);
+            this.remove = this.remove.bind(this);
         },
 
-        addToast(toast) {
-            if (this.toasts.length >= MAX_VISIBLE_TOASTS) {
-                this.toasts.pop();
-            }
+        add(toast) {
+            this.enforceMaxAmount();
 
+            toast = Toast.create(toast);
+            toast.afterDuration(this.remove);
+
+            this.prepend(toast);
+        },
+
+        enforceMaxAmount() {
+            if (config.max > 0 && this.toasts.length >= config.max) {
+                this.toasts.pop().dispose();
+            }
+        },
+
+        incinerate(toast) {
+            const idx = this.toasts.findIndex(t => t.is(toast));
+
+            this.toasts.splice(idx, 1);
+        },
+
+        prepend(toast) {
             this.toasts.unshift(toast);
-            this.scheduleRemoval(toast);
+
+            this.$nextTick(() => { toast.$el = this.$el.querySelector(`[data-toast="${toast.id}"]`); });
         },
 
-        removeToast(id) {
-            const idx = this.getToastIdx(id);
-            if (idx === -1) {
-                return;
-            }
+        remove(toast) {
+            const idx = this.toasts.findIndex(t => t.is(toast));
 
-            this.toasts[idx].visible = false;
+            this.toasts[idx].hide();
 
-            setTimeout(() => {
-                this.toasts.splice(idx, 1);
-            }, ANIMATION_DURATION_MILLIS);
-        },
-
-        scheduleRemoval(toast) {
-            setTimeout(() => {
-                this.removeToast(toast.id);
-            }, toast.duration);
-        },
-
-        getToastIdx(id) {
-            return this.toasts.findIndex(t => t.id === id);
+            toast.$el.addEventListener('transitionend', this.incinerate);
         },
     }));
+
+    Alpine.magic('toaster', (el) => {
+        const toast = (message, type) => {
+            window.dispatchEvent(new CustomEvent('toast:received', { detail: { message, type }}));
+        };
+
+        return {
+            error(message) {
+                toast(message, 'error');
+            },
+
+            info(message) {
+                toast(message, 'info');
+            },
+
+            success(message) {
+                toast(message, 'success');
+            },
+
+            warning(message) {
+                toast(message, 'warning');
+            }
+        }
+    });
 };
+
+class Toast {
+    constructor(duration, message, type) {
+        this.id = uuid41();
+        this.isVisible = false;
+        this.duration = duration;
+        this.message = message;
+        this.type = type;
+    }
+
+    static create(data) {
+        return new Toast(data.duration, data.message, data.type);
+    }
+
+    afterDuration(callback) {
+        this.timeoutId = setTimeout(() => {
+            callback(this);
+
+            this.timeoutId = null;
+        }, this.duration);
+    }
+
+    dispose() {
+        if (this.timeoutId) {
+            clearTimeout(this.timeoutId);
+        }
+    }
+
+    hide() {
+        this.isVisible = false;
+    }
+
+    is(other) {
+        return this.id === other.id;
+    }
+
+    select(config) {
+        return config[this.type];
+    }
+
+    show() {
+        this.isVisible = true;
+    }
+}
+
+function uuid41() {
+    let d = '';
+
+    while (d.length < 32) {
+        d += Math.random().toString(16).substring(2);
+    }
+
+    const vr = ((Number.parseInt(d.substring(16, 1), 16) & 0x3) | 0x8).toString(16);
+
+    return `${d.substring(0, 8)}-${d.substring(8, 4)}-4${d.substring(13, 3)}-${vr}${d.substring(17, 3)}-${d.substring(20, 12)}`;
+}

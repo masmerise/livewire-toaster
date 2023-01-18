@@ -8,18 +8,8 @@ enum Position: string
     case Left = 'left';
     case Right = 'right';
 
-    public function isCenter(): bool
+    public function is(string $position): bool
     {
-        return $this === self::Center;
-    }
-
-    public function isLeft(): bool
-    {
-        return $this === self::Left;
-    }
-
-    public function isRight(): bool
-    {
-        return $this === self::Right;
+        return $position === $this->value;
     }
 }
