@@ -10,7 +10,6 @@ final class ToasterConfig implements Arrayable
 {
     private function __construct(
         private readonly int $duration,
-        private readonly int $max,
         private readonly Position $position,
         private readonly bool $translate,
     ) {}
@@ -19,7 +18,6 @@ final class ToasterConfig implements Arrayable
     {
         return new self(
             Arr::get($config, 'duration', 5000),
-            Arr::get($config, 'max', 5),
             Position::from(Arr::get($config, 'position', 'right')),
             Arr::get($config, 'translate', true),
         );
@@ -42,9 +40,6 @@ final class ToasterConfig implements Arrayable
 
     public function toArray(): array
     {
-        return [
-            'defaults' => ['duration' => $this->duration],
-            'max' => $this->max,
-        ];
+        return ['duration' => $this->duration];
     }
 }

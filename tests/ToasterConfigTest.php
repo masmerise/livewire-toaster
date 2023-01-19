@@ -14,9 +14,6 @@ final class ToasterConfigTest extends TestCase
 
         $array = $config->toArray();
 
-        $this->assertSame([
-            'defaults' => ['duration' => 5000],
-            'max' => 5,
-        ], $array);
+        $this->assertSame(['duration' => 5000], $array);
     }
 }
