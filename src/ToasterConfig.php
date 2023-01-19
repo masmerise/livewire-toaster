@@ -2,11 +2,10 @@
 
 namespace MAS\Toaster;
 
-use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Arr;
 
 /** @internal */
-final class ToasterConfig implements Arrayable
+final class ToasterConfig
 {
     private function __construct(
         private readonly int $duration,
@@ -38,7 +37,7 @@ final class ToasterConfig implements Arrayable
         return $this->translate;
     }
 
-    public function toArray(): array
+    public function toDefaults(): array
     {
         return ['duration' => $this->duration];
     }
