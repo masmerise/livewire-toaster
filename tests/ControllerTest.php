@@ -62,14 +62,10 @@ final class ToastController
 
     public function multiple(): array
     {
-        $this
-            ->toast()
-            ->message('The biggest battle is the war against ignorance. - Mustafa Kemal Atatürk')
-            ->warning();
+        $this->warning('The biggest battle is the war against ignorance. - Mustafa Kemal Atatürk');
 
-        Toaster::toast()
+        Toaster::error('Life is available only in the present moment. - Thich Nhat Hanh')
             ->duration(3333)
-            ->message('Life is available only in the present moment. - Thich Nhat Hanh')
             ->error()
             ->dispatch();
 

@@ -21,14 +21,19 @@ final class PendingToast
 
     private bool $dispatched = false;
 
-    private function __construct(int $duration)
+    private function __construct()
     {
-        $this->builder = ToastBuilder::create()->duration($duration);
+        $this->builder = ToastBuilder::create();
     }
 
-    public static function make(int $duration): self
+    public static function make(): self
     {
-        return new self($duration);
+        return new self();
+    }
+
+    public static function withDefaults(): self
+    {
+        return self::make()->duration(app(ToasterConfig::class)->duration());
     }
 
     public function dispatch(): void
