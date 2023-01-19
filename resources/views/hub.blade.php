@@ -7,17 +7,16 @@
     <template x-for="toast in toasts" :key="toast.id">
         <div x-show="toast.isVisible"
              x-init="$nextTick(() => toast.show())"
-             x-transition:enter-start="translate-y-2 opacity-0 sm:translate-y-0 {{ $position->is('left') ? 'sm:-translate-x-10' : 'sm:translate-x-10' }}"
-             x-transition:enter-end="translate-y-0 opacity-100 sm:translate-x-0"
-             x-transition:leave-end="opacity-0"
-             class="duration-300 transition ease-in-out"
+             x-transition:enter-start="translate-y-12 opacity-0"
+             x-transition:enter-end="translate-y-0 opacity-100"
+             x-transition:leave-end="opacity-0 scale-90"
              :data-toast="toast.id"
+             class="duration-300 transform transition ease-in-out max-w-xs w-full"
         >
-            <p class="flex items-center self-center max-w-sm px-6 py-3 rounded shadow-lg text-center text-white"
+            <i x-text="toast.message"
+               class="inline-block not-italic px-6 py-3 rounded shadow-lg text-white text-sm w-full"
                :class="toast.select({ error: 'bg-red-500', info: 'bg-gray-200 text-black', success: 'bg-green-600', warning: 'bg-orange-500' })"
-            >
-                <span x-text="toast.message" class="flex-1"></span>
-            </p>
+            ></i>
         </div>
     </template>
 </div>
