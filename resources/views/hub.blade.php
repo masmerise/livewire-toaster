@@ -6,7 +6,7 @@
  ])>
     <template x-for="toast in toasts" :key="toast.id">
         <div x-show="toast.isVisible"
-             x-init="$nextTick(() => toast.setNode($el).show())"
+             x-init="$nextTick(() => toast.show($el))"
              x-transition:enter-start="translate-y-12 opacity-0"
              x-transition:enter-end="translate-y-0 opacity-100"
              x-transition:leave-end="opacity-0 scale-90"

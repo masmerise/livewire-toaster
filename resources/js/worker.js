@@ -4,13 +4,17 @@ export class Worker {
         this.timeoutId = null;
     }
 
-    start(onPoll, onStop) {
-        if (this.timeoutId) return;
-
-        this.work(onPoll, onStop);
+    static configure(sleep) {
+        return new Worker(sleep);
     }
 
-    stop() {
+    start({ onLoop, onTerminate }) {
+        if (this.timeoutId) return;
+
+        this._work(onLoop, onTerminate);
+    }
+
+    terminate() {
         if (this.timeoutId) {
             clearTimeout(this.timeoutId);
         }
@@ -18,14 +22,14 @@ export class Worker {
         this.timeoutId = null;
     }
 
-    work(onPoll, onStop) {
+    _work(shouldTerminate, terminating) {
         this.timeoutId = setTimeout(() => {
-            if (onPoll()) {
-                onStop();
+            if (shouldTerminate()) {
+                terminating();
 
-                this.stop();
+                this.terminate();
             } else {
-                this.work(onPoll, onStop);
+                this._work(shouldTerminate, terminating);
             }
         }, this.sleep);
     }

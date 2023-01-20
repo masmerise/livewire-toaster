@@ -1,42 +1,45 @@
 import { Toast } from './toast';
-import { Worker} from './worker';
+import { Worker } from './worker';
 
 export function Hub(Alpine) {
-    Alpine.data('toasterHub', (initialToasts, config) => ({
-        _toasts: [],
-        _worker: new Worker(config.duration),
+    Alpine.data('toasterHub', (initialToasts, config) => {
+        const worker = Worker.configure(config.duration);
 
-        get toasts() {
-            return this._toasts.filter(t => ! t.trashed);
-        },
+        return {
+            _toasts: [],
 
-        forceDelete() {
-            this._toasts = [];
-        },
+            get toasts() {
+                return this._toasts.filter(t => ! t.trashed);
+            },
 
-        init() {
-            window.addEventListener('toaster:received', event => {
-                this.show({ ...config, ...event.detail });
-            });
+            flush() {
+                this._toasts = [];
+            },
 
-            for (const toast of initialToasts) {
-                this.show(toast);
-            }
+            init() {
+                window.addEventListener('toaster:received', event => {
+                    this.show({ ...config, ...event.detail });
+                });
 
-            this.isEmpty = this.isEmpty.bind(this);
-            this.forceDelete = this.forceDelete.bind(this);
-        },
+                for (const toast of initialToasts) {
+                    this.show(toast);
+                }
 
-        isEmpty() {
-            return ! this.toasts.length;
-        },
+                this.isEmpty = this.isEmpty.bind(this);
+                this.flush = this.flush.bind(this);
+            },
 
-        show(toast) {
-            toast = Alpine.reactive(Toast.fromJson(toast));
-            toast.runAfterDuration(toast => toast.softDelete());
+            isEmpty() {
+                return ! this.toasts.length;
+            },
 
-            this._toasts.push(toast);
-            this._worker.start(this.isEmpty, this.forceDelete);
-        },
-    }));
+            show(toast) {
+                toast = Alpine.reactive(Toast.fromJson(toast));
+                this._toasts.push(toast);
+
+                toast.runAfterDuration(toast => toast.dispose());
+                worker.start({ onLoop: this.isEmpty, onTerminate: this.flush });
+            },
+        }
+    });
 }

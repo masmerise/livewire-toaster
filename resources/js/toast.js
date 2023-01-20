@@ -15,21 +15,7 @@ export class Toast {
         return new Toast(data.duration, data.message, data.type);
     }
 
-    runAfterDuration(callback) {
-        setTimeout(() => callback(this), this.duration);
-    }
-
-    select(config) {
-        return config[this.type];
-    }
-
-    setNode($el) {
-        this.$el = $el;
-
-        return this;
-    }
-
-    softDelete() {
+    dispose() {
         this.isVisible = false;
 
         this.$el.addEventListener('transitioncancel', () => { this.trashed = true; })
@@ -38,7 +24,16 @@ export class Toast {
         return this;
     }
 
-    show() {
+    runAfterDuration(callback) {
+        setTimeout(() => callback(this), this.duration);
+    }
+
+    select(config) {
+        return config[this.type];
+    }
+
+    show($el) {
+        this.$el = $el;
         this.isVisible = true;
 
         return this;
