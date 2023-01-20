@@ -1,5 +1,5 @@
 import { Hub } from './hub';
-import { Toaster } from './toaster';
+import * as Toaster from './toaster';
 
 window.Toaster = Toaster;
 

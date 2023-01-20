@@ -2,10 +2,12 @@ import { uuid41 } from './uuid41';
 
 export class Toast {
     constructor(duration, message, type) {
+        this.$el = null;
         this.id = uuid41();
         this.isVisible = false;
         this.duration = duration;
         this.message = message;
+        this.trashed = false;
         this.type = type;
     }
 
@@ -13,33 +15,32 @@ export class Toast {
         return new Toast(data.duration, data.message, data.type);
     }
 
-    afterDuration(callback) {
-        this.timeoutId = setTimeout(() => {
-            callback(this);
-
-            this.timeoutId = null;
-        }, this.duration);
-    }
-
-    dispose() {
-        if (this.timeoutId) {
-            clearTimeout(this.timeoutId);
-        }
-    }
-
-    hide() {
-        this.isVisible = false;
-    }
-
-    is(other) {
-        return this.id === other.id;
+    runAfterDuration(callback) {
+        setTimeout(() => callback(this), this.duration);
     }
 
     select(config) {
         return config[this.type];
     }
 
+    setNode($el) {
+        this.$el = $el;
+
+        return this;
+    }
+
+    softDelete() {
+        this.isVisible = false;
+
+        this.$el.addEventListener('transitioncancel', () => { this.trashed = true; })
+        this.$el.addEventListener('transitionend', () => { this.trashed = true; })
+
+        return this;
+    }
+
     show() {
         this.isVisible = true;
+
+        return this;
     }
 }

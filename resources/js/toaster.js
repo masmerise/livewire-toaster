@@ -7,4 +7,4 @@ const info = message => event(message, 'info');
 const success = message => event(message, 'success');
 const warning = message => event(message, 'warning');
 
-export const Toaster = { error, info, success, warning }
+export { error, info, success, warning }
