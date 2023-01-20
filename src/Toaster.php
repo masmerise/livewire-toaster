@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Facade;
  */
 final class Toaster extends Facade
 {
+    public static function config(): ToasterConfig
+    {
+        return self::$app[ToasterConfig::class];
+    }
+
     public static function error(string $message, array $replace = []): PendingToast
     {
         return self::toast()->message($message, $replace)->error();
@@ -35,7 +40,7 @@ final class Toaster extends Facade
 
     public static function toast(): PendingToast
     {
-        return PendingToast::withDefaults();
+        return PendingToast::create();
     }
 
     public static function warning(string $message, array $replace = []): PendingToast

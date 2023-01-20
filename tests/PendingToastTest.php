@@ -42,7 +42,7 @@ final class PendingToastTest extends TestCase
     /** @test */
     public function it_can_be_instantiated_with_defaults(): void
     {
-        $toast = PendingToast::withDefaults()->message('test')->success()->get();
+        $toast = PendingToast::create()->message('test')->success()->get();
 
         $this->assertSame([
             'duration' => 5000, // config default
@@ -56,7 +56,7 @@ final class PendingToastTest extends TestCase
     {
         Toaster::shouldReceive('add')->once();
 
-        PendingToast::make()
+        PendingToast::create()
             ->duration(2000)
             ->error()
             ->message('Uvuvuvwevwe Onyetenyevwe Ughemuhwem Osas');
@@ -67,7 +67,7 @@ final class PendingToastTest extends TestCase
     {
         Toaster::shouldReceive('add')->once();
 
-        PendingToast::make()
+        PendingToast::create()
             ->duration(2000)
             ->success()
             ->message('Uvuvuvwevwe Onyetenyevwe Ughemuhwem Osas')
