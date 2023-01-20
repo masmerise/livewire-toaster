@@ -16,8 +16,8 @@ final class TranslatingCollectorTest extends TestCase
         $collector = new TranslatingCollector($this->aCollector(), $this->app['translator']);
         $message = Message::fromTranslatable('auth.throttle', ['seconds' => 1337]);
 
-        $collector->add($this->aToast(message: $message));
-        [$toast] = $collector->flush();
+        $collector->collect($this->aToast(message: $message));
+        [$toast] = $collector->release();
 
         $this->assertSame('Too many login attempts. Please try again in 1337 seconds.', $toast->message->value);
     }
@@ -28,8 +28,8 @@ final class TranslatingCollectorTest extends TestCase
         $collector = new TranslatingCollector($this->aCollector(), $this->app['translator']);
         $message = Message::fromTranslatable('validation.size');
 
-        $collector->add($this->aToast(message: $message));
-        [$toast] = $collector->flush();
+        $collector->collect($this->aToast(message: $message));
+        [$toast] = $collector->release();
 
         $this->assertSame('validation.size', $toast->message->value);
     }
@@ -39,8 +39,8 @@ final class TranslatingCollectorTest extends TestCase
     {
         $collector = new TranslatingCollector($this->aCollector(), $this->app['translator']);
 
-        $collector->add($this->aToast());
-        [$toast] = $collector->flush();
+        $collector->collect($this->aToast());
+        [$toast] = $collector->release();
 
         $this->assertSame('Crispy toasts', $toast->message->value);
     }

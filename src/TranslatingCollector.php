@@ -12,7 +12,7 @@ final class TranslatingCollector implements Collector
         private readonly Translator $translator,
     ) {}
 
-    public function add(Toast $toast): void
+    public function collect(Toast $toast): void
     {
         $replacement = $this->translator->get($original = $toast->message->value, $toast->message->replace);
 
@@ -20,11 +20,11 @@ final class TranslatingCollector implements Collector
             $toast = $toast->clone($replacement);
         }
 
-        $this->next->add($toast);
+        $this->next->collect($toast);
     }
 
-    public function flush(): array
+    public function release(): array
     {
-        return $this->next->flush();
+        return $this->next->release();
     }
 }

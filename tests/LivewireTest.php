@@ -73,7 +73,7 @@ final class ToastComponent extends Component
             ->message('The biggest battle is the war against ignorance. - Mustafa Kemal Atatürk')
             ->get();
 
-        $toasts->add($toast);
+        $toasts->collect($toast);
     }
 
     public function multiple(): void

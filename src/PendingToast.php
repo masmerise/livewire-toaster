@@ -35,7 +35,7 @@ final class PendingToast
     {
         $toast = $this->builder->get();
 
-        Toaster::add($toast);
+        Toaster::collect($toast);
 
         $this->dispatched = true;
     }

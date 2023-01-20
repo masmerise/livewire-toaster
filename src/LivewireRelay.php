@@ -26,7 +26,7 @@ final class LivewireRelay
             return $response;
         }
 
-        if ($toasts = $this->toasts->flush()) {
+        if ($toasts = $this->toasts->release()) {
             $response->effects['dispatches'] ??= [];
 
             foreach ($toasts as $toast) {

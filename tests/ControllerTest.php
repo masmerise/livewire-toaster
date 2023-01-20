@@ -55,7 +55,7 @@ final class ToastController
             ->message('The biggest battle is the war against ignorance. - Mustafa Kemal Atatürk')
             ->get();
 
-        $toasts->add($toast);
+        $toasts->collect($toast);
 
         return ['message' => 'ok'];
     }

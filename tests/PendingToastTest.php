@@ -54,7 +54,7 @@ final class PendingToastTest extends TestCase
     /** @test */
     public function it_will_automatically_dispatch_the_toast_upon_destruction(): void
     {
-        Toaster::shouldReceive('add')->once();
+        Toaster::shouldReceive('collect')->once();
 
         PendingToast::create()
             ->duration(2000)
@@ -65,7 +65,7 @@ final class PendingToastTest extends TestCase
     /** @test */
     public function it_will_only_dispatch_once(): void
     {
-        Toaster::shouldReceive('add')->once();
+        Toaster::shouldReceive('collect')->once();
 
         PendingToast::create()
             ->duration(2000)

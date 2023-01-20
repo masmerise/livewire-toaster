@@ -7,12 +7,12 @@ final class QueuingCollector implements Collector
 {
     private array $toasts = [];
 
-    public function add(Toast $toast): void
+    public function collect(Toast $toast): void
     {
         $this->toasts[] = $toast;
     }
 
-    public function flush(): array
+    public function release(): array
     {
         $toasts = $this->toasts;
         $this->toasts = [];

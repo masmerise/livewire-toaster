@@ -5,7 +5,7 @@ namespace MAS\Toaster;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static void add(Toast $toast)
+ * @method static void collect(Toast $toast)
  * @method static void assertDispatched()
  * @method static void assertNothingDispatched()
  */

@@ -5,6 +5,7 @@ namespace Tests;
 use Livewire\Component;
 use Livewire\Livewire;
 use Livewire\LivewireManager;
+use MAS\Toaster\Collector;
 use MAS\Toaster\LivewireRelay;
 use MAS\Toaster\ToasterServiceProvider;
 
@@ -47,9 +48,9 @@ final class TestComponent extends Component
         return redirect()->to('https://localhost');
     }
 
-    public function render(): string
+    public function render(Collector $toasts): string
     {
-        app(ToasterServiceProvider::NAME)->add($this->aToast()); // trigger relay registration
+        $toasts->collect($this->aToast()); // trigger relay registration
 
         return '<div></div>';
     }

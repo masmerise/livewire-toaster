@@ -16,7 +16,7 @@ final class SessionRelay
 
     public function handle(): void
     {
-        if ($toasts = $this->toasts->flush()) {
+        if ($toasts = $this->toasts->release()) {
             $this->session->put(self::NAME, $this->serialize($toasts));
             $this->session->save();
         }

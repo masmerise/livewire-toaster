@@ -4,8 +4,8 @@ namespace MAS\Toaster;
 
 interface Collector
 {
-    public function add(Toast $toast): void;
+    public function collect(Toast $toast): void;
 
     /** @internal */
-    public function flush(): array;
+    public function release(): array;
 }

@@ -13,14 +13,14 @@ final class QueuingCollectorTest extends TestCase
     public function it_can_add_and_flush_toasts(): void
     {
         $collector = new QueuingCollector();
-        $collector->add($toastA = $this->aToast());
-        $collector->add($toastB = $this->aToast());
+        $collector->collect($toastA = $this->aToast());
+        $collector->collect($toastB = $this->aToast());
 
-        $toasts = $collector->flush();
+        $toasts = $collector->release();
 
         $this->assertCount(2, $toasts);
         $this->assertSame($toastA, $toasts[0]);
         $this->assertSame($toastB, $toasts[1]);
-        $this->assertEmpty($collector->flush());
+        $this->assertEmpty($collector->release());
     }
 }

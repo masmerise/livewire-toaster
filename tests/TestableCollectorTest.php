@@ -16,7 +16,7 @@ final class TestableCollectorTest extends TestCase
 
         $instance->assertNothingDispatched();
 
-        $instance->add($this->aToast());
+        $instance->collect($this->aToast());
 
         $instance->assertDispatched('Crispy toasts');
     }

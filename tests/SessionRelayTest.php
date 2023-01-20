@@ -20,14 +20,14 @@ final class SessionRelayTest extends TestCase
 
         $this->assertFalse($session->exists(SessionRelay::NAME));
 
-        $collector->add($this->aToast());
-        $collector->add($this->aToast());
+        $collector->collect($this->aToast());
+        $collector->collect($this->aToast());
 
         $relay->handle();
 
         $this->assertTrue($session->exists(SessionRelay::NAME));
         $this->assertCount(2, $toasts = $session->get(SessionRelay::NAME));
-        $this->assertEmpty($collector->flush());
+        $this->assertEmpty($collector->release());
         $this->assertIsArray($toast = $toasts[0]);
         $this->assertArrayHasKey('duration', $toast);
         $this->assertArrayHasKey('message', $toast);
