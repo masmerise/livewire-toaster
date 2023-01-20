@@ -6,7 +6,13 @@ export function Hub(Alpine) {
             _toasts: [],
 
             get toasts() {
-                return this._toasts.filter(t => ! t.trashed);
+                const toasts = this._toasts.filter(t => ! t.trashed);
+
+                if (this._toasts.length && ! toasts.length) {
+                    this.$nextTick(() => { this._toasts = []; });
+                }
+
+                return toasts;
             },
 
             init() {
@@ -14,9 +20,7 @@ export function Hub(Alpine) {
                     this.show({ ...config, ...event.detail });
                 });
 
-                for (const toast of initialToasts) {
-                    this.show(toast);
-                }
+                initialToasts.forEach(toast => this.show(toast));
             },
 
             show(toast) {
