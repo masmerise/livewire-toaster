@@ -197,7 +197,7 @@ final class ProductListing extends Component
 
 #### Redirects
 
-Whenever you return a `RedirectResponse` from anywhere in your app, you can call any of the `Toaster` methods
+Whenever you return a `RedirectResponse` from anywhere in your app, you can chain any of the `Toaster` methods
 to dispatch a toast message:
 
 ```php
