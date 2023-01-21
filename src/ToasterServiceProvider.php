@@ -63,11 +63,11 @@ final class ToasterServiceProvider extends AggregateServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../config/toaster.php' => $this->app->configPath('toaster.php'),
-        ], 'config');
+        ], 'toaster-config');
 
         $this->publishes([
             __DIR__ . '/../resources/views' => $this->app->resourcePath('views/vendor/toaster'),
-        ], 'views');
+        ], 'toaster-views');
     }
 
     private function relayToasts(): void
