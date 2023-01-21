@@ -122,7 +122,7 @@ Toast away!
 
 ### Dispatching toasts
 
-> **Note** All of the examples are applicable in, but not limited to, `Controller`s as well as Livewire `Component`s.
+> **Note** The examples are applicable in, but not limited to, `Controller`s as well as Livewire `Component`s.
 
 #### Toaster
 
@@ -157,6 +157,7 @@ final class RegistrationForm extends Component
         
         $user = User::create($this->form);
         
+        // 👇
         PendingToast::create()
             ->when($user->isAdmin(),
                 fn (PendingToast $toast) => $toast->message('Admin created')
@@ -178,7 +179,7 @@ use MAS\Toaster\Toastable;
 
 final class ProductListing extends Component
 {
-    use Toastable;
+    use Toastable; // 👈
 
     public function check(): void
     {
@@ -219,6 +220,8 @@ final class CompanyController extends Controller
 }
 ```
 
+This is, of course, **not** limited to `Controller`s as you can also redirect in Livewire `Component`s.
+
 #### Dependency injection
 
 If you'd like to keep things "pure", you can also inject the `Collector` contract and use the `ToastBuilder` to dispatch your toasts.
@@ -246,6 +249,28 @@ final readonly class SendEmailVerifiedNotification
     }
 }
 ```
+
+## Customization
+
+Even though the default toasts are pretty, it might not fit your design and you may want to customize it.
+
+You can do so by publishing the package's views:
+
+```php
+php artisan vendor:publish --tag=toaster-views
+```
+
+The `hub.blade.php` view will be published to your application's `resources/views/vendor/toaster` directory. 
+Feel free to modify anything to your liking.
+
+> **Warning** You **must** keep the `x-data` and `x-init` directives and you **must** keep using the `x-for` loop.
+> Otherwise, the Alpine component that powers Toaster will start malfunctioning.
+
+### Available `viewData`
+
+- `$position` - can be used to align the toast container depending on the configuration
+- `$config` - default configuration values, used by the Alpine component
+- `$toasts` - toasts that were flashed to the session by Toaster, used by the Alpine component
 
 ## Testing
 
