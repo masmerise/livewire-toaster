@@ -115,8 +115,9 @@ Otherwise, please refer to [Customization](#customization).
 ## Usage
 
 Unlike many other toast implementations that are available, Toaster makes it very easy to dispatch a toast notification
-from either a standard `Controller` or a Livewire `Component`. Just dispatch your toast and Toaster will route the 
-message accordingly.
+from either a standard `Controller` or a Livewire `Component`. You don't have to think about "flashing" things to the 
+session or "dispatching browser events" from your Livewire components. 
+Just dispatch your toast and Toaster will route the message accordingly.
 
 Toast away!
 
