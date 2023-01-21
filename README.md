@@ -1,7 +1,7 @@
 # Livewire Toast
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/mabdullahsari/livewire-toaster.svg?style=flat-square)](https://packagist.org/packages/mabdullahsari/livewire-toaster)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/mabdullahsari/livewire-toaster/Tests?label=tests)](https://github.com/mabdullahsari/livewire-toaster/actions?query=workflow%3ATesting+branch%3Amaster)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/mabdullahsari/livewire-toaster/test.yml?branch=master)](https://github.com/mabdullahsari/livewire-toaster/actions?query=workflow%3A%22Automated+testing%22+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/mabdullahsari/livewire-toaster.svg?style=flat-square)](https://packagist.org/packages/mabdullahsari/livewire-toaster)
 
 This package provides a seamless experience to display toast notifications in your Livewire powered applications. 
@@ -144,7 +144,7 @@ final class RegistrationForm extends Component
 }
 ```
 
-If you need fine-grained control, you can always use the `PendingToast` class directly to which `Toaster` proxies its calls to:
+If you need fine-grained control, you can always use the `PendingToast` class directly to which `Toaster` proxies its calls:
 
 ```php
 use MAS\Toaster\PendingToast;
