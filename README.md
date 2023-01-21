@@ -124,6 +124,7 @@ Toast away!
 ### Dispatching toasts
 
 > **Note** The examples are applicable in, but not limited to, `Controller`s as well as Livewire `Component`s.
+> **Note** Toaster supports the dispatch of multiple toasts at once, you are not limited to dispatching a single toast.
 
 #### Toaster
 
@@ -225,16 +226,18 @@ This is, of course, **not** limited to `Controller`s as you can also redirect in
 
 #### Dependency injection
 
-If you'd like to keep things "pure", you can also inject the `Collector` contract and use the `ToastBuilder` to dispatch your toasts.
+If you'd like to keep things "pure", you can also inject the `Collector` contract 
+and use the `ToastBuilder` to dispatch your toasts:
 
 ```php
 use MAS\Toaster\Collector;
+use MAS\Toaster\ToasterConfig;
 use MAS\Toaster\ToastBuilder;
 
 final readonly class SendEmailVerifiedNotification
 {
     public function __construct(
-        private ToastConfig $config,
+        private ToasterConfig $config,
         private Collector $toasts,
     ) {}
     
@@ -251,9 +254,62 @@ final readonly class SendEmailVerifiedNotification
 }
 ```
 
+### Automatic translation of messages
+
+> **Note** The `translate` configuration value must be set to `true`.
+
+Instead of doing this:
+
+```php
+Toaster::success(
+    Lang::get('path.to.translation', ['replacement' => 'value'])
+);
+```
+
+Toaster makes it possible to do this:
+
+```php
+Toaster::success('path.to.translation', ['replacement' => 'value']);
+```
+
+You can mix and match without any problems:
+
+```php
+Toaster::info('user.created', ['name' => $user->full_name]);
+Toaster::info('You now have full access!');
+```
+
+You can do whatever you want, whenever you want.
+
+### Unit testing
+
+Toaster provides a couple of testing capabilities in order for you to build a robust application:
+
+```php
+use MAS\Toaster\Toaster;
+
+final class RegisterUserControllerTest extends TestCase
+{
+    /** @test */
+    public function users_can_register(): void
+    {
+        // Arrange
+        Toaster::fake();
+        Toaster::assertNothingDispatched();
+        
+        // Act
+        $response = $this->post('users', [ ... ]);
+        
+        // Assert
+        $response->assertRedirect('profile');
+        Toaster::assertDispatched('Welcome!');
+    }
+}
+```
+
 ## Customization
 
-Even though the default toasts are pretty, it might not fit your design and you may want to customize it.
+Even though the default toasts are pretty, they might not fit your design and you may want to customize them.
 
 You can do so by publishing the package's views:
 
