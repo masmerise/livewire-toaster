@@ -12,7 +12,7 @@ final class ToasterConfigTest extends TestCase
     {
         $config = ToasterConfig::fromArray(require __DIR__ . '/../config/toaster.php');
 
-        $array = $config->toDefaults();
+        $array = $config->toJavaScript();
 
         $this->assertSame(['duration' => 5000], $array);
     }

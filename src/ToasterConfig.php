@@ -37,7 +37,7 @@ final class ToasterConfig
         return $this->translate;
     }
 
-    public function toDefaults(): array
+    public function toJavaScript(): array
     {
         return ['duration' => $this->duration];
     }

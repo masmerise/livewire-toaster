@@ -18,7 +18,7 @@ final class ToasterHub extends Component
     public function render(): View
     {
         return $this->view($this->view, [
-            'config' => $this->config->toDefaults(),
+            'config' => $this->config->toJavaScript(),
             'position' => $this->config->position(),
             'toasts' => $this->session->pull(SessionRelay::NAME, []),
         ]);
