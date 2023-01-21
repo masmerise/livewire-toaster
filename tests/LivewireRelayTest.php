@@ -7,7 +7,6 @@ use Livewire\Livewire;
 use Livewire\LivewireManager;
 use MAS\Toaster\Collector;
 use MAS\Toaster\LivewireRelay;
-use MAS\Toaster\ToasterServiceProvider;
 
 final class LivewireRelayTest extends TestCase
 {
