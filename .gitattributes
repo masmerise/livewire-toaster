@@ -6,6 +6,5 @@
 /phpstan.neon.dist       export-ignore
 /phpunit.xml.dist        export-ignore
 /pint.json               export-ignore
-/resources               export-ignore
 /tests                   export-ignore
 /webpack.mix.js          export-ignore
