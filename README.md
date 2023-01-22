@@ -132,6 +132,7 @@ Toast away!
 ### Dispatching toasts from the back-end
 
 > **Note** The examples are applicable in, but not limited to, `Controller`s as well as Livewire `Component`s.
+
 > **Note** Toaster supports the dispatch of multiple toasts at once, you are not limited to dispatching a single toast.
 
 #### Toaster
