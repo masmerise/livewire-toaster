@@ -13,7 +13,8 @@ Toaster provides a seamless experience to display toast notifications in your Li
   - [Configuring scripts](#configuring-scripts)
   - [Tailwind styles](#tailwind-styles)
 - [Usage](#usage)
-  - [Dispatching toasts](#dispatching-toasts)
+  - [Dispatching toasts from the back-end](#dispatching-toasts-from-the-back-end)
+  - [Dispatching toasts from the front-end](#dispatching-toasts-from-the-front-end)
   - [Automatic translation of messages](#automatic-translation-of-messages)
   - [Unit testing](#unit-testing)
 - [Customization](#customization)
@@ -128,7 +129,7 @@ Just dispatch your toast and Toaster will route the message accordingly.
 
 Toast away!
 
-### Dispatching toasts
+### Dispatching toasts from the back-end
 
 > **Note** The examples are applicable in, but not limited to, `Controller`s as well as Livewire `Component`s.
 > **Note** Toaster supports the dispatch of multiple toasts at once, you are not limited to dispatching a single toast.
@@ -260,6 +261,18 @@ final readonly class SendEmailVerifiedNotification
     }
 }
 ```
+
+### Dispatching toasts from the front-end
+
+You can invoke the globally available `Toaster` instance to dispatch any toast message from anywhere:
+
+```html
+<button @click="Toaster.success('Form submitted!')">
+    Submit
+</button>
+```
+
+Available methods: `error`, `info`, `warning` & `success`
 
 ### Automatic translation of messages
 
