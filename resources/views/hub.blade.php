@@ -10,7 +10,7 @@
              x-transition:enter-start="translate-y-12 opacity-0"
              x-transition:enter-end="translate-y-0 opacity-100"
              x-transition:leave-end="opacity-0 scale-90"
-             class="duration-300 transform transition ease-in-out max-w-xs w-full"
+             class="duration-300 transform transition ease-in-out max-w-xs w-full {{ $position->is('center') ? 'text-center' : 'text-left' }}"
         >
             <i x-text="toast.message"
                class="inline-block not-italic px-6 py-3 rounded shadow-lg text-white text-sm w-full"
