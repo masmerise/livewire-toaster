@@ -1,15 +1,22 @@
-# Livewire Toast
+# Toaster
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/mabdullahsari/livewire-toaster.svg?style=flat-square)](https://packagist.org/packages/mabdullahsari/livewire-toaster)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/mabdullahsari/livewire-toaster/test.yml?branch=master)](https://github.com/mabdullahsari/livewire-toaster/actions?query=workflow%3A%22Automated+testing%22+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/mabdullahsari/livewire-toaster.svg?style=flat-square)](https://packagist.org/packages/mabdullahsari/livewire-toaster)
 
-This package provides a seamless experience to display toast notifications in your Livewire powered applications. 
+Toaster provides a seamless experience to display toast notifications in your Livewire powered Laravel applications. 
 
 ## Contents
 
 - [Installation](#installation)
+  - [Preparing your template](#preparing-your-template)
+  - [Configuring scripts](#configuring-scripts)
+  - [Tailwind styles](#tailwind-styles)
 - [Usage](#usage)
+  - [Dispatching toasts](#dispatching-toasts)
+  - [Automatic translation of messages](#automatic-translation-of-messages)
+  - [Unit testing](#unit-testing)
+- [Customization](#customization)
 - [Testing](#testing)
 - [Changelog](#changelog)
 - [Contributing](#contributing)
@@ -95,9 +102,9 @@ Alpine.start();
 
 ### Tailwind styles
 
-*Skip this step if you're going to customize the package's default view.*
+*Skip this step if you're going to customize Toaster's default view.*
 
-This package provides a minimal view that utilizes Tailwind CSS defaults. 
+Toaster provides a minimal view that utilizes Tailwind CSS defaults. 
 
 If the default toast appearances suffice your needs, you'll need to register it with Tailwind's purge list:
 
@@ -311,7 +318,7 @@ final class RegisterUserControllerTest extends TestCase
 
 Even though the default toasts are pretty, they might not fit your design and you may want to customize them.
 
-You can do so by publishing the package's views:
+You can do so by publishing Toaster's views:
 
 ```php
 php artisan vendor:publish --tag=toaster-views
