@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static void collect(Toast $toast)
- * @method static void assertDispatched()
+ * @method static void assertDispatched(string $message)
  * @method static void assertNothingDispatched()
  */
 final class Toaster extends Facade
