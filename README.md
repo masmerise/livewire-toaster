@@ -4,7 +4,11 @@
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/mabdullahsari/livewire-toaster/test.yml?branch=master)](https://github.com/mabdullahsari/livewire-toaster/actions?query=workflow%3A%22Automated+testing%22+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/mabdullahsari/livewire-toaster.svg?style=flat-square)](https://packagist.org/packages/mabdullahsari/livewire-toaster)
 
-Toaster provides a seamless experience to display toast notifications in your Livewire powered Laravel apps. 
+Toaster provides a seamless experience to display toast notifications in your Livewire powered Laravel apps.
+
+Unlike many other toast implementations that are available, Toaster makes it effortless to dispatch a toast notification
+from either a standard `Controller` or a Livewire `Component`. You don't have to think about "flashing" things to the 
+session or "dispatching browser events" from your Livewire components. Just dispatch your toast and Toaster will route the message accordingly.
 
 ## Contents
 
@@ -60,7 +64,7 @@ return [
 
     /**
      * Whether messages passed as translation keys should be translated automatically.
-     * While this is a very useful default behaviour, you may wish to disable this.
+     * While this is an invaluable default behaviour, you may wish to disable this.
      *
      * Supported: true | false
      */
@@ -121,13 +125,6 @@ module.exports = {
 Otherwise, please refer to [Customization](#customization).
 
 ## Usage
-
-Unlike many other toast implementations that are available, Toaster makes it very easy to dispatch a toast notification
-from either a standard `Controller` or a Livewire `Component`. You don't have to think about "flashing" things to the 
-session or "dispatching browser events" from your Livewire components. 
-Just dispatch your toast and Toaster will route the message accordingly.
-
-Toast away!
 
 ### Dispatching toasts from the back-end
 
