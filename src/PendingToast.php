@@ -11,7 +11,9 @@ use Illuminate\Support\Traits\ForwardsCalls;
  * @method PendingToast message(string $message, array $replace = [])
  * @method PendingToast success()
  * @method PendingToast type(string $type)
+ * @method PendingToast unless($value = null, callable $callback = null, callable $default = null)
  * @method PendingToast warning()
+ * @method PendingToast when($value = null, callable $callback = null, callable $default = null)
  */
 final class PendingToast
 {
