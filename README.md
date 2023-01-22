@@ -4,7 +4,7 @@
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/mabdullahsari/livewire-toaster/test.yml?branch=master)](https://github.com/mabdullahsari/livewire-toaster/actions?query=workflow%3A%22Automated+testing%22+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/mabdullahsari/livewire-toaster.svg?style=flat-square)](https://packagist.org/packages/mabdullahsari/livewire-toaster)
 
-Toaster provides a seamless experience to display toast notifications in your Livewire powered Laravel applications. 
+Toaster provides a seamless experience to display toast notifications in your Livewire powered Laravel apps. 
 
 ## Contents
 
