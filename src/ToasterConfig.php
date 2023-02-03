@@ -32,7 +32,7 @@ final class ToasterConfig
         return $this->position;
     }
 
-    public function shouldTranslateMessages(): bool
+    public function wantsTranslation(): bool
     {
         return $this->translate;
     }

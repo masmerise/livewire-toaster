@@ -39,7 +39,7 @@ final class ToasterServiceProvider extends AggregateServiceProvider
         $this->app->singleton(Collector::class, QueuingCollector::class);
         $this->app->alias(Collector::class, self::NAME);
 
-        if ($config->shouldTranslateMessages()) {
+        if ($config->wantsTranslation()) {
             $this->app->extend(Collector::class, $this->translateMessages(...));
         }
     }

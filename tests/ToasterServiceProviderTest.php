@@ -86,7 +86,7 @@ final class ToasterServiceProviderTest extends TestCase
         $config = $this->app[ToasterConfig::class];
 
         $this->assertSame(5000, $config->duration());
-        $this->assertTrue($config->shouldTranslateMessages());
+        $this->assertTrue($config->wantsTranslation());
         $this->assertSame(Position::Right, $config->position());
     }
 }
