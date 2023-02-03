@@ -39,8 +39,8 @@ final class ToasterServiceProvider extends AggregateServiceProvider
         $this->app->singleton(Collector::class, QueuingCollector::class);
         $this->app->alias(Collector::class, self::NAME);
 
-        if ($config->wantsTranslation()) {
-            $this->app->extend(Collector::class, $this->translateMessages(...));
+        if ($config->wantsTranslation) {
+            $this->app->extend(Collector::class, $this->translate(...));
         }
     }
 
@@ -76,7 +76,7 @@ final class ToasterServiceProvider extends AggregateServiceProvider
         $this->app[LivewireManager::class]->listen('component.dehydrate', $this->app[LivewireRelay::class]);
     }
 
-    private function translateMessages(Collector $next): TranslatingCollector
+    private function translate(Collector $next): TranslatingCollector
     {
         return new TranslatingCollector($next, $this->app['translator']);
     }

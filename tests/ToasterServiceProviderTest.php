@@ -7,6 +7,7 @@ use Illuminate\Foundation\Http\Events\RequestHandled;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 use MAS\Toaster\Collector;
+use MAS\Toaster\Duration;
 use MAS\Toaster\LivewireRelay;
 use MAS\Toaster\Position;
 use MAS\Toaster\QueuingCollector;
@@ -85,8 +86,8 @@ final class ToasterServiceProviderTest extends TestCase
 
         $config = $this->app[ToasterConfig::class];
 
-        $this->assertSame(5000, $config->duration());
-        $this->assertTrue($config->wantsTranslation());
-        $this->assertSame(Position::Right, $config->position());
+        $this->assertEquals(Duration::fromMillis(5000), $config->duration);
+        $this->assertTrue($config->wantsTranslation);
+        $this->assertSame(Position::Right, $config->position);
     }
 }

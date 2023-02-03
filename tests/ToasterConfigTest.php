@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 final class ToasterConfigTest extends TestCase
 {
     /** @test */
-    public function it_is_defaultable_to_be_used_on_the_frontend(): void
+    public function it_can_be_serialized_for_the_frontend(): void
     {
         $config = ToasterConfig::fromArray(require __DIR__ . '/../config/toaster.php');
 
