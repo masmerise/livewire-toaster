@@ -128,8 +128,6 @@ Otherwise, please refer to [Customization](#customization).
 
 ### Dispatching toasts from the back-end
 
-> **Note** The examples are applicable in, but not limited to, `Controller`s as well as Livewire `Component`s.
-
 > **Note** Toaster supports the dispatch of multiple toasts at once, you are not limited to dispatching a single toast.
 
 #### Toaster
@@ -250,7 +248,7 @@ final readonly class SendEmailVerifiedNotification
     public function handle(Verified $event): void
     {
         $toast = ToastBuilder::create()
-            ->duration($this->config->duration())
+            ->duration($this->config->duration)
             ->success()
             ->message("Thank you, {$event->user->name}!")
             ->get();
@@ -327,6 +325,9 @@ final class RegisterUserControllerTest extends TestCase
 
 ## Customization
 
+> **Warning** You **must** keep the `x-data` and `x-init` directives and you **must** keep using the `x-for` loop.
+> Otherwise, the Alpine component that powers Toaster will start malfunctioning.
+
 Even though the default toasts are pretty, they might not fit your design and you may want to customize them.
 
 You can do so by publishing Toaster's views:
@@ -337,9 +338,6 @@ php artisan vendor:publish --tag=toaster-views
 
 The `hub.blade.php` view will be published to your application's `resources/views/vendor/toaster` directory. 
 Feel free to modify anything to your liking.
-
-> **Warning** You **must** keep the `x-data` and `x-init` directives and you **must** keep using the `x-for` loop.
-> Otherwise, the Alpine component that powers Toaster will start malfunctioning.
 
 ### Available `viewData`
 
