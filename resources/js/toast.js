@@ -20,8 +20,6 @@ export class Toast {
 
         this.$el.addEventListener('transitioncancel', () => { this.trashed = true; })
         this.$el.addEventListener('transitionend', () => { this.trashed = true; })
-
-        return this;
     }
 
     runAfterDuration(callback) {
@@ -35,7 +33,5 @@ export class Toast {
     show($el) {
         this.$el = $el;
         this.isVisible = true;
-
-        return this;
     }
 }
