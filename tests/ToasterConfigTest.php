@@ -14,6 +14,6 @@ final class ToasterConfigTest extends TestCase
 
         $array = $config->toJavaScript();
 
-        $this->assertSame(['duration' => 5000], $array);
+        $this->assertSame(['accessibility' => true, 'duration' => 5000], $array);
     }
 }

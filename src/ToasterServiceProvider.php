@@ -39,6 +39,10 @@ final class ToasterServiceProvider extends AggregateServiceProvider
         $this->app->singleton(Collector::class, QueuingCollector::class);
         $this->app->alias(Collector::class, self::NAME);
 
+        if ($config->wantsAccessibility) {
+            $this->app->extend(Collector::class, $this->accessible(...));
+        }
+
         if ($config->wantsTranslation) {
             $this->app->extend(Collector::class, $this->translate(...));
         }
@@ -74,6 +78,11 @@ final class ToasterServiceProvider extends AggregateServiceProvider
     {
         $this->app[Dispatcher::class]->listen(RequestHandled::class, SessionRelay::class);
         $this->app[LivewireManager::class]->listen('component.dehydrate', $this->app[LivewireRelay::class]);
+    }
+
+    private function accessible(Collector $next): AccessibleCollector
+    {
+        return new AccessibleCollector($next);
     }
 
     private function translate(Collector $next): TranslatingCollector

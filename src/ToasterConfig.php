@@ -10,6 +10,7 @@ final class ToasterConfig
     private function __construct(
         public readonly int $duration,
         public readonly string $position,
+        public readonly bool $wantsAccessibility,
         public readonly bool $wantsTranslation,
     ) {}
 
@@ -18,6 +19,7 @@ final class ToasterConfig
         return new self(
             Arr::get($config, 'duration', 5000),
             Arr::get($config, 'position', 'right'),
+            Arr::get($config, 'accessibility', true),
             Arr::get($config, 'translate', true),
         );
     }
@@ -29,6 +31,9 @@ final class ToasterConfig
 
     public function toJavaScript(): array
     {
-        return ['duration' => $this->duration];
+        return [
+            'accessibility' => $this->wantsAccessibility,
+            'duration' => $this->duration,
+        ];
     }
 }

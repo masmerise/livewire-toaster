@@ -3,6 +3,14 @@
 return [
 
     /**
+     * Add an additional second for every 100th word of the toast message.
+     * Recommended to keep it on, though you may wish to disable this.
+     *
+     * Supported: true | false
+     */
+    'accessibility' => true,
+
+    /**
      * The on-screen duration of each toast.
      *
      * Minimum: 1000 (in milliseconds)

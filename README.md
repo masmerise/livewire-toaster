@@ -49,6 +49,14 @@ This is the contents of the `toaster.php` config file:
 return [
 
     /**
+     * Add an additional second for every 100th word of the toast message.
+     * Recommended to keep it on, though you may wish to disable this.
+     *
+     * Supported: true | false
+     */
+    'accessibility' => true,
+
+    /**
      * The on-screen duration of each toast.
      *
      * Minimum: 1000 (in milliseconds)
@@ -296,6 +304,16 @@ Toaster::info('You now have full access!');
 ```
 
 You can do whatever you want, whenever you want.
+
+### Accessibility
+
+> **Note** The `accessibility` configuration value must be set to `true`.
+
+Toaster will add an additional second to a toast's on-screen duration for every 100th word.
+This way, your users will have enough time to read toasts that a tad larget than usual.
+
+So, if your base duration value is `3 seconds` and your toast contains 223 words, 
+the total on-screen duration of the toast will be `3 + 2 = 5 seconds`  
 
 ### Unit testing
 

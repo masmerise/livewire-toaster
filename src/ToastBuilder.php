@@ -20,6 +20,16 @@ final class ToastBuilder
         return new self();
     }
 
+    public static function proto(Toast $toast): self
+    {
+        $builder = self::create();
+        $builder->duration = $toast->duration;
+        $builder->message = $toast->message;
+        $builder->type = $toast->type;
+
+        return $builder;
+    }
+
     public function duration(int $milliseconds): self
     {
         return $this->modify('duration', Duration::fromMillis($milliseconds));

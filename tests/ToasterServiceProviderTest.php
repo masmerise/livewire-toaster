@@ -6,9 +6,9 @@ use Dive\Crowbar\Crowbar;
 use Illuminate\Foundation\Http\Events\RequestHandled;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
+use MAS\Toaster\AccessibleCollector;
 use MAS\Toaster\Collector;
 use MAS\Toaster\LivewireRelay;
-use MAS\Toaster\QueuingCollector;
 use MAS\Toaster\SessionRelay;
 use MAS\Toaster\ToasterConfig;
 use MAS\Toaster\ToasterHub;
@@ -65,7 +65,7 @@ final class ToasterServiceProviderTest extends TestCase
         $this->app['config']->set('toaster.translate', false);
         $this->app->register(ToasterServiceProvider::class);
 
-        $this->assertInstanceOf(QueuingCollector::class, $this->app[ToasterServiceProvider::NAME]);
+        $this->assertInstanceOf(AccessibleCollector::class, $this->app[ToasterServiceProvider::NAME]);
     }
 
     /** @test */
@@ -85,6 +85,7 @@ final class ToasterServiceProviderTest extends TestCase
         $config = $this->app[ToasterConfig::class];
 
         $this->assertSame(5000, $config->duration);
+        $this->assertTrue($config->wantsAccessibility);
         $this->assertTrue($config->wantsTranslation);
         $this->assertSame('right', $config->position);
     }

@@ -17,7 +17,7 @@ final class TranslatingCollector implements Collector
         $replacement = $this->translator->get($original = $toast->message->value, $toast->message->replace);
 
         if (is_string($replacement) && $replacement !== $original) {
-            $toast = $toast->clone($replacement);
+            $toast = ToastBuilder::proto($toast)->message($replacement)->get();
         }
 
         $this->next->collect($toast);

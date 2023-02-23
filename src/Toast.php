@@ -12,15 +12,6 @@ final class Toast implements Arrayable
         public readonly ToastType $type,
     ) {}
 
-    public function clone(string $replacement): self
-    {
-        return new self(
-            Message::fromString($replacement),
-            $this->duration,
-            $this->type,
-        );
-    }
-
     public function toArray(): array
     {
         return [
