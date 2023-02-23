@@ -20,7 +20,7 @@ final class ControllerTest extends TestCase
     {
         $this->get('multiple')->assertOk()->assertSessionHas('toasts', [
             [
-                'duration' => 5000,
+                'duration' => 3000,
                 'message' => 'The biggest battle is the war against ignorance. - Mustafa Kemal Atatürk',
                 'type' => 'warning',
             ],
@@ -36,7 +36,7 @@ final class ControllerTest extends TestCase
     public function toast_is_flashed_to_the_session_using_dependency_injection(): void
     {
         $this->get('inject')->assertOk()->assertSessionHas('toasts', [[
-            'duration' => 2000,
+            'duration' => 4000,
             'message' => 'The biggest battle is the war against ignorance. - Mustafa Kemal Atatürk',
             'type' => 'success',
         ]]);
@@ -51,7 +51,7 @@ final class ToastController
     {
         $toast = ToastBuilder::create()
             ->success()
-            ->duration(2000)
+            ->duration(4000)
             ->message('The biggest battle is the war against ignorance. - Mustafa Kemal Atatürk')
             ->get();
 

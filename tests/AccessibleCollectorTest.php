@@ -19,6 +19,6 @@ final class AccessibleCollectorTest extends TestCase
         $collector->collect($this->aToast(message: $message));
         [$toast] = $collector->release();
 
-        $this->assertSame(3000, $toast->duration->value);
+        $this->assertSame(5000, $toast->duration->value);
     }
 }

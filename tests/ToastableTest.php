@@ -19,7 +19,7 @@ final class ToastableTest extends TestCase
         $response = $this->get('test');
 
         $response->assertOk()->assertSessionHas(SessionRelay::NAME, [[
-            'duration' => 5000,
+            'duration' => 3000,
             'message' => 'I am a crispy toast, yummy!',
             'type' => 'info',
         ]]);
@@ -34,7 +34,7 @@ final class ToastableTest extends TestCase
         $component->call('bake');
 
         $component->assertDispatchedBrowserEvent(LivewireRelay::EVENT, [
-            'duration' => 5000,
+            'duration' => 3000,
             'message' => 'I became a crispy toast, yummy!',
             'type' => 'success',
         ]);

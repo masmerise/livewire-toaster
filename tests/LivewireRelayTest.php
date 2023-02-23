@@ -26,7 +26,7 @@ final class LivewireRelayTest extends TestCase
         LivewireManager::$isLivewireRequestTestingOverride = true;
         $component->call('normalAction');
         $component->assertDispatchedBrowserEvent(LivewireRelay::EVENT, [
-            'duration' => 1000,
+            'duration' => 3000,
             'message' => 'Crispy toasts',
             'type' => 'success',
         ]);

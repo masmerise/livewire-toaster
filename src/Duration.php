@@ -7,12 +7,14 @@ use JsonSerializable;
 
 final class Duration implements JsonSerializable
 {
+    private const MINIMUM = 3000;
+
     public readonly int $value;
 
     private function __construct(int $value)
     {
-        if ($value < 1000) {
-            throw new InvalidArgumentException('The duration value must be at least 1000 ms.');
+        if ($value < self::MINIMUM) {
+            throw new InvalidArgumentException('The duration value must be at least 3000 ms.');
         }
 
         $this->value = $value;

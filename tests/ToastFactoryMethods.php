@@ -13,7 +13,7 @@ trait ToastFactoryMethods
     {
         return new Toast(...[
             'message' => Message::fromString('Crispy toasts'),
-            'duration' => Duration::fromMillis(1000),
+            'duration' => Duration::fromMillis(3000),
             'type' => ToastType::Success,
             ...$values,
         ]);

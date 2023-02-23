@@ -16,7 +16,7 @@ final class ToastTest extends TestCase
         $result = $toast->toArray();
 
         $this->assertSame([
-            'duration' => 1000,
+            'duration' => 3000,
             'message' => 'Crispy toasts',
             'type' => 'success',
         ], $result);

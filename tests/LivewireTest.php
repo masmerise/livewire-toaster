@@ -34,7 +34,7 @@ final class LivewireTest extends TestCase
         $this->assertSame('toaster:received', $effectA['event']);
         $this->assertSame('toaster:received', $effectB['event']);
         $this->assertSame([
-            'duration' => 5000,
+            'duration' => 3000,
             'message' => 'The biggest battle is the war against ignorance. - Mustafa Kemal Atatürk',
             'type' => 'warning',
         ], $effectA['data']);
@@ -54,7 +54,7 @@ final class LivewireTest extends TestCase
 
         [$effect] = $effects;
         $this->assertSame([
-            'duration' => 2000,
+            'duration' => 4000,
             'message' => 'The biggest battle is the war against ignorance. - Mustafa Kemal Atatürk',
             'type' => 'success',
         ], $effect['data']);
@@ -69,7 +69,7 @@ final class ToastComponent extends Component
     {
         $toast = ToastBuilder::create()
             ->success()
-            ->duration(2000)
+            ->duration(4000)
             ->message('The biggest battle is the war against ignorance. - Mustafa Kemal Atatürk')
             ->get();
 

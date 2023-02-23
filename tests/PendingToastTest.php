@@ -12,28 +12,28 @@ final class PendingToastTest extends TestCase
     {
         $error = Toaster::error('validation.accepted', ['attribute' => 'terms'])->get();
         $this->assertSame([
-            'duration' => 5000,
+            'duration' => 3000,
             'message' => 'validation.accepted',
             'type' => 'error',
         ], $error->toArray());
 
-        $info = Toaster::info('Informational')->duration(1500)->get();
+        $info = Toaster::info('Informational')->duration(3500)->get();
         $this->assertSame([
-            'duration' => 1500,
+            'duration' => 3500,
             'message' => 'Informational',
             'type' => 'info',
         ], $info->toArray());
 
         $success = Toaster::success('Successful')->get();
         $this->assertSame([
-            'duration' => 5000,
+            'duration' => 3000,
             'message' => 'Successful',
             'type' => 'success',
         ], $success->toArray());
 
         $warning = Toaster::warning('passwords.reset')->get();
         $this->assertSame([
-            'duration' => 5000,
+            'duration' => 3000,
             'message' => 'passwords.reset',
             'type' => 'warning',
         ], $warning->toArray());
@@ -45,7 +45,7 @@ final class PendingToastTest extends TestCase
         $toast = PendingToast::create()->message('test')->success()->get();
 
         $this->assertSame([
-            'duration' => 5000, // config default
+            'duration' => 3000, // config default
             'message' => 'test',
             'type' => 'success',
         ], $toast->toArray());
@@ -57,7 +57,7 @@ final class PendingToastTest extends TestCase
         Toaster::shouldReceive('collect')->once();
 
         PendingToast::create()
-            ->duration(2000)
+            ->duration(4000)
             ->error()
             ->message('Uvuvuvwevwe Onyetenyevwe Ughemuhwem Osas');
     }
@@ -68,7 +68,7 @@ final class PendingToastTest extends TestCase
         Toaster::shouldReceive('collect')->once();
 
         PendingToast::create()
-            ->duration(2000)
+            ->duration(4000)
             ->success()
             ->message('Uvuvuvwevwe Onyetenyevwe Ughemuhwem Osas')
             ->dispatch();

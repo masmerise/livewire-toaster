@@ -17,7 +17,7 @@ final class ToasterConfig
     public static function fromArray(array $config): self
     {
         return new self(
-            Arr::get($config, 'duration', 5000),
+            Arr::get($config, 'duration', 3000),
             Arr::get($config, 'position', 'right'),
             Arr::get($config, 'accessibility', true),
             Arr::get($config, 'translate', true),
