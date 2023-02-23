@@ -31,9 +31,6 @@ final class ToasterConfig
 
     public function toJavaScript(): array
     {
-        return [
-            'accessibility' => $this->wantsAccessibility,
-            'duration' => $this->duration,
-        ];
+        return ['duration' => $this->duration];
     }
 }
