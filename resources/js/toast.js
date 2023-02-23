@@ -7,6 +7,7 @@ export class Toast {
         this.isVisible = false;
         this.duration = duration;
         this.message = message;
+        this.timeout = null;
         this.trashed = false;
         this.type = type;
     }
@@ -16,6 +17,10 @@ export class Toast {
     }
 
     dispose() {
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
+
         this.isVisible = false;
 
         this.$el.addEventListener('transitioncancel', () => { this.trashed = true; })
@@ -23,7 +28,7 @@ export class Toast {
     }
 
     runAfterDuration(callback) {
-        setTimeout(() => callback(this), this.duration);
+        this.timeout = setTimeout(() => callback(this), this.duration);
     }
 
     select(config) {
