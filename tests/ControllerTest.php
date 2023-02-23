@@ -11,8 +11,8 @@ final class ControllerTest extends TestCase
 {
     protected function defineRoutes($router): void
     {
-        $router->get('inject', [ToastController::class, 'inject']);
-        $router->get('multiple', [ToastController::class, 'multiple']);
+        $router->get('inject', [ToastController::class, 'inject'])->middleware('web');
+        $router->get('multiple', [ToastController::class, 'multiple'])->middleware('web');
     }
 
     /** @test */

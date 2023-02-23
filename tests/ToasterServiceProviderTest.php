@@ -3,7 +3,6 @@
 namespace Tests;
 
 use Dive\Crowbar\Crowbar;
-use Illuminate\Foundation\Http\Events\RequestHandled;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 use MAS\Toaster\AccessibleCollector;
@@ -33,18 +32,26 @@ final class ToasterServiceProviderTest extends TestCase
     }
 
     /** @test */
-    public function it_registers_the_relays_only_after_the_service_has_been_resolved_at_least_once(): void
+    public function it_registers_the_livewire_relay_only_after_the_service_has_been_resolved_at_least_once(): void
     {
-        $events = Crowbar::pry($this->app['events']);
         $livewire = Crowbar::pry($this->app['livewire']);
 
-        $this->assertNotContains(SessionRelay::class, $events->listeners[RequestHandled::class] ?? []);
         $this->assertNotContains(LivewireRelay::class, $livewire->listeners['component.dehydrate']);
 
         $this->app[ToasterServiceProvider::NAME];
 
-        $this->assertContains(SessionRelay::class, $events->listeners[RequestHandled::class]);
         $this->assertInstanceOf(LivewireRelay::class, Arr::last($livewire->listeners['component.dehydrate']));
+    }
+
+    /** @test */
+    public function it_registers_the_session_relay_as_middleware(): void
+    {
+        $router = Crowbar::pry($this->app['router']);
+
+        $middleware = array_reverse($router->middlewareGroups['web']);
+        $middleware = $middleware[0];
+
+        $this->assertSame(SessionRelay::NAME, $middleware);
     }
 
     /** @test */

@@ -14,7 +14,7 @@ final class ToastableTest extends TestCase
     /** @test */
     public function it_can_be_invoked_from_controllers(): void
     {
-        $this->app['router']->get('test', [ToastableController::class, 'index']);
+        $this->app['router']->get('test', [ToastableController::class, 'index'])->middleware('web');
 
         $response = $this->get('test');
 

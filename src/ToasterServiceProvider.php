@@ -2,9 +2,8 @@
 
 namespace MAS\Toaster;
 
-use Illuminate\Contracts\Events\Dispatcher;
-use Illuminate\Foundation\Http\Events\RequestHandled;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Router;
 use Illuminate\Support\AggregateServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use Livewire\LivewireManager;
@@ -18,14 +17,16 @@ final class ToasterServiceProvider extends AggregateServiceProvider
 
     public function boot(): void
     {
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', self::NAME);
+
         if ($this->app->runningInConsole()) {
             $this->registerPublishing();
         }
 
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', self::NAME);
+        $this->relayToSession();
 
         $this->callAfterResolving(BladeCompiler::class, $this->aliasToasterHub(...));
-        $this->callAfterResolving(Collector::class, $this->relayToasts(...));
+        $this->callAfterResolving(Collector::class, $this->relayToLivewire(...));
 
         RedirectResponse::mixin(new ToastableMacros());
     }
@@ -40,11 +41,11 @@ final class ToasterServiceProvider extends AggregateServiceProvider
         $this->app->alias(Collector::class, self::NAME);
 
         if ($config->wantsAccessibility) {
-            $this->app->extend(Collector::class, $this->accessible(...));
+            $this->app->extend(Collector::class, static fn (Collector $next) => new AccessibleCollector($next));
         }
 
         if ($config->wantsTranslation) {
-            $this->app->extend(Collector::class, $this->translate(...));
+            $this->app->extend(Collector::class, fn (Collector $next) => new TranslatingCollector($next, $this->app['translator']));
         }
     }
 
@@ -74,19 +75,14 @@ final class ToasterServiceProvider extends AggregateServiceProvider
         ], 'toaster-views');
     }
 
-    private function relayToasts(): void
+    private function relayToLivewire(): void
     {
-        $this->app[Dispatcher::class]->listen(RequestHandled::class, SessionRelay::class);
         $this->app[LivewireManager::class]->listen('component.dehydrate', $this->app[LivewireRelay::class]);
     }
 
-    private function accessible(Collector $next): AccessibleCollector
+    private function relayToSession(): void
     {
-        return new AccessibleCollector($next);
-    }
-
-    private function translate(Collector $next): TranslatingCollector
-    {
-        return new TranslatingCollector($next, $this->app['translator']);
+        $this->app[Router::class]->aliasMiddleware(SessionRelay::NAME, SessionRelay::class);
+        $this->app[Router::class]->pushMiddlewareToGroup('web', SessionRelay::NAME);
     }
 }

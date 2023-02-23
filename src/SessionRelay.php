@@ -2,7 +2,10 @@
 
 namespace MAS\Toaster;
 
+use Closure;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Session\Session;
+use Illuminate\Http\Request;
 
 /** @internal */
 final class SessionRelay
@@ -10,16 +13,22 @@ final class SessionRelay
     public const NAME = 'toasts';
 
     public function __construct(
-        private readonly Session $session,
-        private readonly Collector $toasts,
+        private readonly Application $app,
     ) {}
 
-    public function handle(): void
+    public function handle(Request $request, Closure $next): mixed
     {
-        if ($toasts = $this->toasts->release()) {
-            $this->session->put(self::NAME, $this->serialize($toasts));
-            $this->session->save();
+        $response = $next($request);
+
+        if (! $this->app->resolved(Collector::class)) {
+            return $response;
         }
+
+        if ($toasts = $this->app[Collector::class]->release()) {
+            $this->app[Session::class]->put(self::NAME, $this->serialize($toasts));
+        }
+
+        return $response;
     }
 
     private function serialize(array $toasts): array

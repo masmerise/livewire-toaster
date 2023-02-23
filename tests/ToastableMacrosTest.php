@@ -8,7 +8,7 @@ final class ToastableMacrosTest extends TestCase
 {
     protected function defineRoutes($router): void
     {
-        $router->get('redirect', [ToastableMacroController::class, 'redirect']);
+        $router->get('redirect', [ToastableMacroController::class, 'redirect'])->middleware('web');
     }
 
     /** @test */

@@ -2,6 +2,8 @@
 
 namespace Tests;
 
+use Illuminate\Http\Request;
+use MAS\Toaster\Collector;
 use MAS\Toaster\SessionRelay;
 
 final class SessionRelayTest extends TestCase
@@ -10,20 +12,20 @@ final class SessionRelayTest extends TestCase
     use ToastFactoryMethods;
 
     /** @test */
-    public function it_relays_toasts_to_the_session_if_available(): void
+    public function it_relays_toasts_to_the_session(): void
     {
-        $collector = $this->aCollector();
-        $session = $this->app['session']->driver('null');
-        $relay = new SessionRelay($session, $collector);
+        $session = $this->app['session.store'];
+        $relay = new SessionRelay($this->app);
 
-        $relay->handle();
+        $relay->handle(new Request(), function () {});
 
         $this->assertFalse($session->exists(SessionRelay::NAME));
 
+        $collector = $this->app[Collector::class];
         $collector->collect($this->aToast());
         $collector->collect($this->aToast());
 
-        $relay->handle();
+        $relay->handle(new Request(), function () {});
 
         $this->assertTrue($session->exists(SessionRelay::NAME));
         $this->assertCount(2, $toasts = $session->get(SessionRelay::NAME));
