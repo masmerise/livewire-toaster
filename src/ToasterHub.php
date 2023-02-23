@@ -19,7 +19,7 @@ final class ToasterHub extends Component
     {
         return $this->view($this->view, [
             'config' => $this->config->toJavaScript(),
-            'position' => $this->config->position,
+            'position' => $this->config->position(),
             'toasts' => $this->session->pull(SessionRelay::NAME, []),
         ]);
     }

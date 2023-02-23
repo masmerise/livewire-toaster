@@ -53,7 +53,7 @@ final class ToasterServiceProvider extends AggregateServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/toaster.php', self::NAME);
 
-        $config = ToasterConfig::fromArray($this->app['config'][self::NAME]);
+        $config = ToasterConfig::fromArray($this->app['config'][self::NAME] ?? []);
         $this->app->instance(ToasterConfig::class, $config);
 
         return $config;

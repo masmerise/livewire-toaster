@@ -20,13 +20,9 @@ final class ToastBuilder
         return new self();
     }
 
-    public function duration(Duration|int $milliseconds): self
+    public function duration(int $milliseconds): self
     {
-        if (is_int($milliseconds)) {
-            $milliseconds = Duration::fromMillis($milliseconds);
-        }
-
-        return $this->modify('duration', $milliseconds);
+        return $this->modify('duration', Duration::fromMillis($milliseconds));
     }
 
     public function error(): self
@@ -39,13 +35,9 @@ final class ToastBuilder
         return $this->modify('type', ToastType::Info);
     }
 
-    public function message(Message|string $message, array $replace = []): self
+    public function message(string $message, array $replace = []): self
     {
-        if (is_string($message)) {
-            $message = Message::fromTranslatable($message, $replace);
-        }
-
-        return $this->modify('message', $message);
+        return $this->modify('message', Message::fromTranslatable($message, $replace));
     }
 
     public function success(): self
@@ -53,13 +45,9 @@ final class ToastBuilder
         return $this->modify('type', ToastType::Success);
     }
 
-    public function type(ToastType|string $type): self
+    public function type(string $type): self
     {
-        if (is_string($type)) {
-            $type = ToastType::from($type);
-        }
-
-        return $this->modify('type', $type);
+        return $this->modify('type', ToastType::from($type));
     }
 
     public function warning(): self

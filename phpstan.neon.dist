@@ -13,6 +13,4 @@ parameters:
 
     ignoreErrors:
         - '#Cannot access offset .* on Illuminate\\Contracts\\Foundation\\Application#'
-        - '#Parameter \#1 \$value of static method MAS\\Toaster\\Position::from\(\) expects int\|string\, mixed given.#'
         - '#Parameter \#.* of class MAS\\Toaster\\ToasterConfig constructor expects .*, mixed given.#'
-        - '#Parameter \#1 \$value of static method MAS\\Toaster\\Duration::fromMillis\(\) expects int, mixed given.#'
