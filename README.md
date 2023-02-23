@@ -20,6 +20,7 @@ session or "dispatching browser events" from your Livewire components. Just disp
   - [Dispatching toasts from the back-end](#dispatching-toasts-from-the-back-end)
   - [Dispatching toasts from the front-end](#dispatching-toasts-from-the-front-end)
   - [Automatic translation of messages](#automatic-translation-of-messages)
+  - [Accessibility](#accessibility)
   - [Unit testing](#unit-testing)
 - [Customization](#customization)
 - [Testing](#testing)
@@ -59,9 +60,9 @@ return [
     /**
      * The on-screen duration of each toast.
      *
-     * Minimum: 1000 (in milliseconds)
+     * Minimum: 3000 (in milliseconds)
      */
-    'duration' => 5000,
+    'duration' => 3000,
 
     /**
      * The on-screen position of each toast.
@@ -125,7 +126,7 @@ If the default toast appearances suffice your needs, you'll need to register it 
 module.exports = {
     content: [
         './resources/**/*.blade.php',
-        './vendor/mabdullahsari/**/*.blade.php', // 👈
+        './vendor/mabdullahsari/livewire-toaster/resources/views/*.blade.php', // 👈
     ],
 }
 ```
@@ -310,7 +311,7 @@ You can do whatever you want, whenever you want.
 > **Note** The `accessibility` configuration value must be set to `true`.
 
 Toaster will add an additional second to a toast's on-screen duration for every 100th word.
-This way, your users will have enough time to read toasts that a tad larget than usual.
+This way, your users will have enough time to read toasts that are a tad larger than usual.
 
 So, if your base duration value is `3 seconds` and your toast contains 223 words, 
 the total on-screen duration of the toast will be `3 + 2 = 5 seconds`  
