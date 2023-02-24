@@ -3,15 +3,9 @@
 .php_cs.cache
 .phpunit.cache
 .phpunit.result.cache
-build
 composer.lock
-coverage
-docs
 phpunit.xml
 phpstan.neon
-testbench.yaml
 vendor
 node_modules
 .php-cs-fixer.cache
-dist/mix-manifest.json
-package-lock.json
