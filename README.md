@@ -25,7 +25,6 @@ session or "dispatching browser events" from your Livewire components. Just disp
 - [Customization](#customization)
 - [Testing](#testing)
 - [Changelog](#changelog)
-- [Contributing](#contributing)
 - [Security](#security)
 - [Credits](#credits)
 - [License](#license)
