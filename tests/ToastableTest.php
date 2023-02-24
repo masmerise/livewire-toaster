@@ -5,9 +5,9 @@ namespace Tests;
 use Livewire\Component;
 use Livewire\Livewire;
 use Livewire\LivewireManager;
-use MAS\Toaster\LivewireRelay;
-use MAS\Toaster\SessionRelay;
-use MAS\Toaster\Toastable;
+use Masmerise\Toaster\LivewireRelay;
+use Masmerise\Toaster\SessionRelay;
+use Masmerise\Toaster\Toastable;
 
 final class ToastableTest extends TestCase
 {

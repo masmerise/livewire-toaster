@@ -2,10 +2,10 @@
 
 namespace Tests;
 
-use MAS\Toaster\Collector;
-use MAS\Toaster\Toaster;
-use MAS\Toaster\Toastable;
-use MAS\Toaster\ToastBuilder;
+use Masmerise\Toaster\Collector;
+use Masmerise\Toaster\Toaster;
+use Masmerise\Toaster\Toastable;
+use Masmerise\Toaster\ToastBuilder;
 
 final class ControllerTest extends TestCase
 {

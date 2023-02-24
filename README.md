@@ -1,8 +1,8 @@
 # Toaster
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/mabdullahsari/livewire-toaster.svg?style=flat-square)](https://packagist.org/packages/mabdullahsari/livewire-toaster)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/mabdullahsari/livewire-toaster/test.yml?branch=master)](https://github.com/mabdullahsari/livewire-toaster/actions?query=workflow%3A%22Automated+testing%22+branch%3Amaster)
-[![Total Downloads](https://img.shields.io/packagist/dt/mabdullahsari/livewire-toaster.svg?style=flat-square)](https://packagist.org/packages/mabdullahsari/livewire-toaster)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/masmerise/livewire-toaster.svg?style=flat-square)](https://packagist.org/packages/masmerise/livewire-toaster)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/masmerise/livewire-toaster/test.yml?branch=master)](https://github.com/masmerise/livewire-toaster/actions?query=workflow%3A%22Automated+testing%22+branch%3Amaster)
+[![Total Downloads](https://img.shields.io/packagist/dt/masmerise/livewire-toaster.svg?style=flat-square)](https://packagist.org/packages/masmerise/livewire-toaster)
 
 Toaster provides a seamless experience to display toast notifications in your Livewire powered Laravel apps.
 
@@ -35,7 +35,7 @@ session or "dispatching browser events" from your Livewire components. Just disp
 You can install the package via [composer](https://getcomposer.org):
 
 ```bash
-composer require mabdullahsari/livewire-toaster
+composer require masmerise/livewire-toaster
 ```
 
 You can publish the package's config file:
@@ -106,7 +106,7 @@ After that, you'll need to register the `Toaster` plugin with your `resources/js
 
 ```js
 import Alpine from 'alpinejs';
-import Toaster from '../../vendor/mabdullahsari/livewire-toaster/resources/js'; // 👈
+import Toaster from '../../vendor/masmerise/livewire-toaster/resources/js'; // 👈
 
 Alpine.plugin(Toaster); // 👈
 
@@ -126,7 +126,7 @@ If the default toast appearances suffice your needs, you'll need to register it 
 module.exports = {
     content: [
         './resources/**/*.blade.php',
-        './vendor/mabdullahsari/livewire-toaster/resources/views/*.blade.php', // 👈
+        './vendor/masmerise/livewire-toaster/resources/views/*.blade.php', // 👈
     ],
 }
 ```
@@ -144,7 +144,7 @@ Otherwise, please refer to [Customization](#customization).
 The standard recommended way for dispatching toast messages is through the `Toaster` facade.
 
 ```php
-use MAS\Toaster\Toaster;
+use Masmerise\Toaster\Toaster;
 
 final class RegistrationForm extends Component
 {
@@ -162,7 +162,7 @@ final class RegistrationForm extends Component
 If you need fine-grained control, you can always use the `PendingToast` class directly to which `Toaster` proxies its calls:
 
 ```php
-use MAS\Toaster\PendingToast;
+use Masmerise\Toaster\PendingToast;
 
 final class RegistrationForm extends Component
 {
@@ -190,7 +190,7 @@ final class RegistrationForm extends Component
 You can make any class `Toastable` to dispatch toasts from:
 
 ```php
-use MAS\Toaster\Toastable;
+use Masmerise\Toaster\Toastable;
 
 final class ProductListing extends Component
 {
@@ -243,9 +243,9 @@ If you'd like to keep things "pure", you can also inject the `Collector` contrac
 and use the `ToastBuilder` to dispatch your toasts:
 
 ```php
-use MAS\Toaster\Collector;
-use MAS\Toaster\ToasterConfig;
-use MAS\Toaster\ToastBuilder;
+use Masmerise\Toaster\Collector;
+use Masmerise\Toaster\ToasterConfig;
+use Masmerise\Toaster\ToastBuilder;
 
 final readonly class SendEmailVerifiedNotification
 {
@@ -321,7 +321,7 @@ the total on-screen duration of the toast will be `3 + 2 = 5 seconds`
 Toaster provides a couple of testing capabilities in order for you to build a robust application:
 
 ```php
-use MAS\Toaster\Toaster;
+use Masmerise\Toaster\Toaster;
 
 final class RegisterUserControllerTest extends TestCase
 {
@@ -380,7 +380,7 @@ If you discover any security related issues, please email support@muhammedsari.m
 
 ## Credits
 
-- [Muhammed Sari](https://github.com/mabdullahsari)
+- [Muhammed Sari](https://github.com/masmerise)
 - [All Contributors](../../contributors)
 
 ## License

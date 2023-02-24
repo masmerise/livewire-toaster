@@ -3,7 +3,7 @@
 namespace Tests;
 
 use InvalidArgumentException;
-use MAS\Toaster\Duration;
+use Masmerise\Toaster\Duration;
 use PHPUnit\Framework\TestCase;
 
 final class DurationTest extends TestCase

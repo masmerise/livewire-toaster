@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use MAS\Toaster\Message;
-use MAS\Toaster\TranslatingCollector;
+use Masmerise\Toaster\Message;
+use Masmerise\Toaster\TranslatingCollector;
 
 final class TranslatingCollectorTest extends TestCase
 {

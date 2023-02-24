@@ -5,14 +5,14 @@ namespace Tests;
 use Dive\Crowbar\Crowbar;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
-use MAS\Toaster\AccessibleCollector;
-use MAS\Toaster\Collector;
-use MAS\Toaster\LivewireRelay;
-use MAS\Toaster\SessionRelay;
-use MAS\Toaster\ToasterConfig;
-use MAS\Toaster\ToasterHub;
-use MAS\Toaster\TranslatingCollector;
-use MAS\Toaster\ToasterServiceProvider;
+use Masmerise\Toaster\AccessibleCollector;
+use Masmerise\Toaster\Collector;
+use Masmerise\Toaster\LivewireRelay;
+use Masmerise\Toaster\SessionRelay;
+use Masmerise\Toaster\ToasterConfig;
+use Masmerise\Toaster\ToasterHub;
+use Masmerise\Toaster\TranslatingCollector;
+use Masmerise\Toaster\ToasterServiceProvider;
 use Orchestra\Testbench\TestCase;
 
 final class ToasterServiceProviderTest extends TestCase

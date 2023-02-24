@@ -1,5 +1,5 @@
 {
-    "name": "mabdullahsari/livewire-toaster",
+    "name": "masmerise/livewire-toaster",
     "description": "Beautiful toast notifications for Laravel / Livewire.",
     "keywords": [
         "alert",
@@ -8,7 +8,7 @@
         "toast",
         "toaster"
     ],
-    "homepage": "https://github.com/mabdullahsari/livewire-toaster",
+    "homepage": "https://github.com/masmerise/livewire-toaster",
     "license": "MIT",
     "authors": [
         {
@@ -31,7 +31,7 @@
     },
     "autoload": {
         "psr-4": {
-            "MAS\\Toaster\\": "src"
+            "Masmerise\\Toaster\\": "src"
         }
     },
     "autoload-dev": {
@@ -51,10 +51,10 @@
     "extra": {
         "laravel": {
             "aliases": {
-                "Toaster": "MAS\\Toaster\\Toaster"
+                "Toaster": "Masmerise\\Toaster\\Toaster"
             },
             "providers": [
-              "MAS\\Toaster\\ToasterServiceProvider"
+              "Masmerise\\Toaster\\ToasterServiceProvider"
             ]
         }
     },

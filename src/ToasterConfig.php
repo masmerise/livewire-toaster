@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace MAS\Toaster;
+namespace Masmerise\Toaster;
 
 use Illuminate\Support\Arr;
 

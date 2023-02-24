@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use MAS\Toaster\QueuingCollector;
+use Masmerise\Toaster\QueuingCollector;
 
 trait CollectorFactoryMethods
 {

@@ -6,10 +6,10 @@ use Livewire\Component;
 use Livewire\Livewire;
 use Livewire\LivewireManager;
 use Livewire\Testing\TestableLivewire;
-use MAS\Toaster\Collector;
-use MAS\Toaster\Toaster;
-use MAS\Toaster\Toastable;
-use MAS\Toaster\ToastBuilder;
+use Masmerise\Toaster\Collector;
+use Masmerise\Toaster\Toaster;
+use Masmerise\Toaster\Toastable;
+use Masmerise\Toaster\ToastBuilder;
 
 final class LivewireTest extends TestCase
 {

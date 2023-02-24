@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use MAS\Toaster\AccessibleCollector;
-use MAS\Toaster\Message;
+use Masmerise\Toaster\AccessibleCollector;
+use Masmerise\Toaster\Message;
 
 final class AccessibleCollectorTest extends TestCase
 {

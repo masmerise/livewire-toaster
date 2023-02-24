@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use MAS\Toaster\PendingToast;
-use MAS\Toaster\Toaster;
+use Masmerise\Toaster\PendingToast;
+use Masmerise\Toaster\Toaster;
 
 final class PendingToastTest extends TestCase
 {

@@ -13,4 +13,4 @@ parameters:
 
     ignoreErrors:
         - '#Cannot access offset .* on Illuminate\\Contracts\\Foundation\\Application#'
-        - '#Parameter \#.* of class MAS\\Toaster\\ToasterConfig constructor expects .*, mixed given.#'
+        - '#Parameter \#.* of class Masmerise\\Toaster\\ToasterConfig constructor expects .*, mixed given.#'

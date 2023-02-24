@@ -5,8 +5,8 @@ namespace Tests;
 use Livewire\Component;
 use Livewire\Livewire;
 use Livewire\LivewireManager;
-use MAS\Toaster\Collector;
-use MAS\Toaster\LivewireRelay;
+use Masmerise\Toaster\Collector;
+use Masmerise\Toaster\LivewireRelay;
 
 final class LivewireRelayTest extends TestCase
 {

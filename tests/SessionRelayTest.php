@@ -3,8 +3,8 @@
 namespace Tests;
 
 use Illuminate\Http\Request;
-use MAS\Toaster\Collector;
-use MAS\Toaster\SessionRelay;
+use Masmerise\Toaster\Collector;
+use Masmerise\Toaster\SessionRelay;
 
 final class SessionRelayTest extends TestCase
 {

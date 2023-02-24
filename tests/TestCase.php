@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use MAS\Toaster\ToasterServiceProvider;
+use Masmerise\Toaster\ToasterServiceProvider;
 use Orchestra\Testbench\TestCase as TestCaseBase;
 
 abstract class TestCase extends TestCaseBase

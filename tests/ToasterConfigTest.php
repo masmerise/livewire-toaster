@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use MAS\Toaster\ToasterConfig;
+use Masmerise\Toaster\ToasterConfig;
 use PHPUnit\Framework\TestCase;
 
 final class ToasterConfigTest extends TestCase

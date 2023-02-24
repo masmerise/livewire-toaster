@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use MAS\Toaster\QueuingCollector;
+use Masmerise\Toaster\QueuingCollector;
 use PHPUnit\Framework\TestCase;
 
 final class QueuingCollectorTest extends TestCase
