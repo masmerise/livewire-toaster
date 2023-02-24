@@ -3,14 +3,12 @@
 namespace MAS\Toaster;
 
 /** @internal */
-final class AccessibleCollector implements Collector
+final readonly class AccessibleCollector implements Collector
 {
     private const SECOND = 1000;
     private const WORDS = 100;
 
-    public function __construct(
-        private readonly Collector $next,
-    ) {}
+    public function __construct(private Collector $next) {}
 
     public function collect(Toast $toast): void
     {

@@ -5,11 +5,11 @@ namespace MAS\Toaster;
 use InvalidArgumentException;
 use JsonSerializable;
 
-final class Duration implements JsonSerializable
+final readonly class Duration implements JsonSerializable
 {
     private const MINIMUM = 3000;
 
-    public readonly int $value;
+    public int $value;
 
     private function __construct(int $value)
     {

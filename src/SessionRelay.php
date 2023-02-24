@@ -8,13 +8,11 @@ use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 
 /** @internal */
-final class SessionRelay
+final readonly class SessionRelay
 {
     public const NAME = 'toasts';
 
-    public function __construct(
-        private readonly Application $app,
-    ) {}
+    public function __construct(private Application $app) {}
 
     public function handle(Request $request, Closure $next): mixed
     {

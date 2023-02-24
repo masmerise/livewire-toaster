@@ -5,11 +5,11 @@ namespace MAS\Toaster;
 use InvalidArgumentException;
 use JsonSerializable;
 
-final class Message implements JsonSerializable
+final readonly class Message implements JsonSerializable
 {
-    public readonly array $replace;
+    public array $replace;
 
-    public readonly string $value;
+    public string $value;
 
     private function __construct(string $value, array $replace = [])
     {

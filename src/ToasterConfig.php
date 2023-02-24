@@ -5,13 +5,13 @@ namespace MAS\Toaster;
 use Illuminate\Support\Arr;
 
 /** @internal */
-final class ToasterConfig
+final readonly class ToasterConfig
 {
     private function __construct(
-        public readonly int $duration,
-        public readonly string $position,
-        public readonly bool $wantsAccessibility,
-        public readonly bool $wantsTranslation,
+        public int $duration,
+        public string $position,
+        public bool $wantsAccessibility,
+        public bool $wantsTranslation,
     ) {}
 
     public static function fromArray(array $config): self

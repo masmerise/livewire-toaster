@@ -4,12 +4,12 @@ namespace MAS\Toaster;
 
 use Illuminate\Contracts\Support\Arrayable;
 
-final class Toast implements Arrayable
+final readonly class Toast implements Arrayable
 {
     public function __construct(
-        public readonly Message $message,
-        public readonly Duration $duration,
-        public readonly ToastType $type,
+        public Message $message,
+        public Duration $duration,
+        public ToastType $type,
     ) {}
 
     public function toArray(): array
