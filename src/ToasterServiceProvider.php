@@ -51,7 +51,7 @@ final class ToasterServiceProvider extends AggregateServiceProvider
 
     private function aliasToasterHub(BladeCompiler $blade): void
     {
-        $blade->component('toaster-hub', ToasterHub::class);
+        $blade->component(ToasterHub::NAME, ToasterHub::class);
     }
 
     private function configureService(): ToasterConfig

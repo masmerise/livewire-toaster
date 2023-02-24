@@ -9,6 +9,8 @@ use Illuminate\View\Component;
 /** @internal */
 final class ToasterHub extends Component
 {
+    public const NAME = 'toaster-hub';
+
     public function __construct(
         private readonly ToasterConfig $config,
         private readonly Session $session,
