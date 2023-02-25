@@ -1,7 +1,7 @@
 # Changelog
 
-All notable changes to `livewire-toast` will be documented in this file.
+All notable changes to `livewire-toaster` will be documented in this file.
 
-## 1.0.0 - 2023-01-XX
+## 1.0.0 - 2023-02-25
 
-- Initial release
+- Stable release
