@@ -49,8 +49,7 @@ This is the contents of the `toaster.php` config file:
 return [
 
     /**
-     * Add an additional second for every 100th word of the toast message.
-     * Recommended to keep it on, though you may wish to disable this.
+     * Add an additional second for every 100th word of the toast messages.
      *
      * Supported: true | false
      */
@@ -72,7 +71,6 @@ return [
 
     /**
      * Whether messages passed as translation keys should be translated automatically.
-     * While this is an invaluable default behaviour, you may wish to disable this.
      *
      * Supported: true | false
      */
