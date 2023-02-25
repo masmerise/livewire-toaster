@@ -12,7 +12,7 @@ session or "dispatching browser events" from your Livewire components. Just disp
 
 ## Showcase
 
-![Toaster Demo](./art/showcase.gif)
+<p align="center"><img src="https://github.com/masmerise/livewire-toaster/raw/master/art/showcase.gif" alt="Toaster Demo"></p>
 
 ## Contents
 
