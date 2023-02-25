@@ -56,6 +56,13 @@ return [
     'accessibility' => true,
 
     /**
+     * Allow users to close toast messages prematurely.
+     *
+     * Supported: true | false
+     */
+    'closeable' => true,
+
+    /**
      * The on-screen duration of each toast.
      *
      * Minimum: 3000 (in milliseconds)

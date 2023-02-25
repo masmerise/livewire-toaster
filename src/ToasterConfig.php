@@ -11,6 +11,7 @@ final readonly class ToasterConfig
         public int $duration,
         public string $position,
         public bool $wantsAccessibility,
+        public bool $wantsCloseableToasts,
         public bool $wantsTranslation,
     ) {}
 
@@ -20,6 +21,7 @@ final readonly class ToasterConfig
             Arr::get($config, 'duration', 3000),
             Arr::get($config, 'position', 'right'),
             Arr::get($config, 'accessibility', true),
+            Arr::get($config, 'closeable', true),
             Arr::get($config, 'translate', true),
         );
     }
