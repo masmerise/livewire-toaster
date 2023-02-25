@@ -1,3 +1,5 @@
+<p align="center"><img src="https://github.com/masmerise/livewire-toaster/raw/master/art/banner.png" alt="Toaster Banner"></p>
+
 # Toaster
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/masmerise/livewire-toaster.svg?style=flat-square)](https://packagist.org/packages/masmerise/livewire-toaster)
