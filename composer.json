@@ -54,7 +54,7 @@
                 "Toaster": "Masmerise\\Toaster\\Toaster"
             },
             "providers": [
-              "Masmerise\\Toaster\\ToasterServiceProvider"
+                "Masmerise\\Toaster\\ToasterServiceProvider"
             ]
         }
     },
