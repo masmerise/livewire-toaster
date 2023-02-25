@@ -3,13 +3,14 @@
 namespace Tests;
 
 use Masmerise\Toaster\TestableCollector;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class TestableCollectorTest extends TestCase
 {
     use ToastFactoryMethods;
 
-    /** @test */
+    #[Test]
     public function it_can_assert_if_toasts_were_dispatched(): void
     {
         $instance = new TestableCollector();

@@ -4,10 +4,11 @@ namespace Tests;
 
 use Masmerise\Toaster\PendingToast;
 use Masmerise\Toaster\Toaster;
+use PHPUnit\Framework\Attributes\Test;
 
 final class PendingToastTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_be_instantiated_through_static_factory_on_toaster(): void
     {
         $error = Toaster::error('validation.accepted', ['attribute' => 'terms'])->get();
@@ -39,7 +40,7 @@ final class PendingToastTest extends TestCase
         ], $warning->toArray());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_be_instantiated_with_defaults(): void
     {
         $toast = PendingToast::create()->message('test')->success()->get();
@@ -51,7 +52,7 @@ final class PendingToastTest extends TestCase
         ], $toast->toArray());
     }
 
-    /** @test */
+    #[Test]
     public function it_will_automatically_dispatch_the_toast_upon_destruction(): void
     {
         Toaster::shouldReceive('collect')->once();
@@ -62,7 +63,7 @@ final class PendingToastTest extends TestCase
             ->message('Uvuvuvwevwe Onyetenyevwe Ughemuhwem Osas');
     }
 
-    /** @test */
+    #[Test]
     public function it_will_only_dispatch_once(): void
     {
         Toaster::shouldReceive('collect')->once();

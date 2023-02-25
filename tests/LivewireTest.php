@@ -10,6 +10,7 @@ use Masmerise\Toaster\Collector;
 use Masmerise\Toaster\Toaster;
 use Masmerise\Toaster\Toastable;
 use Masmerise\Toaster\ToastBuilder;
+use PHPUnit\Framework\Attributes\Test;
 
 final class LivewireTest extends TestCase
 {
@@ -23,7 +24,7 @@ final class LivewireTest extends TestCase
         LivewireManager::$isLivewireRequestTestingOverride = true;
     }
 
-    /** @test */
+    #[Test]
     public function multiple_toasts_can_be_dispatched(): void
     {
         $this->component->call('multiple');
@@ -45,7 +46,7 @@ final class LivewireTest extends TestCase
         ], $effectB['data']);
     }
 
-    /** @test */
+    #[Test]
     public function toast_is_dispatched_to_the_browser_using_dependency_injection(): void
     {
         $this->component->call('inject');

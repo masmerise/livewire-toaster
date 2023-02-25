@@ -4,12 +4,13 @@ namespace Tests;
 
 use Masmerise\Toaster\ToastBuilder;
 use Masmerise\Toaster\ToastType;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use UnexpectedValueException;
 
 final class ToastBuilderTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_fluently_build_and_return_a_toast(): void
     {
         $builderA = ToastBuilder::create();
@@ -27,7 +28,7 @@ final class ToastBuilderTest extends TestCase
         $this->assertSame(4000, $toast->duration->value);
     }
 
-    /** @test */
+    #[Test]
     public function it_throws_if_the_builder_data_is_incomplete_to_build_a_toast(): void
     {
         $this->expectException(UnexpectedValueException::class);

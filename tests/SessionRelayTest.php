@@ -5,13 +5,14 @@ namespace Tests;
 use Illuminate\Http\Request;
 use Masmerise\Toaster\Collector;
 use Masmerise\Toaster\SessionRelay;
+use PHPUnit\Framework\Attributes\Test;
 
 final class SessionRelayTest extends TestCase
 {
     use CollectorFactoryMethods;
     use ToastFactoryMethods;
 
-    /** @test */
+    #[Test]
     public function it_relays_toasts_to_the_session(): void
     {
         $session = $this->app['session.store'];

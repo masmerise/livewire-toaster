@@ -7,10 +7,11 @@ use Livewire\Livewire;
 use Livewire\LivewireManager;
 use Masmerise\Toaster\Collector;
 use Masmerise\Toaster\LivewireRelay;
+use PHPUnit\Framework\Attributes\Test;
 
 final class LivewireRelayTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_dispatches_browser_events(): void
     {
         // mount => skip

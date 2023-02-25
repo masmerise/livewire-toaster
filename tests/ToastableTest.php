@@ -8,10 +8,11 @@ use Livewire\LivewireManager;
 use Masmerise\Toaster\LivewireRelay;
 use Masmerise\Toaster\SessionRelay;
 use Masmerise\Toaster\Toastable;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ToastableTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_be_invoked_from_controllers(): void
     {
         $this->app['router']->get('test', [ToastableController::class, 'index'])->middleware('web');
@@ -25,7 +26,7 @@ final class ToastableTest extends TestCase
         ]]);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_be_invoked_from_livewire_components(): void
     {
         $component = Livewire::test(ToastableComponent::class);

@@ -4,13 +4,14 @@ namespace Tests;
 
 use Masmerise\Toaster\AccessibleCollector;
 use Masmerise\Toaster\Message;
+use PHPUnit\Framework\Attributes\Test;
 
 final class AccessibleCollectorTest extends TestCase
 {
     use CollectorFactoryMethods;
     use ToastFactoryMethods;
 
-    /** @test */
+    #[Test]
     public function it_adds_a_second_for_every_one_hundredth_word_floored(): void
     {
         $collector = new AccessibleCollector($this->aCollector());

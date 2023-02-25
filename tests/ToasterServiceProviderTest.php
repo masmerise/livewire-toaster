@@ -14,6 +14,7 @@ use Masmerise\Toaster\ToasterHub;
 use Masmerise\Toaster\TranslatingCollector;
 use Masmerise\Toaster\ToasterServiceProvider;
 use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ToasterServiceProviderTest extends TestCase
 {
@@ -24,14 +25,14 @@ final class ToasterServiceProviderTest extends TestCase
         $this->app->register(ToasterServiceProvider::class);
     }
 
-    /** @test */
+    #[Test]
     public function it_binds_the_service_as_a_singleton(): void
     {
         $this->assertTrue($this->app->isShared(Collector::class));
         $this->assertTrue($this->app->isAlias(ToasterServiceProvider::NAME));
     }
 
-    /** @test */
+    #[Test]
     public function it_registers_the_livewire_relay_only_after_the_service_has_been_resolved_at_least_once(): void
     {
         $livewire = Crowbar::pry($this->app['livewire']);
@@ -43,7 +44,7 @@ final class ToasterServiceProviderTest extends TestCase
         $this->assertInstanceOf(LivewireRelay::class, Arr::last($livewire->listeners['component.dehydrate']));
     }
 
-    /** @test */
+    #[Test]
     public function it_registers_the_session_relay_as_middleware(): void
     {
         $router = Crowbar::pry($this->app['router']);
@@ -54,7 +55,7 @@ final class ToasterServiceProviderTest extends TestCase
         $this->assertSame(SessionRelay::NAME, $middleware);
     }
 
-    /** @test */
+    #[Test]
     public function it_registers_the_toast_hub_as_a_blade_component(): void
     {
         $blade = Crowbar::pry($this->app['blade.compiler']);
@@ -63,7 +64,7 @@ final class ToasterServiceProviderTest extends TestCase
         $this->assertSame(ToasterHub::class, $blade->classComponentAliases['toaster-hub']);
     }
 
-    /** @test */
+    #[Test]
     public function it_registers_the_translating_behaviour_only_if_enabled_in_the_config(): void
     {
         $this->assertInstanceOf(TranslatingCollector::class, $this->app[ToasterServiceProvider::NAME]);
@@ -75,7 +76,7 @@ final class ToasterServiceProviderTest extends TestCase
         $this->assertInstanceOf(AccessibleCollector::class, $this->app[ToasterServiceProvider::NAME]);
     }
 
-    /** @test */
+    #[Test]
     public function it_registers_macros(): void
     {
         $this->assertTrue(RedirectResponse::hasMacro('error'));
@@ -84,7 +85,7 @@ final class ToasterServiceProviderTest extends TestCase
         $this->assertTrue(RedirectResponse::hasMacro('warning'));
     }
 
-    /** @test */
+    #[Test]
     public function it_registers_custom_config_object(): void
     {
         $this->assertTrue($this->app->bound(ToasterConfig::class));

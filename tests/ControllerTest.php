@@ -6,6 +6,7 @@ use Masmerise\Toaster\Collector;
 use Masmerise\Toaster\Toaster;
 use Masmerise\Toaster\Toastable;
 use Masmerise\Toaster\ToastBuilder;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ControllerTest extends TestCase
 {
@@ -15,7 +16,7 @@ final class ControllerTest extends TestCase
         $router->get('multiple', [ToastController::class, 'multiple'])->middleware('web');
     }
 
-    /** @test */
+    #[Test]
     public function multiple_toasts_can_be_dispatched(): void
     {
         $this->get('multiple')->assertOk()->assertSessionHas('toasts', [
@@ -32,7 +33,7 @@ final class ControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function toast_is_flashed_to_the_session_using_dependency_injection(): void
     {
         $this->get('inject')->assertOk()->assertSessionHas('toasts', [[

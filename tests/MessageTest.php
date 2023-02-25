@@ -4,11 +4,12 @@ namespace Tests;
 
 use InvalidArgumentException;
 use Masmerise\Toaster\Message;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class MessageTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_requires_a_message_not_to_be_empty(): void
     {
         $message = Message::fromTranslatable('Clementine :name', ['name' => 'Tangerine']);
@@ -21,7 +22,7 @@ final class MessageTest extends TestCase
         Message::fromString('     ');
     }
 
-    /** @test */
+    #[Test]
     public function it_is_json_serializable(): void
     {
         $message = Message::fromString('    Clementine     ');

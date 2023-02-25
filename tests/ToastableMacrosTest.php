@@ -3,6 +3,7 @@
 namespace Tests;
 
 use Illuminate\Http\RedirectResponse;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ToastableMacrosTest extends TestCase
 {
@@ -11,7 +12,7 @@ final class ToastableMacrosTest extends TestCase
         $router->get('redirect', [ToastableMacroController::class, 'redirect'])->middleware('web');
     }
 
-    /** @test */
+    #[Test]
     public function redirect(): void
     {
         $this->get('redirect')->assertSessionHas('toasts');

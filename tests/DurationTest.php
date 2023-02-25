@@ -4,11 +4,12 @@ namespace Tests;
 
 use InvalidArgumentException;
 use Masmerise\Toaster\Duration;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class DurationTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_requires_a_duration_to_be_at_least_1s(): void
     {
         $duration = Duration::fromMillis(3000);
@@ -20,7 +21,7 @@ final class DurationTest extends TestCase
         Duration::fromMillis(999);
     }
 
-    /** @test */
+    #[Test]
     public function it_is_json_serializable(): void
     {
         $duration = Duration::fromMillis(3000);

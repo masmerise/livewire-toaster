@@ -4,13 +4,14 @@ namespace Tests;
 
 use Masmerise\Toaster\Message;
 use Masmerise\Toaster\TranslatingCollector;
+use PHPUnit\Framework\Attributes\Test;
 
 final class TranslatingCollectorTest extends TestCase
 {
     use CollectorFactoryMethods;
     use ToastFactoryMethods;
 
-    /** @test */
+    #[Test]
     public function it_can_translate_the_messages(): void
     {
         $collector = new TranslatingCollector($this->aCollector(), $this->app['translator']);
@@ -22,7 +23,7 @@ final class TranslatingCollectorTest extends TestCase
         $this->assertSame('Too many login attempts. Please try again in 1337 seconds.', $toast->message->value);
     }
 
-    /** @test */
+    #[Test]
     public function it_doesnt_replace_array_resolved_translations(): void
     {
         $collector = new TranslatingCollector($this->aCollector(), $this->app['translator']);
@@ -34,7 +35,7 @@ final class TranslatingCollectorTest extends TestCase
         $this->assertSame('validation.size', $toast->message->value);
     }
 
-    /** @test */
+    #[Test]
     public function it_doesnt_modify_regular_strings(): void
     {
         $collector = new TranslatingCollector($this->aCollector(), $this->app['translator']);
