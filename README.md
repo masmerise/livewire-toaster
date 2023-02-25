@@ -1,6 +1,6 @@
 <p align="center"><img src="https://github.com/masmerise/livewire-toaster/raw/master/art/banner.png" alt="Toaster Banner"></p>
 
-# Toaster
+# Beautiful toast notifications for Laravel / Livewire
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/masmerise/livewire-toaster.svg?style=flat-square)](https://packagist.org/packages/masmerise/livewire-toaster)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/masmerise/livewire-toaster/test.yml?branch=master)](https://github.com/masmerise/livewire-toaster/actions?query=workflow%3A%22Automated+testing%22+branch%3Amaster)
