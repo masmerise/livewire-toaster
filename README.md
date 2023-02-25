@@ -328,6 +328,9 @@ the total on-screen duration of the toast will be `3 + 2 = 5 seconds`
 
 ### Unit testing
 
+> **Note** If you make use of [automatic translation of messages](#automatic-translation-of-messages), you should assert whether the **translation keys** are passed along correctly instead of the human readable messages that are replaced by Laravel's translator.
+> Otherwise, your tests are going to fail as the messages are not translated during unit testing.
+
 Toaster provides a couple of testing capabilities in order for you to build a robust application:
 
 ```php
@@ -370,8 +373,9 @@ Feel free to modify anything to your liking.
 
 ### Available `viewData`
 
-- `$position` - can be used to align the toast container depending on the configuration
+- `$closeable` - whether the close button should be render by the Blade component
 - `$config` - default configuration values, used by the Alpine component
+- `$position` - can be used to align the toast container depending on the configuration
 - `$toasts` - toasts that were flashed to the session by Toaster, used by the Alpine component
 
 ## Testing
