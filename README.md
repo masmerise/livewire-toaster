@@ -10,6 +10,10 @@ Unlike many other toast implementations that are available, Toaster makes it eff
 from either a standard `Controller` or a Livewire `Component`. You don't have to think about "flashing" things to the 
 session or "dispatching browser events" from your Livewire components. Just dispatch your toast and Toaster will route the message accordingly.
 
+## Showcase
+
+![Toaster Demo](./art/showcase.gif)
+
 ## Contents
 
 - [Installation](#installation)
