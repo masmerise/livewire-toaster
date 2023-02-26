@@ -28,7 +28,7 @@ session or "dispatching browser events" from your Livewire components. Just disp
   - [Automatic translation of messages](#automatic-translation-of-messages)
   - [Accessibility](#accessibility)
   - [Unit testing](#unit-testing)
-- [Customization](#customization)
+- [View customization](#view-customization)
 - [Testing](#testing)
 - [Changelog](#changelog)
 - [Security](#security)
@@ -141,7 +141,7 @@ module.exports = {
 }
 ```
 
-Otherwise, please refer to [Customization](#customization).
+Otherwise, please refer to [View customization](#view-customization).
 
 ## Usage
 
@@ -338,7 +338,7 @@ use Masmerise\Toaster\Toaster;
 
 final class RegisterUserControllerTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function users_can_register(): void
     {
         // Arrange
@@ -355,7 +355,7 @@ final class RegisterUserControllerTest extends TestCase
 }
 ```
 
-## Customization
+## View customization
 
 > **Warning** You **must** keep the `x-data` and `x-init` directives and you **must** keep using the `x-for` loop.
 > Otherwise, the Alpine component that powers Toaster will start malfunctioning.
