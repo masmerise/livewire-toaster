@@ -1,12 +1,12 @@
 <p align="center"><img src="https://github.com/masmerise/livewire-toaster/raw/master/art/banner.png" alt="Toaster Banner"></p>
 
-# Beautiful toast notifications for Laravel / Livewire
+# Beautiful toast notifications for Livewire
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/masmerise/livewire-toaster.svg?style=flat-square)](https://packagist.org/packages/masmerise/livewire-toaster)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/masmerise/livewire-toaster/test.yml?branch=master)](https://github.com/masmerise/livewire-toaster/actions?query=workflow%3A%22Automated+testing%22+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/masmerise/livewire-toaster.svg?style=flat-square)](https://packagist.org/packages/masmerise/livewire-toaster)
 
-Toaster provides a seamless experience to display toast notifications in your Livewire powered Laravel apps.
+**Toaster** provides a seamless experience to display toast notifications in your Livewire powered Laravel apps.
 
 Unlike many other toast implementations that are available, Toaster makes it effortless to dispatch a toast notification
 from either a standard `Controller` or a Livewire `Component`. You don't have to think about "flashing" things to the 
@@ -23,8 +23,8 @@ session or "dispatching browser events" from your Livewire components. Just disp
   - [Configuring scripts](#configuring-scripts)
   - [Tailwind styles](#tailwind-styles)
 - [Usage](#usage)
-  - [Dispatching toasts from the back-end](#dispatching-toasts-from-the-back-end)
-  - [Dispatching toasts from the front-end](#dispatching-toasts-from-the-front-end)
+  - [Sending toasts from the back-end](#sending-toasts-from-the-back-end)
+  - [Sending toasts from the front-end](#sending-toasts-from-the-front-end)
   - [Automatic translation of messages](#automatic-translation-of-messages)
   - [Accessibility](#accessibility)
   - [Unit testing](#unit-testing)
@@ -126,7 +126,7 @@ Alpine.start();
 
 ### Tailwind styles
 
-*Skip this step if you're going to customize Toaster's default view.*
+> **Note** Skip this step if you're going to customize Toaster's default view.
 
 Toaster provides a minimal view that utilizes Tailwind CSS defaults. 
 
@@ -145,7 +145,7 @@ Otherwise, please refer to [View customization](#view-customization).
 
 ## Usage
 
-### Dispatching toasts from the back-end
+### Sending toasts from the back-end
 
 > **Note** Toaster supports the dispatch of multiple toasts at once, you are not limited to dispatching a single toast.
 
@@ -277,7 +277,7 @@ final readonly class SendEmailVerifiedNotification
 }
 ```
 
-### Dispatching toasts from the front-end
+### Sending toasts from the front-end
 
 You can invoke the globally available `Toaster` instance to dispatch any toast message from anywhere:
 
@@ -373,7 +373,7 @@ Feel free to modify anything to your liking.
 
 ### Available `viewData`
 
-- `$closeable` - whether the close button should be render by the Blade component
+- `$closeable` - whether the close button should be rendered by the Blade component
 - `$config` - default configuration values, used by the Alpine component
 - `$position` - can be used to align the toast container depending on the configuration
 - `$toasts` - toasts that were flashed to the session by Toaster, used by the Alpine component
