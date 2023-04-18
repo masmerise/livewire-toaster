@@ -395,6 +395,7 @@ If you discover any security related issues, please email support@muhammedsari.m
 ## Credits
 
 - [Muhammed Sari](https://github.com/masmerise)
+- [Greg Korba](https://github.com/wirone)
 - [All Contributors](../../contributors)
 
 ## License
