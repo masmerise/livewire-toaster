@@ -10,6 +10,13 @@ return [
     'accessibility' => true,
 
     /**
+     * The vertical alignment of the toast container.
+     *
+     * Supported: "bottom" or "top"
+     */
+    'alignment' => 'bottom',
+
+    /**
      * Allow users to close toast messages prematurely.
      *
      * Supported: true | false
@@ -24,7 +31,7 @@ return [
     'duration' => 3000,
 
     /**
-     * The on-screen position of each toast.
+     * The horizontal position of each toast.
      *
      * Supported: "center", "left" or "right"
      */

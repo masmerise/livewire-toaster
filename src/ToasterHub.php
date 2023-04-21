@@ -20,6 +20,7 @@ final class ToasterHub extends Component
     public function render(): View
     {
         return $this->view($this->view, [
+            'alignment' => $this->config->alignment(),
             'closeable' => $this->config->wantsCloseableToasts,
             'config' => $this->config->toJavaScript(),
             'position' => $this->config->position(),

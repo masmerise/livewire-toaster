@@ -1,7 +1,10 @@
+import { Config } from './config';
 import { Toast } from './toast';
 
 export function Hub(Alpine) {
     Alpine.data('toasterHub', (initialToasts, config) => {
+        config = Config.fromJson(config);
+
         return {
             _toasts: [],
 
@@ -27,7 +30,11 @@ export function Hub(Alpine) {
                 toast = Alpine.reactive(Toast.fromJson(toast));
                 toast.runAfterDuration(toast => toast.dispose());
 
-                this._toasts.push(toast);
+                if (config.alignment.isBottom()) {
+                    this._toasts.push(toast);
+                } else {
+                    this._toasts.unshift(toast);
+                }
             },
         }
     });

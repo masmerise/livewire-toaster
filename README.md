@@ -62,6 +62,13 @@ return [
     'accessibility' => true,
 
     /**
+     * The vertical alignment of the toast container.
+     *
+     * Supported: "bottom", "top"
+     */
+    'alignment' => 'bottom',
+
+    /**
      * Allow users to close toast messages prematurely.
      *
      * Supported: true | false
@@ -76,7 +83,7 @@ return [
     'duration' => 3000,
 
     /**
-     * The on-screen position of each toast.
+     * The horizontal position of each toast.
      *
      * Supported: "center", "left" or "right"
      */
@@ -373,9 +380,10 @@ Feel free to modify anything to your liking.
 
 ### Available `viewData`
 
+- `$alignment` - can be used to align the toast container vertically depending on the configuration
 - `$closeable` - whether the close button should be rendered by the Blade component
 - `$config` - default configuration values, used by the Alpine component
-- `$position` - can be used to align the toast container depending on the configuration
+- `$position` - can be used to position the toasts depending on the configuration
 - `$toasts` - toasts that were flashed to the session by Toaster, used by the Alpine component
 
 ## Testing

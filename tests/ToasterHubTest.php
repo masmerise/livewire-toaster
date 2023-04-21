@@ -3,6 +3,7 @@
 namespace Tests;
 
 use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
+use Masmerise\Toaster\Alignment;
 use Masmerise\Toaster\Position;
 use Masmerise\Toaster\ToasterConfig;
 use Masmerise\Toaster\ToasterHub;
@@ -15,16 +16,19 @@ final class ToasterHubTest extends TestCase
 
     public static function configurations(): iterable
     {
-        yield [ToasterConfig::fromArray(['closeable' => true, 'position' => Position::Right->value])];
-        yield [ToasterConfig::fromArray(['closeable' => false, 'position' => Position::Left->value])];
-        yield [ToasterConfig::fromArray(['closeable' => false, 'position' => Position::Center->value])];
+        yield [['alignment' => Alignment::Bottom->value, 'closeable' => true, 'position' => Position::Right->value]];
+        yield [['alignment' => Alignment::Top->value, 'closeable' => true, 'position' => Position::Right->value]];
+        yield [['alignment' => Alignment::Bottom->value, 'closeable' => false, 'position' => Position::Left->value]];
+        yield [['alignment' => Alignment::Top->value, 'closeable' => false, 'position' => Position::Left->value]];
+        yield [['alignment' => Alignment::Bottom->value, 'closeable' => false, 'position' => Position::Center->value]];
+        yield [['alignment' => Alignment::Top->value, 'closeable' => false, 'position' => Position::Center->value]];
     }
 
     #[DataProvider('configurations')]
     #[Test]
-    public function it_can_be_rendered(ToasterConfig $config): void
+    public function it_can_be_rendered(array $config): void
     {
-        $component = $this->component(ToasterHub::class, compact('config'));
+        $component = $this->component(ToasterHub::class, ['config' => ToasterConfig::fromArray($config)]);
 
         $component->assertSee('toaster');
     }
