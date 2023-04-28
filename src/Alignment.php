@@ -2,6 +2,7 @@
 
 namespace Masmerise\Toaster;
 
+/** @internal */
 enum Alignment: string
 {
     use Assertable;

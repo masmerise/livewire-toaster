@@ -2,6 +2,7 @@
 
 namespace Masmerise\Toaster;
 
+/** @internal */
 enum ToastType: string
 {
     case Error = 'error';
