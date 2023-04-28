@@ -21,14 +21,4 @@ final class MessageTest extends TestCase
 
         Message::fromString('     ');
     }
-
-    #[Test]
-    public function it_is_json_serializable(): void
-    {
-        $message = Message::fromString('    Clementine     ');
-
-        $result = json_decode(json_encode($message, JSON_THROW_ON_ERROR));
-
-        $this->assertSame('Clementine', $result);
-    }
 }

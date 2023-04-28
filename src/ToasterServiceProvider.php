@@ -11,6 +11,7 @@ use Livewire\LivewireServiceProvider;
 
 final class ToasterServiceProvider extends AggregateServiceProvider
 {
+    public const CONFIG = 'toaster.config';
     public const NAME = 'toaster';
 
     protected $providers = [LivewireServiceProvider::class];
@@ -60,6 +61,7 @@ final class ToasterServiceProvider extends AggregateServiceProvider
 
         $config = ToasterConfig::fromArray($this->app['config'][self::NAME] ?? []);
         $this->app->instance(ToasterConfig::class, $config);
+        $this->app->alias(ToasterConfig::class, self::CONFIG);
 
         return $config;
     }

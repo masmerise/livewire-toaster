@@ -20,14 +20,4 @@ final class DurationTest extends TestCase
 
         Duration::fromMillis(999);
     }
-
-    #[Test]
-    public function it_is_json_serializable(): void
-    {
-        $duration = Duration::fromMillis(3000);
-
-        $result = json_decode(json_encode($duration, JSON_THROW_ON_ERROR));
-
-        $this->assertSame(3000, $result);
-    }
 }

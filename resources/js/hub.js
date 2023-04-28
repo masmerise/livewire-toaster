@@ -20,7 +20,7 @@ export function Hub(Alpine) {
 
             init() {
                 window.addEventListener('toaster:received', event => {
-                    this.show({ ...config, ...event.detail });
+                    this.show({ duration: config.duration, ...event.detail });
                 });
 
                 initialToasts.forEach(toast => this.show(toast));

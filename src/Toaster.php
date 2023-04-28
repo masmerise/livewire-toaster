@@ -5,15 +5,15 @@ namespace Masmerise\Toaster;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static void collect(Toast $toast)
  * @method static void assertDispatched(string $message)
  * @method static void assertNothingDispatched()
+ * @method static void collect(Toast $toast)
  */
 final class Toaster extends Facade
 {
     public static function config(): ToasterConfig
     {
-        return self::$app[ToasterConfig::class];
+        return self::$app[ToasterServiceProvider::CONFIG];
     }
 
     public static function error(string $message, array $replace = []): PendingToast

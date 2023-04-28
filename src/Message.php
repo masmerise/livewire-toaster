@@ -3,9 +3,8 @@
 namespace Masmerise\Toaster;
 
 use InvalidArgumentException;
-use JsonSerializable;
 
-final readonly class Message implements JsonSerializable
+final readonly class Message
 {
     public array $replace;
 
@@ -38,10 +37,5 @@ final readonly class Message implements JsonSerializable
         }
 
         return $other === $this->value;
-    }
-
-    public function jsonSerialize(): string
-    {
-        return $this->value;
     }
 }

@@ -5,15 +5,15 @@ namespace Masmerise\Toaster;
 /** @internal */
 final readonly class AccessibleCollector implements Collector
 {
-    private const SECOND = 1000;
-    private const WORDS = 100;
+    private const AMOUNT_OF_WORDS = 100;
+    private const ONE_SECOND = 1000;
 
     public function __construct(private Collector $next) {}
 
     public function collect(Toast $toast): void
     {
-        $addend = floor(str_word_count($toast->message->value) / self::WORDS);
-        $addend = intval($addend) * self::SECOND;
+        $addend = (int) floor(str_word_count($toast->message->value) / self::AMOUNT_OF_WORDS);
+        $addend = $addend * self::ONE_SECOND;
 
         if ($addend > 0) {
             $toast = ToastBuilder::proto($toast)->duration($toast->duration->value + $addend)->get();

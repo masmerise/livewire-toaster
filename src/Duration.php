@@ -3,9 +3,8 @@
 namespace Masmerise\Toaster;
 
 use InvalidArgumentException;
-use JsonSerializable;
 
-final readonly class Duration implements JsonSerializable
+final readonly class Duration
 {
     private const MINIMUM = 3000;
 
@@ -23,10 +22,5 @@ final readonly class Duration implements JsonSerializable
     public static function fromMillis(int $value): self
     {
         return new self($value);
-    }
-
-    public function jsonSerialize(): int
-    {
-        return $this->value;
     }
 }
