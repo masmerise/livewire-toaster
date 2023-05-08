@@ -3,6 +3,7 @@
 namespace Masmerise\Toaster;
 
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Routing\Router;
 use Illuminate\Support\AggregateServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
@@ -29,7 +30,8 @@ final class ToasterServiceProvider extends AggregateServiceProvider
         $this->callAfterResolving(BladeCompiler::class, $this->aliasToasterHub(...));
         $this->callAfterResolving(Collector::class, $this->relayToLivewire(...));
 
-        RedirectResponse::mixin(new ToastableMacros());
+        Redirector::mixin($macros = new ToastableMacros());
+        RedirectResponse::mixin($macros);
     }
 
     public function register(): void
