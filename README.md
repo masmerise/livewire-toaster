@@ -161,7 +161,7 @@ Otherwise, please refer to [View customization](#view-customization).
 The standard recommended way for dispatching toast messages is through the `Toaster` facade.
 
 ```php
-use Masmerise\Toaster\Toaster;
+use MAS\Toaster\Toaster;
 
 final class RegistrationForm extends Component
 {
@@ -179,7 +179,7 @@ final class RegistrationForm extends Component
 If you need fine-grained control, you can always use the `PendingToast` class directly to which `Toaster` proxies its calls:
 
 ```php
-use Masmerise\Toaster\PendingToast;
+use MAS\Toaster\PendingToast;
 
 final class RegistrationForm extends Component
 {
@@ -207,7 +207,7 @@ final class RegistrationForm extends Component
 You can make any class `Toastable` to dispatch toasts from:
 
 ```php
-use Masmerise\Toaster\Toastable;
+use MAS\Toaster\Toastable;
 
 final class ProductListing extends Component
 {
@@ -260,9 +260,9 @@ If you'd like to keep things "pure", you can also inject the `Collector` contrac
 and use the `ToastBuilder` to dispatch your toasts:
 
 ```php
-use Masmerise\Toaster\Collector;
-use Masmerise\Toaster\ToasterConfig;
-use Masmerise\Toaster\ToastBuilder;
+use MAS\Toaster\Collector;
+use MAS\Toaster\ToasterConfig;
+use MAS\Toaster\ToastBuilder;
 
 final readonly class SendEmailVerifiedNotification
 {
@@ -341,7 +341,7 @@ the total on-screen duration of the toast will be `3 + 2 = 5 seconds`
 Toaster provides a couple of testing capabilities in order for you to build a robust application:
 
 ```php
-use Masmerise\Toaster\Toaster;
+use MAS\Toaster\Toaster;
 
 final class RegisterUserControllerTest extends TestCase
 {
