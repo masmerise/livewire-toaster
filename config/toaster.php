@@ -12,7 +12,7 @@ return [
     /**
      * The vertical alignment of the toast container.
      *
-     * Supported: "bottom" or "top"
+     * Supported: "center", "bottom" or "top"
      */
     'alignment' => 'bottom',
 
