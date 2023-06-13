@@ -30,10 +30,10 @@ export function Hub(Alpine) {
                 toast = Alpine.reactive(Toast.fromJson(toast));
                 toast.runAfterDuration(toast => toast.dispose());
 
-                if (config.alignment.isBottom()) {
-                    this._toasts.push(toast);
-                } else {
+                if (config.alignment.isTop()) {
                     this._toasts.unshift(toast);
+                } else {
+                    this._toasts.push(toast);
                 }
             },
         }

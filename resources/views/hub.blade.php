@@ -12,10 +12,14 @@
              x-init="$nextTick(() => toast.show($el))"
              @if($alignment->is('bottom'))
              x-transition:enter-start="translate-y-12 opacity-0"
-             @else
-             x-transition:enter-start="-translate-y-12 opacity-0"
-             @endif
              x-transition:enter-end="translate-y-0 opacity-100"
+             @elseif($alignment->is('top'))
+             x-transition:enter-start="-translate-y-12 opacity-0"
+             x-transition:enter-end="translate-y-0 opacity-100"
+             @else
+             x-transition:enter-start="opacity-0 scale-90"
+             x-transition:enter-end="opacity-100 scale-100"
+             @endif
              x-transition:leave-end="opacity-0 scale-90"
              class="relative duration-300 transform transition ease-in-out max-w-xs w-full pointer-events-auto {{ $position->is('center') ? 'text-center' : 'text-left' }}"
              :class="toast.select({ error: 'text-white', info: 'text-black', success: 'text-white', warning: 'text-white' })"
