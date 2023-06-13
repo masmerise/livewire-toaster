@@ -2,6 +2,12 @@
 
 All notable changes to `livewire-toaster` will be documented in this file.
 
+## 1.2.0 - 2023-06-13
+
+### Added
+
+- Middle alignment by @aldozumaran in [#9](https://github.com/masmerise/livewire-toaster/pull/9)
+
 ## 1.1.2 - 2023-05-08
 
 ### Fixed
