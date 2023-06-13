@@ -1,12 +1,12 @@
 class Alignment {
-    static Bottom = 'bottom';
+    static Top = 'top';
 
     constructor(value) {
         this.value = value;
     }
 
-    isBottom() {
-        return this.value === Alignment.Bottom;
+    isTop() {
+        return this.value === Alignment.Top;
     }
 }
 
