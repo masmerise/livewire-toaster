@@ -8,6 +8,6 @@ enum Alignment: string
     use Assertable;
 
     case Bottom = 'bottom';
-    case Center = 'center';
+    case Middle = 'middle';
     case Top = 'top';
 }

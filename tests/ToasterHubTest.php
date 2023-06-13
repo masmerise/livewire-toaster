@@ -17,10 +17,13 @@ final class ToasterHubTest extends TestCase
     public static function configurations(): iterable
     {
         yield [['alignment' => Alignment::Bottom->value, 'closeable' => true, 'position' => Position::Right->value]];
+        yield [['alignment' => Alignment::Middle->value, 'closeable' => true, 'position' => Position::Right->value]];
         yield [['alignment' => Alignment::Top->value, 'closeable' => true, 'position' => Position::Right->value]];
         yield [['alignment' => Alignment::Bottom->value, 'closeable' => false, 'position' => Position::Left->value]];
+        yield [['alignment' => Alignment::Middle->value, 'closeable' => false, 'position' => Position::Left->value]];
         yield [['alignment' => Alignment::Top->value, 'closeable' => false, 'position' => Position::Left->value]];
         yield [['alignment' => Alignment::Bottom->value, 'closeable' => false, 'position' => Position::Center->value]];
+        yield [['alignment' => Alignment::Middle->value, 'closeable' => false, 'position' => Position::Center->value]];
         yield [['alignment' => Alignment::Top->value, 'closeable' => false, 'position' => Position::Center->value]];
     }
 
