@@ -2,6 +2,12 @@
 
 All notable changes to `livewire-toaster` will be documented in this file.
 
+## 1.2.1 - 2023-07-03
+
+### Fixed
+
+- `scope` the `toaster` service in order to support Laravel Octane
+
 ## 1.2.0 - 2023-06-13
 
 ### Added
