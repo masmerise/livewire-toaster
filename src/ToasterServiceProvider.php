@@ -40,7 +40,7 @@ final class ToasterServiceProvider extends AggregateServiceProvider
 
         parent::register();
 
-        $this->app->singleton(Collector::class, QueuingCollector::class);
+        $this->app->scoped(Collector::class, QueuingCollector::class);
         $this->app->alias(Collector::class, self::NAME);
 
         if ($config->wantsAccessibility) {
