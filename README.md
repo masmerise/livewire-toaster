@@ -22,6 +22,7 @@ session or "dispatching browser events" from your Livewire components. Just disp
   - [Preparing your template](#preparing-your-template)
   - [Configuring scripts](#configuring-scripts)
   - [Tailwind styles](#tailwind-styles)
+  - [RTL support](#rtl-support)
 - [Usage](#usage)
   - [Sending toasts from the back-end](#sending-toasts-from-the-back-end)
   - [Sending toasts from the front-end](#sending-toasts-from-the-front-end)
@@ -149,6 +150,21 @@ module.exports = {
 ```
 
 Otherwise, please refer to [View customization](#view-customization).
+
+### RTL support
+
+> **Note** **LTR** will be assumed regardless of whether you apply the `ltr` attribute or not.
+
+If your app makes use of an **RTL** language such as Arabic and Hebrew, don't forget to add the `rtl` attribute to the document root:
+
+```html
+<!DOCTYPE html>
+<html dir="rtl"> <!-- 👈 -->
+    ...
+</html>
+```
+
+This will make sure the UI elements (such as the close button) are flipped and the text is properly aligned.
 
 ## Usage
 
