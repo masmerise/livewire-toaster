@@ -2,6 +2,12 @@
 
 All notable changes to `livewire-toaster` will be documented in this file.
 
+## 1.3.0 - 2023-08-05
+
+### Added
+
+- RTL support
+
 ## 1.2.1 - 2023-07-03
 
 ### Fixed
