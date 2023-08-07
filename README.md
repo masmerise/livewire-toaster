@@ -120,16 +120,12 @@ Next, you'll need to use the `<x-toaster-hub />` component in your master templa
 
 ### Configuring scripts
 
-After that, you'll need to register the `Toaster` plugin with your `resources/js/app.js` bundle to start listening to incoming toasts:
+After that, you'll need to import `Toaster` at the top of your `resources/js/app.js` bundle to start listening to incoming toasts:
 
 ```js
-import Alpine from 'alpinejs';
-import Toaster from '../../vendor/masmerise/livewire-toaster/resources/js'; // 👈
+import '../../vendor/masmerise/livewire-toaster/resources/js'; // 👈
 
-Alpine.plugin(Toaster); // 👈
-
-window.Alpine = Alpine;
-Alpine.start();
+// other app stuff...
 ```
 
 ### Tailwind styles

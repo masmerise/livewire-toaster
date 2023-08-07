@@ -3,9 +3,9 @@
 namespace Tests;
 
 use Masmerise\Toaster\Collector;
-use Masmerise\Toaster\Toaster;
 use Masmerise\Toaster\Toastable;
 use Masmerise\Toaster\ToastBuilder;
+use Masmerise\Toaster\Toaster;
 use PHPUnit\Framework\Attributes\Test;
 
 final class ControllerTest extends TestCase
@@ -29,7 +29,7 @@ final class ControllerTest extends TestCase
                 'duration' => 3333,
                 'message' => 'Life is available only in the present moment. - Thich Nhat Hanh',
                 'type' => 'error',
-            ]
+            ],
         ]);
     }
 

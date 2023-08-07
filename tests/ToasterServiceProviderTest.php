@@ -11,8 +11,8 @@ use Masmerise\Toaster\LivewireRelay;
 use Masmerise\Toaster\SessionRelay;
 use Masmerise\Toaster\ToasterConfig;
 use Masmerise\Toaster\ToasterHub;
-use Masmerise\Toaster\TranslatingCollector;
 use Masmerise\Toaster\ToasterServiceProvider;
+use Masmerise\Toaster\TranslatingCollector;
 use Orchestra\Testbench\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 

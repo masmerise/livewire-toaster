@@ -7,3 +7,4 @@
 /phpunit.xml.dist        export-ignore
 /pint.json               export-ignore
 /tests                   export-ignore
+/UPGRADING.md            export-ignore

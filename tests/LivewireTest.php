@@ -7,9 +7,9 @@ use Livewire\Livewire;
 use Livewire\LivewireManager;
 use Livewire\Testing\TestableLivewire;
 use Masmerise\Toaster\Collector;
-use Masmerise\Toaster\Toaster;
 use Masmerise\Toaster\Toastable;
 use Masmerise\Toaster\ToastBuilder;
+use Masmerise\Toaster\Toaster;
 use PHPUnit\Framework\Attributes\Test;
 
 final class LivewireTest extends TestCase
