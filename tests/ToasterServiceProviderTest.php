@@ -4,7 +4,9 @@ namespace Tests;
 
 use Dive\Crowbar\Crowbar;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Arr;
+use Livewire\EventBus;
 use Masmerise\Toaster\AccessibleCollector;
 use Masmerise\Toaster\Collector;
 use Masmerise\Toaster\LivewireRelay;
@@ -35,13 +37,13 @@ final class ToasterServiceProviderTest extends TestCase
     #[Test]
     public function it_registers_the_livewire_relay_only_after_the_service_has_been_resolved_at_least_once(): void
     {
-        $livewire = Crowbar::pry($this->app['livewire']);
+        $events = Crowbar::pry($this->app[EventBus::class]);
 
-        $this->assertNotContains(LivewireRelay::class, $livewire->listeners['component.dehydrate']);
+        $this->assertNotContains(LivewireRelay::class, $events->listeners['dehydrate']);
 
         $this->app[ToasterServiceProvider::NAME];
 
-        $this->assertInstanceOf(LivewireRelay::class, Arr::last($livewire->listeners['component.dehydrate']));
+        $this->assertInstanceOf(LivewireRelay::class, Arr::last($events->listeners['dehydrate']));
     }
 
     #[Test]
@@ -79,6 +81,11 @@ final class ToasterServiceProviderTest extends TestCase
     #[Test]
     public function it_registers_macros(): void
     {
+        $this->assertTrue(Redirector::hasMacro('error'));
+        $this->assertTrue(Redirector::hasMacro('info'));
+        $this->assertTrue(Redirector::hasMacro('success'));
+        $this->assertTrue(Redirector::hasMacro('warning'));
+
         $this->assertTrue(RedirectResponse::hasMacro('error'));
         $this->assertTrue(RedirectResponse::hasMacro('info'));
         $this->assertTrue(RedirectResponse::hasMacro('success'));

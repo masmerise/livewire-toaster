@@ -2,18 +2,18 @@
 
 namespace Tests;
 
-use Masmerise\Toaster\QueuingCollector;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class QueuingCollectorTest extends TestCase
 {
+    use CollectorFactoryMethods;
     use ToastFactoryMethods;
 
     #[Test]
     public function it_can_add_and_flush_toasts(): void
     {
-        $collector = new QueuingCollector();
+        $collector = $this->aCollector();
         $collector->collect($toastA = $this->aToast());
         $collector->collect($toastB = $this->aToast());
 

@@ -4,7 +4,6 @@ namespace Tests;
 
 use Livewire\Component;
 use Livewire\Livewire;
-use Livewire\LivewireManager;
 use Masmerise\Toaster\Collector;
 use Masmerise\Toaster\LivewireRelay;
 use PHPUnit\Framework\Attributes\Test;
@@ -12,25 +11,23 @@ use PHPUnit\Framework\Attributes\Test;
 final class LivewireRelayTest extends TestCase
 {
     #[Test]
-    public function it_dispatches_browser_events(): void
+    public function it_dispatches_events(): void
     {
         // mount => skip
         $component = Livewire::test(TestComponent::class);
-        $component->assertNotDispatchedBrowserEvent(LivewireRelay::EVENT);
+        $component->assertNotDispatched(LivewireRelay::EVENT);
 
         // redirect => skip
-        LivewireManager::$isLivewireRequestTestingOverride = true;
         $component->call('redirectingAction');
-        $component->assertNotDispatchedBrowserEvent(LivewireRelay::EVENT);
+        $component->assertNotDispatched(LivewireRelay::EVENT);
 
         // normal action => dispatch
-        LivewireManager::$isLivewireRequestTestingOverride = true;
         $component->call('normalAction');
-        $component->assertDispatchedBrowserEvent(LivewireRelay::EVENT, [
-            'duration' => 3000,
-            'message' => 'Crispy toasts',
-            'type' => 'success',
-        ]);
+        $component->assertDispatched(LivewireRelay::EVENT,
+            duration: 3000,
+            message: 'Crispy toasts',
+            type: 'success',
+        );
     }
 }
 
