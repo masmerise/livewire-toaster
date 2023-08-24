@@ -4,7 +4,6 @@ namespace Tests;
 
 use Livewire\Component;
 use Livewire\Livewire;
-use Livewire\LivewireManager;
 use Masmerise\Toaster\LivewireRelay;
 use Masmerise\Toaster\SessionRelay;
 use Masmerise\Toaster\Toastable;
@@ -31,14 +30,13 @@ final class ToastableTest extends TestCase
     {
         $component = Livewire::test(ToastableComponent::class);
 
-        LivewireManager::$isLivewireRequestTestingOverride = true;
         $component->call('bake');
 
-        $component->assertDispatchedBrowserEvent(LivewireRelay::EVENT, [
-            'duration' => 3000,
-            'message' => 'I became a crispy toast, yummy!',
-            'type' => 'success',
-        ]);
+        $component->assertDispatched(LivewireRelay::EVENT,
+            duration: 3000,
+            message: 'I became a crispy toast, yummy!',
+            type: 'success',
+        );
     }
 }
 

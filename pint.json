@@ -2,7 +2,13 @@
     "preset": "psr12",
     "rules": {
         "blank_line_after_opening_tag": false,
-        "braces": false,
-        "method_argument_space": false
+        "concat_space": { "spacing": "one" },
+        "declare_strict_types": true,
+        "method_argument_space": false,
+        "no_useless_else": true,
+        "not_operator_with_successor_space": true,
+        "ordered_imports": { "imports_order": ["class", "function", "const"], "sort_algorithm": "alpha" },
+        "single_line_empty_body": true,
+        "trailing_comma_in_multiline": true
     }
 }

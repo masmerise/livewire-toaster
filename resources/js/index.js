@@ -3,4 +3,6 @@ import * as Toaster from './toaster';
 
 window.Toaster = Toaster;
 
-export default Hub;
+document.addEventListener('alpine:init', () => {
+    window.Alpine.plugin(Hub);
+});

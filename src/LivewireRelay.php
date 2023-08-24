@@ -3,8 +3,10 @@
 namespace Masmerise\Toaster;
 
 use Livewire\Component;
+use Livewire\Features\SupportEvents\Event;
 use Livewire\LivewireManager;
-use Livewire\Response;
+use Livewire\Mechanisms\DataStore;
+use Livewire\Mechanisms\HandleComponents\ComponentContext;
 
 /** @internal */
 final readonly class LivewireRelay
@@ -12,28 +14,26 @@ final readonly class LivewireRelay
     public const EVENT = 'toaster:received';
 
     public function __construct(
+        private DataStore $store,
         private LivewireManager $livewire,
         private Collector $toasts,
     ) {}
 
-    public function __invoke(Component $component, Response $response): Response
+    public function __invoke(Component $component, ComponentContext $ctx): void
     {
         if (! $this->livewire->isLivewireRequest()) {
-            return $response;
+            return;
         }
 
-        if ($component->redirectTo !== null) {
-            return $response;
+        if ($this->store->get($component, 'redirect')) {
+            return;
         }
 
         if ($toasts = $this->toasts->release()) {
-            $response->effects['dispatches'] ??= [];
-
             foreach ($toasts as $toast) {
-                $response->effects['dispatches'][] = ['event' => self::EVENT, 'data' => $toast->toArray()];
+                $event = new Event(self::EVENT, $toast->toArray());
+                $ctx->pushEffect('dispatches', $event->serialize());
             }
         }
-
-        return $response;
     }
 }

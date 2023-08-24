@@ -20,10 +20,10 @@
     "require": {
         "php": "~8.2",
         "laravel/framework": "^10.0",
-        "livewire/livewire": "^2.0"
+        "livewire/livewire": "^3.0"
     },
     "require-dev": {
-        "dive-be/php-crowbar": "^1.1",
+        "dive-be/php-crowbar": "^1.0",
         "laravel/pint": "^1.0",
         "nunomaduro/larastan": "^2.0",
         "orchestra/testbench": "^8.0",

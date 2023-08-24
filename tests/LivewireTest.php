@@ -3,25 +3,23 @@
 namespace Tests;
 
 use Livewire\Component;
+use Livewire\Features\SupportTesting\Testable;
 use Livewire\Livewire;
-use Livewire\LivewireManager;
-use Livewire\Testing\TestableLivewire;
 use Masmerise\Toaster\Collector;
-use Masmerise\Toaster\Toaster;
 use Masmerise\Toaster\Toastable;
 use Masmerise\Toaster\ToastBuilder;
+use Masmerise\Toaster\Toaster;
 use PHPUnit\Framework\Attributes\Test;
 
 final class LivewireTest extends TestCase
 {
-    private TestableLivewire $component;
+    private Testable $component;
 
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->component = Livewire::test(ToastComponent::class);
-        LivewireManager::$isLivewireRequestTestingOverride = true;
     }
 
     #[Test]
@@ -29,21 +27,21 @@ final class LivewireTest extends TestCase
     {
         $this->component->call('multiple');
 
-        $this->assertCount(2, $effects = $this->component->payload['effects']['dispatches']);
+        $this->assertCount(2, $events = $this->component->effects['dispatches']);
 
-        [$effectA, $effectB] = $effects;
-        $this->assertSame('toaster:received', $effectA['event']);
-        $this->assertSame('toaster:received', $effectB['event']);
+        [$eventA, $eventB] = $events;
+        $this->assertSame('toaster:received', $eventA['name']);
+        $this->assertSame('toaster:received', $eventB['name']);
         $this->assertSame([
             'duration' => 3000,
             'message' => 'The biggest battle is the war against ignorance. - Mustafa Kemal Atatürk',
             'type' => 'warning',
-        ], $effectA['data']);
+        ], $eventA['params']);
         $this->assertSame([
             'duration' => 3333,
             'message' => 'Life is available only in the present moment. - Thich Nhat Hanh',
             'type' => 'error',
-        ], $effectB['data']);
+        ], $eventB['params']);
     }
 
     #[Test]
@@ -51,14 +49,14 @@ final class LivewireTest extends TestCase
     {
         $this->component->call('inject');
 
-        $this->assertCount(1, $effects = $this->component->payload['effects']['dispatches']);
+        $this->assertCount(1, $events = $this->component->effects['dispatches']);
 
-        [$effect] = $effects;
+        [$event] = $events;
         $this->assertSame([
             'duration' => 4000,
             'message' => 'The biggest battle is the war against ignorance. - Mustafa Kemal Atatürk',
             'type' => 'success',
-        ], $effect['data']);
+        ], $event['params']);
     }
 }
 

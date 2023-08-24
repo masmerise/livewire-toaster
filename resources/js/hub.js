@@ -19,7 +19,7 @@ export function Hub(Alpine) {
             },
 
             init() {
-                window.addEventListener('toaster:received', event => {
+                document.addEventListener('toaster:received', event => {
                     this.show({ duration: config.duration, ...event.detail });
                 });
 
