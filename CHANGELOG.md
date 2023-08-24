@@ -2,6 +2,16 @@
 
 All notable changes to `livewire-toaster` will be documented in this file.
 
+## 2.0.0 - 2023-08-24
+
+### Added
+
+- Livewire 3 support
+
+### Removed
+
+- Livewire 2 support
+
 ## 1.3.0 - 2023-08-05
 
 ### Added
