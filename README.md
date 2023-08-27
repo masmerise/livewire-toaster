@@ -123,6 +123,7 @@ Next, you'll need to use the `<x-toaster-hub />` component in your master templa
 After that, you'll need to import `Toaster` at the top of your `resources/js/app.js` bundle to start listening to incoming toasts:
 
 ```js
+import './bootstrap';
 import '../../vendor/masmerise/livewire-toaster/resources/js'; // 👈
 
 // other app stuff...
