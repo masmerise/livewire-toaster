@@ -18,6 +18,8 @@ session or "dispatching browser events" from your Livewire components. Just disp
 
 ## Contents
 
+**Looking for v1 docs?** [Click here](https://github.com/masmerise/livewire-toaster/tree/1.3.0).
+
 - [Installation](#installation)
   - [Preparing your template](#preparing-your-template)
   - [Configuring scripts](#configuring-scripts)
