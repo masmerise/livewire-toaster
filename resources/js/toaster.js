@@ -1,5 +1,5 @@
 const event = (message, type) => {
-    dispatchEvent(new CustomEvent('toaster:received', { detail: { message, type }}));
+    document.dispatchEvent(new CustomEvent('toaster:received', { detail: { message, type }}));
 };
 
 const error = message => event(message, 'error');
