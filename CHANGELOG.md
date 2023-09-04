@@ -2,6 +2,12 @@
 
 All notable changes to `livewire-toaster` will be documented in this file.
 
+## 2.0.1 - 2023-09-04
+
+### Fixed
+
+- Dispatch events on the `document` node instead of `window`
+
 ## 2.0.0 - 2023-08-24
 
 ### Added
