@@ -81,7 +81,9 @@ final class ToasterServiceProvider extends AggregateServiceProvider
 
     private function relayToLivewire(): void
     {
-        $this->app[LivewireManager::class]->listen('dehydrate', $this->app[LivewireRelay::class]);
+        $this->app[LivewireManager::class]->listen('dehydrate', function (...$params) {
+            app(LivewireRelay::class)->__invoke(...$params);
+        });
     }
 
     private function relayToSession(): void
