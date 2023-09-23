@@ -25,10 +25,9 @@ final class ToasterServiceProvider extends AggregateServiceProvider
             $this->registerPublishing();
         }
 
-        $this->relayToSession();
-
         $this->callAfterResolving(BladeCompiler::class, $this->aliasToasterHub(...));
         $this->callAfterResolving(Collector::class, $this->relayToLivewire(...));
+        $this->callAfterResolving(Router::class, $this->relayToSession(...));
 
         Redirector::mixin($macros = new ToastableMacros());
         RedirectResponse::mixin($macros);
@@ -81,12 +80,12 @@ final class ToasterServiceProvider extends AggregateServiceProvider
 
     private function relayToLivewire(): void
     {
-        $this->app[LivewireManager::class]->listen('dehydrate', $this->app[LivewireRelay::class]);
+        $this->app[LivewireManager::class]->listen('dehydrate', new LivewireRelay());
     }
 
-    private function relayToSession(): void
+    private function relayToSession(Router $router): void
     {
-        $this->app[Router::class]->aliasMiddleware(SessionRelay::NAME, SessionRelay::class);
-        $this->app[Router::class]->pushMiddlewareToGroup('web', SessionRelay::NAME);
+        $router->aliasMiddleware(SessionRelay::NAME, SessionRelay::class);
+        $router->pushMiddlewareToGroup('web', SessionRelay::NAME);
     }
 }

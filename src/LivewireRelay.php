@@ -4,32 +4,27 @@ namespace Masmerise\Toaster;
 
 use Livewire\Component;
 use Livewire\Features\SupportEvents\Event;
-use Livewire\LivewireManager;
-use Livewire\Mechanisms\DataStore;
+use Livewire\Livewire;
 use Livewire\Mechanisms\HandleComponents\ComponentContext;
+
+use function Livewire\store;
 
 /** @internal */
 final readonly class LivewireRelay
 {
     public const EVENT = 'toaster:received';
 
-    public function __construct(
-        private DataStore $store,
-        private LivewireManager $livewire,
-        private Collector $toasts,
-    ) {}
-
     public function __invoke(Component $component, ComponentContext $ctx): void
     {
-        if (! $this->livewire->isLivewireRequest()) {
+        if (! Livewire::isLivewireRequest()) {
             return;
         }
 
-        if ($this->store->get($component, 'redirect')) {
+        if (store($component)->get('redirect')) {
             return;
         }
 
-        if ($toasts = $this->toasts->release()) {
+        if ($toasts = Toaster::release()) {
             foreach ($toasts as $toast) {
                 $event = new Event(self::EVENT, $toast->toArray());
                 $ctx->pushEffect('dispatches', $event->serialize());
