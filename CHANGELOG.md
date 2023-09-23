@@ -2,6 +2,12 @@
 
 All notable changes to `livewire-toaster` will be documented in this file.
 
+## 2.0.2 - 2023-09-23
+
+### Fixed
+
+- Add Octane support by @yehorherasymchuk in [#23](https://github.com/masmerise/livewire-toaster/pull/23)
+
 ## 2.0.1 - 2023-09-04
 
 ### Fixed
