@@ -1,6 +1,7 @@
 {
     "name": "masmerise/livewire-toaster",
     "description": "Beautiful toast notifications for Laravel / Livewire.",
+    "license": "MIT",
     "keywords": [
         "alert",
         "laravel",
@@ -8,8 +9,6 @@
         "toast",
         "toaster"
     ],
-    "homepage": "https://github.com/masmerise/livewire-toaster",
-    "license": "MIT",
     "authors": [
         {
             "name": "Muhammed Sari",
@@ -17,6 +16,7 @@
             "role": "Developer"
         }
     ],
+    "homepage": "https://github.com/masmerise/livewire-toaster",
     "require": {
         "php": "~8.2",
         "laravel/framework": "^10.0",
@@ -29,6 +29,11 @@
         "orchestra/testbench": "^8.0",
         "phpunit/phpunit": "^10.0"
     },
+    "conflict": {
+        "stevebauman/unfinalize": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Masmerise\\Toaster\\": "src"
@@ -38,12 +43,6 @@
         "psr-4": {
             "Tests\\": "tests"
         }
-    },
-    "scripts": {
-        "format": "vendor/bin/pint",
-        "larastan": "vendor/bin/phpstan analyse --memory-limit=2G",
-        "test": "vendor/bin/phpunit",
-        "verify": ["@larastan", "@test"]
     },
     "config": {
         "sort-packages": true
@@ -58,6 +57,13 @@
             ]
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    "scripts": {
+        "format": "vendor/bin/pint",
+        "larastan": "vendor/bin/phpstan analyse --memory-limit=2G",
+        "test": "vendor/bin/phpunit",
+        "verify": [
+            "@larastan",
+            "@test"
+        ]
+    }
 }
