@@ -2,6 +2,10 @@
 
 All notable changes to `livewire-toaster` will be documented in this file.
 
+## 2.0.3 - 2023-09-28
+
+- Prevent unfinalize usage
+
 ## 2.0.2 - 2023-09-23
 
 ### Fixed
