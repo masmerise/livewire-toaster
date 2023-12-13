@@ -2,6 +2,16 @@
 
 All notable changes to `livewire-toaster` will be documented in this file.
 
+## 2.1.0 - 2023-12-13
+
+### Added
+
+- PHP 8.3 support
+
+### Removed
+
+- PHP 8.2 support
+
 ## 2.0.3 - 2023-09-28
 
 - Prevent unfinalize usage
