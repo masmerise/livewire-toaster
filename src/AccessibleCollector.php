@@ -5,8 +5,8 @@ namespace Masmerise\Toaster;
 /** @internal */
 final readonly class AccessibleCollector implements Collector
 {
-    private const AMOUNT_OF_WORDS = 100;
-    private const ONE_SECOND = 1000;
+    private const int AMOUNT_OF_WORDS = 100;
+    private const int ONE_SECOND = 1000;
 
     public function __construct(private Collector $next) {}
 

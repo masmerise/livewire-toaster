@@ -3,6 +3,7 @@
 namespace Masmerise\Toaster;
 
 use Illuminate\Support\Facades\Facade;
+use Override;
 
 /**
  * @method static void assertDispatched(string $message)
@@ -48,11 +49,13 @@ final class Toaster extends Facade
         return self::toast()->message($message, $replace)->warning();
     }
 
+    #[Override]
     protected static function getFacadeAccessor(): string
     {
         return ToasterServiceProvider::NAME;
     }
 
+    #[Override]
     protected static function getMockableClass(): string
     {
         return Collector::class;

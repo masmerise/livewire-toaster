@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 /** @internal */
 final readonly class SessionRelay
 {
-    public const NAME = 'toasts';
+    public const string NAME = 'toasts';
 
     public function __construct(private Application $app) {}
 
