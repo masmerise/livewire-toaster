@@ -16,6 +16,29 @@ session or "dispatching browser events" from your Livewire components. Just disp
 
 <p align="center"><img src="https://github.com/masmerise/livewire-toaster/raw/master/art/showcase.gif" alt="Toaster Demo"></p>
 
+## Compatibility
+
+<table>
+<tr><th>Livewire </th><th>PHP</th></tr>
+<tr><td>
+
+| | [Livewire 2](https://laravel-livewire.com/docs/2.x) | [Livewire 3](https://livewire.laravel.com/docs) |
+|-|-|-|
+| [1.x](https://github.com/masmerise/livewire-toaster/tree/1.3.0) | ✅ | ❌                                              |
+| 2.x | ❌ | ✅ |
+
+
+</td><td>
+
+| | PHP 8.2 | PHP 8.3 |
+|-|-|-|
+| 1.0 - 2.0.3 | ✅ | ❌ |
+| 2.1 * - ∞ | ❌ | ✅ |
+
+</td></tr> </table>
+
+_* feature complete_
+
 ## Contents
 
 **Looking for v1 docs?** [Click here](https://github.com/masmerise/livewire-toaster/tree/1.3.0).
