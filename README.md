@@ -54,6 +54,7 @@ _* feature complete_
   - [Automatic translation of messages](#automatic-translation-of-messages)
   - [Accessibility](#accessibility)
   - [Unit testing](#unit-testing)
+  - [Extending behavior](#extending-behavior)
 - [View customization](#view-customization)
 - [Testing](#testing)
 - [Changelog](#changelog)
@@ -399,6 +400,43 @@ final class RegisterUserControllerTest extends TestCase
     }
 }
 ```
+
+### Extending behavior
+
+Imagine that you'd like to keep track of how many toasts are dispatched daily to display on an admin dashboard. 
+First, create a new class that encapsulates this logic:
+
+```php
+final readonly class DailyCountingCollector implements Collector
+{
+    public function __construct(private Collector $next) {}
+
+    public function collect(Toast $toast): void
+    {
+        // increment the counter on durable storage
+
+        $this->next->collect($toast);
+    }
+
+    public function release(): array
+    {
+        return $this->next->release();
+    }
+}
+```
+
+After that, extend the behavior in your `AppServiceProvider`:
+
+```php
+public function register(): void
+{
+    $this->app->extend(Collector::class, 
+        static fn (Collector $next) => new DailyCountingCollector($next)
+    );
+}
+```
+
+That's it!
 
 ## View customization
 
