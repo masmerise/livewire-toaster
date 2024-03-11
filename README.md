@@ -19,10 +19,10 @@ session or "dispatching browser events" from your Livewire components. Just disp
 ## Compatibility
 
 <table>
-<tr><th>Livewire </th><th>PHP</th></tr>
+<tr><th>Livewire</th><th>PHP</th><th>Laravel</th></tr>
 <tr><td>
 
-| | [Livewire 2](https://laravel-livewire.com/docs/2.x) | [Livewire 3](https://livewire.laravel.com/docs) |
+| | [LW2](https://laravel-livewire.com/docs/2.x) | [LW3](https://livewire.laravel.com/docs) |
 |-|-|-|
 | [1.x](https://github.com/masmerise/livewire-toaster/tree/1.3.0) | ✅ | ❌                                              |
 | 2.x | ❌ | ✅ |
@@ -35,7 +35,14 @@ session or "dispatching browser events" from your Livewire components. Just disp
 | 1.0 - 2.0.3 | ✅ | ❌ |
 | 2.1 * - ∞ | ❌ | ✅ |
 
-</td></tr> </table>
+</td><td>
+
+| | L10 | L11 |
+|-|-|-|
+| 1.0 - 2.1 * | ✅ | ❌ |
+| 2.2 - ∞ | ❌ | ✅ |
+
+</tr> </table>
 
 _* feature complete_
 
