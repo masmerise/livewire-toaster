@@ -2,6 +2,12 @@
 
 All notable changes to `livewire-toaster` will be documented in this file.
 
+## 2.2.1 - 2024-04-09
+
+### Fixed
+
+- Prevent error in toast disposal when `$el` is `null`
+
 ## 2.2.0 - 2024-03-11
 
 ### Added
