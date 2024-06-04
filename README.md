@@ -183,7 +183,8 @@ Otherwise, please refer to [View customization](#view-customization).
 
 ### RTL support
 
-> **Note** **LTR** will be assumed regardless of whether you apply the `ltr` attribute or not.
+> [!NOTE]
+> **LTR** will be assumed regardless of whether you apply the `ltr` attribute or not.
 
 If your app makes use of an **RTL** language such as Arabic and Hebrew, don't forget to add the `rtl` attribute to the document root:
 
@@ -200,7 +201,8 @@ This will make sure the UI elements (such as the close button) are flipped and t
 
 ### Sending toasts from the back-end
 
-> **Note** Toaster supports the dispatch of multiple toasts at once, you are not limited to dispatching a single toast.
+> [!NOTE]
+> Toaster supports the dispatch of multiple toasts at once, you are not limited to dispatching a single toast.
 
 #### Toaster
 
@@ -344,7 +346,8 @@ Available methods: `error`, `info`, `warning` & `success`
 
 ### Automatic translation of messages
 
-> **Note** The `translate` configuration value must be set to `true`.
+> [!NOTE]
+> The `translate` configuration value must be set to `true`.
 
 Instead of doing this:
 
@@ -371,7 +374,8 @@ You can do whatever you want, whenever you want.
 
 ### Accessibility
 
-> **Note** The `accessibility` configuration value must be set to `true`.
+> [!NOTE]
+> The `accessibility` configuration value must be set to `true`.
 
 Toaster will add an additional second to a toast's on-screen duration for every 100th word.
 This way, your users will have enough time to read toasts that are a tad larger than usual.
@@ -381,7 +385,8 @@ the total on-screen duration of the toast will be `3 + 2 = 5 seconds`
 
 ### Unit testing
 
-> **Note** If you make use of [automatic translation of messages](#automatic-translation-of-messages), you should assert whether the **translation keys** are passed along correctly instead of the human readable messages that are replaced by Laravel's translator.
+> [!NOTE]
+> If you make use of [automatic translation of messages](#automatic-translation-of-messages), you should assert whether the **translation keys** are passed along correctly instead of the human readable messages that are replaced by Laravel's translator.
 > Otherwise, your tests are going to fail as the messages are not translated during unit testing.
 
 Toaster provides a couple of testing capabilities in order for you to build a robust application:
@@ -447,9 +452,6 @@ That's it!
 
 ## View customization
 
-> **Warning** You **must** keep the `x-data` and `x-init` directives and you **must** keep using the `x-for` loop.
-> Otherwise, the Alpine component that powers Toaster will start malfunctioning.
-
 Even though the default toasts are pretty, they might not fit your design and you may want to customize them.
 
 You can do so by publishing Toaster's views:
@@ -468,6 +470,11 @@ Feel free to modify anything to your liking.
 - `$config` - default configuration values, used by the Alpine component
 - `$position` - can be used to position the toasts depending on the configuration
 - `$toasts` - toasts that were flashed to the session by Toaster, used by the Alpine component
+
+> [!WARNING]
+> You **must** keep the `x-data` and `x-init` directives and you **must** keep using the `x-for` loop.
+> Otherwise, the Alpine component that powers Toaster will start malfunctioning.
+
 
 ## Testing
 
