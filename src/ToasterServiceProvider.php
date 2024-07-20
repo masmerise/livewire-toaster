@@ -13,8 +13,8 @@ use Override;
 
 final class ToasterServiceProvider extends AggregateServiceProvider
 {
-    public const string CONFIG = 'toaster.config';
-    public const string NAME = 'toaster';
+    public const CONFIG = 'toaster.config';
+    public const NAME = 'toaster';
 
     protected $providers = [LivewireServiceProvider::class];
 

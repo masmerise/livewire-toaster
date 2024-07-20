@@ -32,8 +32,7 @@ session or "dispatching browser events" from your Livewire components. Just disp
 
 | | PHP 8.2 | PHP 8.3 |
 |-|-|-|
-| 1.0 - 2.0.3 | ✅ | ❌ |
-| 2.1 * - ∞ | ❌ | ✅ |
+| 1.0 - ∞ | ✅ | ✅ |
 
 </td><td>
 
