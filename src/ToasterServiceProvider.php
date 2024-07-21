@@ -9,7 +9,6 @@ use Illuminate\Support\AggregateServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use Livewire\LivewireManager;
 use Livewire\LivewireServiceProvider;
-use Override;
 
 final class ToasterServiceProvider extends AggregateServiceProvider
 {
@@ -34,7 +33,6 @@ final class ToasterServiceProvider extends AggregateServiceProvider
         RedirectResponse::mixin($macros);
     }
 
-    #[Override]
     public function register(): void
     {
         $config = $this->configureService();
