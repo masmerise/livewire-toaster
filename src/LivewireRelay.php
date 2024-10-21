@@ -20,9 +20,9 @@ final readonly class LivewireRelay
             return;
         }
 
-        if (store($component)->get('redirect')) {
-            return;
-        }
+        // if (store($component)->get('redirect')) {
+        //     return;
+        // }
 
         if ($toasts = Toaster::release()) {
             foreach ($toasts as $toast) {
