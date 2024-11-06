@@ -2,6 +2,18 @@
 
 All notable changes to `livewire-toaster` will be documented in this file.
 
+## 2.3.2 - 2024-11-06
+
+### Fixed
+
+- Use the Livewire relay if redirecting using navigate
+
+## 2.3.1 - 2024-07-21
+
+### Fixed
+
+- Removed lingering #[Override] attribute
+
 ## 2.3.0 - 2024-07-20
 
 ### Added
