@@ -21,6 +21,14 @@ final class LivewireRelayTest extends TestCase
         $component->call('redirectingAction');
         $component->assertNotDispatched(LivewireRelay::EVENT);
 
+        // redirect using navigate => dispatch
+        $component->call('redirectingActionUsingNavigate');
+        $component->assertDispatched(LivewireRelay::EVENT,
+            duration: 3000,
+            message: 'Crispy toasts',
+            type: 'success',
+        );
+
         // normal action => dispatch
         $component->call('normalAction');
         $component->assertDispatched(LivewireRelay::EVENT,
@@ -40,9 +48,14 @@ final class TestComponent extends Component
         // noop
     }
 
-    public function redirectingAction(): mixed
+    public function redirectingAction(): void
     {
-        return redirect()->to('https://localhost');
+        $this->redirect('https://localhost');
+    }
+
+    public function redirectingActionUsingNavigate(): void
+    {
+        $this->redirect('https://localhost', true);
     }
 
     public function render(Collector $toasts): string

@@ -20,7 +20,10 @@ final readonly class LivewireRelay
             return;
         }
 
-        if (store($component)->get('redirect')) {
+        $isRedirecting = store($component)->get('redirect');
+        $isRedirectingUsingNavigate = store($component)->get('redirectUsingNavigate');
+
+        if ($isRedirecting && ! $isRedirectingUsingNavigate) {
             return;
         }
 
