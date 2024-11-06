@@ -163,7 +163,8 @@ import '../../vendor/masmerise/livewire-toaster/resources/js'; // 👈
 
 ### Tailwind styles
 
-> **Note** Skip this step if you're going to customize Toaster's default view.
+> [!NOTE]
+> Skip this step if you're going to customize Toaster's default view.
 
 Toaster provides a minimal view that utilizes Tailwind CSS defaults. 
 
