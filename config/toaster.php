@@ -38,6 +38,13 @@ return [
     'position' => 'right',
 
     /**
+     * Prevent the display of duplicate toast messages.
+     *
+     * Supported: true | false
+     */
+    'suppress' => false,
+
+    /**
      * Whether messages passed as translation keys should be translated automatically.
      *
      * Supported: true | false

@@ -2,6 +2,12 @@
 
 All notable changes to `livewire-toaster` will be documented in this file.
 
+## 2.4.0 - 2024-11-24
+
+### Added
+
+- Suppression of duplicate toasts
+
 ## 2.3.2 - 2024-11-06
 
 ### Fixed

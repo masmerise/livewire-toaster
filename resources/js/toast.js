@@ -29,6 +29,12 @@ export class Toast {
         }
     }
 
+    equals(other) {
+        return this.duration === other.duration
+            && this.message === other.message
+            && this.type === other.type;
+    }
+
     runAfterDuration(callback) {
         this.timeout = setTimeout(() => callback(this), this.duration);
     }

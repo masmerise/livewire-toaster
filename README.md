@@ -123,6 +123,13 @@ return [
     'position' => 'right',
 
     /**
+     * Prevent the display of duplicate toast messages.
+     *
+     * Supported: true | false
+     */
+    'suppress' => false,
+
+    /**
      * Whether messages passed as translation keys should be translated automatically.
      *
      * Supported: true | false
@@ -382,6 +389,14 @@ This way, your users will have enough time to read toasts that are a tad larger 
 
 So, if your base duration value is `3 seconds` and your toast contains 223 words, 
 the total on-screen duration of the toast will be `3 + 2 = 5 seconds`  
+
+### Suppressing duplicate toasts
+
+> [!NOTE]
+> The `suppress` configuration value must be set to `true`.
+
+Toaster will prevent the display of duplicate toast messages while another toast with the same message is still on-screen.
+A toast is considered a duplicate if it has the same `duration`, `message`, and `type`.
 
 ### Unit testing
 
