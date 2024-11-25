@@ -125,6 +125,14 @@ return [
     'position' => 'right',
 
     /**
+     * New toasts immediately replace similar ones, ensuring only one toast of a kind is visible at any time.
+     * Takes precedence over the "suppress" option.
+     *
+     * Supported: true | false
+     */
+    'replace' => false,
+
+    /**
      * Prevent the display of duplicate toast messages.
      *
      * Supported: true | false
