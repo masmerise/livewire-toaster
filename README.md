@@ -59,6 +59,7 @@ _* feature complete_
   - [Sending toasts from the front-end](#sending-toasts-from-the-front-end)
   - [Automatic translation of messages](#automatic-translation-of-messages)
   - [Accessibility](#accessibility)
+  - [Replacing similar toasts](#replacing-similar-toasts)
   - [Suppressing duplicate toasts](#suppressing-duplicate-toasts)
   - [Unit testing](#unit-testing)
   - [Extending behavior](#extending-behavior)
