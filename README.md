@@ -391,6 +391,17 @@ This way, your users will have enough time to read toasts that are a tad larger 
 So, if your base duration value is `3 seconds` and your toast contains 223 words, 
 the total on-screen duration of the toast will be `3 + 2 = 5 seconds`  
 
+### Replacing similar toasts
+
+> [!NOTE]
+> The `replace` configuration value must be set to `true`.
+
+> [!WARNING]
+> Takes precedence over `suppress`.
+
+Toaster will dispose of any toast that is similar to the one being dispatched prior to displaying the new toast.
+A toast is considered similar if it has the same `duration`, `message`, and `type`.
+
 ### Suppressing duplicate toasts
 
 > [!NOTE]

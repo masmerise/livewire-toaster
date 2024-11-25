@@ -15,6 +15,11 @@ final class ToasterConfigTest extends TestCase
 
         $array = $config->toJavaScript();
 
-        $this->assertSame(['alignment' => 'bottom', 'duration' => 3000, 'suppress' => false], $array);
+        $this->assertSame([
+            'alignment' => 'bottom',
+            'duration' => 3000,
+            'replace' => false,
+            'suppress' => false,
+        ], $array);
     }
 }

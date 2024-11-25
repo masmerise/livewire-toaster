@@ -11,13 +11,14 @@ class Alignment {
 }
 
 export class Config {
-    constructor(alignment, duration, suppress) {
+    constructor(alignment, duration, replace, suppress) {
         this.alignment = new Alignment(alignment);
         this.duration = duration;
+        this.replace = replace;
         this.suppress = suppress;
     }
 
     static fromJson(data) {
-        return new Config(data.alignment, data.duration, data.suppress);
+        return new Config(data.alignment, data.duration, data.replace, data.suppress);
     }
 }

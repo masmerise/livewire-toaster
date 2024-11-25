@@ -22,7 +22,9 @@ export function Hub(Alpine) {
                 document.addEventListener('toaster:received', event => {
                     const toast = Toast.fromJson({ duration: config.duration, ...event.detail });
 
-                    if (config.suppress && this.toasts.some(t => t.equals(toast))) {
+                    if (config.replace) {
+                        this.toasts.filter(t => t.equals(toast)).forEach(t => t.dispose());
+                    } else if (config.suppress && this.toasts.some(t => t.equals(toast))) {
                         return;
                     }
 
