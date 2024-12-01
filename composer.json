@@ -18,7 +18,7 @@
     ],
     "homepage": "https://github.com/masmerise/livewire-toaster",
     "require": {
-        "php": "~8.2|~8.3",
+        "php": "~8.2|~8.3|~8.4",
         "laravel/framework": "^11.0",
         "livewire/livewire": "^3.0"
     },

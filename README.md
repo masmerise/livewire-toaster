@@ -30,9 +30,9 @@ session or "dispatching browser events" from your Livewire components. Just disp
 
 </td><td>
 
-| | PHP 8.2 | PHP 8.3 |
-|-|-|-|
-| 1.0 - ∞ | ✅ | ✅ |
+| | PHP 8.2 | PHP 8.3 | PHP 8.4 |
+|-|-|-|-|
+| 1.0 - ∞ | ✅ | ✅ | ✅ |
 
 </td><td>
 

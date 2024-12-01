@@ -2,6 +2,12 @@
 
 All notable changes to `livewire-toaster` will be documented in this file.
 
+## 2.6.0 - 2024-12-01
+
+### Added
+
+- PHP 8.4 support
+
 ## 2.5.0 - 2024-11-25
 
 ### Added
