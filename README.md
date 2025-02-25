@@ -36,10 +36,10 @@ session or "dispatching browser events" from your Livewire components. Just disp
 
 </td><td>
 
-| | L10 | L11 |
-|-|-|-|
-| 1.0 - 2.1 * | ✅ | ❌ |
-| 2.2 - ∞ | ❌ | ✅ |
+| | L10 | L11 | L12
+|-|-|-|-|
+| 1.0 - 2.1 * | ✅ | ❌ | ❌
+| 2.2 - ∞ | ❌ | ✅ | ✅
 
 </tr> </table>
 
