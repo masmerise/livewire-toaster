@@ -18,14 +18,18 @@
     ],
     "homepage": "https://github.com/masmerise/livewire-toaster",
     "require": {
-        "php": "~8.2|~8.3|~8.4",
-        "laravel/framework": "^11.0",
+        "php": "~8.2 || ~8.3 || ~8.4",
+        "illuminate/contracts": "^11.0 || ^12.0",
+        "illuminate/http": "^11.0 || ^12.0",
+        "illuminate/routing": "^11.0 || ^12.0",
+        "illuminate/support": "^11.0 || ^12.0",
+        "illuminate/view": "^11.0 || ^12.0",
         "livewire/livewire": "^3.0"
     },
     "require-dev": {
         "dive-be/php-crowbar": "^1.0",
-        "laravel/pint": "^1.0",
         "larastan/larastan": "^2.0",
+        "laravel/pint": "^1.0",
         "orchestra/testbench": "^9.0",
         "phpunit/phpunit": "^10.0"
     },

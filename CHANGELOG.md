@@ -2,6 +2,12 @@
 
 All notable changes to `livewire-toaster` will be documented in this file.
 
+## 2.7.0 - 2025-02-25
+
+### Added
+
+- Laravel 12 support
+
 ## 2.6.0 - 2024-12-01
 
 ### Added

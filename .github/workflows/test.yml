@@ -4,12 +4,15 @@ on: [push, pull_request]
 
 jobs:
   test:
-    name: Run tests
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: true
       matrix:
-        php: ['8.2', '8.3', '8.4']
+        php: [8.2, 8.3, 8.4]
+        laravel: [11, 12]
+
+    name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
 
     steps:
       - name: Checkout code
@@ -19,11 +22,12 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
+          ini-values: error_reporting=E_ALL
+          tools: composer:v2
           coverage: none
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-interaction --no-scripts
+        run: composer install --prefer-dist --no-interaction --no-progress --no-scripts
 
       - name: Execute tests
         run: composer test
