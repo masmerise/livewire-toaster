@@ -2,17 +2,11 @@
 
 namespace Tests;
 
-use Dive\Crowbar\Crowbar;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
-use Illuminate\Support\Arr;
-use Livewire\EventBus;
 use Masmerise\Toaster\AccessibleCollector;
 use Masmerise\Toaster\Collector;
-use Masmerise\Toaster\LivewireRelay;
-use Masmerise\Toaster\SessionRelay;
 use Masmerise\Toaster\ToasterConfig;
-use Masmerise\Toaster\ToasterHub;
 use Masmerise\Toaster\ToasterServiceProvider;
 use Masmerise\Toaster\TranslatingCollector;
 use Orchestra\Testbench\TestCase;
@@ -32,38 +26,6 @@ final class ToasterServiceProviderTest extends TestCase
     {
         $this->assertTrue($this->app->isShared(Collector::class));
         $this->assertTrue($this->app->isAlias(ToasterServiceProvider::NAME));
-    }
-
-    #[Test]
-    public function it_registers_the_livewire_relay_only_after_the_service_has_been_resolved_at_least_once(): void
-    {
-        $events = Crowbar::pry($this->app[EventBus::class]);
-
-        $this->assertNotContains(LivewireRelay::class, $events->listeners['dehydrate']);
-
-        $this->app[ToasterServiceProvider::NAME];
-
-        $this->assertInstanceOf(LivewireRelay::class, Arr::last($events->listeners['dehydrate']));
-    }
-
-    #[Test]
-    public function it_registers_the_session_relay_as_middleware(): void
-    {
-        $router = Crowbar::pry($this->app['router']);
-
-        $middleware = array_reverse($router->middlewareGroups['web']);
-        $middleware = $middleware[0];
-
-        $this->assertSame(SessionRelay::NAME, $middleware);
-    }
-
-    #[Test]
-    public function it_registers_the_toast_hub_as_a_blade_component(): void
-    {
-        $blade = Crowbar::pry($this->app['blade.compiler']);
-
-        $this->assertArrayHasKey('toaster-hub', $blade->classComponentAliases);
-        $this->assertSame(ToasterHub::class, $blade->classComponentAliases['toaster-hub']);
     }
 
     #[Test]

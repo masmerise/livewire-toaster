@@ -11,6 +11,11 @@ jobs:
       matrix:
         php: [8.2, 8.3, 8.4]
         laravel: [11, 12]
+        include:
+          - laravel: 11
+            testbench: 9
+          - laravel: 12
+            testbench: 10
 
     name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
 
@@ -27,7 +32,9 @@ jobs:
           coverage: none
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-interaction --no-progress --no-scripts
+        run: |
+          composer require "illuminate/contracts:^${{ matrix.laravel }}" "orchestra/testbench:^${{ matrix.testbench }}" --no-interaction --no-update
+          composer update --prefer-dist --no-interaction --no-progress
 
       - name: Execute tests
         run: composer test
