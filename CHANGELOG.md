@@ -2,6 +2,12 @@
 
 All notable changes to `livewire-toaster` will be documented in this file.
 
+## 2.8.0 - 2025-05-02
+
+### Added
+
+- Tailwind 4 support
+
 ## 2.7.0 - 2025-02-25
 
 ### Added
