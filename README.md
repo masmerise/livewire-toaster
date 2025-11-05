@@ -187,6 +187,7 @@ Toaster provides a minimal view that utilizes Tailwind CSS defaults.
 
 If the default toast appearances suffice your needs, you'll need to register it with Tailwind's purge list:
 
+For Tailwind CSS Version < 4.x
 ```js
 module.exports = {
     content: [
@@ -195,13 +196,22 @@ module.exports = {
     ],
 }
 ```
-For Tailwind CSS 4+ you'll need to add this to your `app.css` file:
+
+For Tailwind CSS V >= 4+ you'll need to add this to your `app.css` file:
+
+> [!NOTE]
+> Tailwind CSS v4.0 introduced a major change where you define your source content files directly in the main CSS entry point using the `@source` directive. This is the **most modern and recommended approach** for v4+.
+
 ```css
 @import "tailwindcss";
 ...
 @source '../../vendor/masmerise/livewire-toaster/resources/views/*.blade.php'; /* 👈 */
 ```
-or in `tailwind.config.js`:
+or into the file `tailwind.config.js`:
+
+> [!NOTE]
+> The `content` array still exists and functions in Tailwind CSS 4+. For many existing projects or frameworks, defining the paths here is a fallback or continued method. The config file itself is correctly updated to use the modern ESM `export default` syntax.
+
 ```js
 /** @type {import('tailwindcss').Config} */
 export default {
