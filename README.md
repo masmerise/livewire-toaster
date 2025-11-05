@@ -9,7 +9,7 @@
 **Toaster** provides a seamless experience to display toast notifications in your Livewire powered Laravel apps.
 
 Unlike many other toast implementations that are available, Toaster makes it effortless to dispatch a toast notification
-from either a standard `Controller` or a Livewire `Component`. You don't have to think about "flashing" things to the 
+from either a standard `Controller` or a Livewire `Component`. You don't have to think about "flashing" things to the
 session or "dispatching browser events" from your Livewire components. Just dispatch your toast and Toaster will route the message accordingly.
 
 ## Showcase
@@ -183,7 +183,7 @@ import '../../vendor/masmerise/livewire-toaster/resources/js'; // 👈
 > [!NOTE]
 > Skip this step if you're going to customize Toaster's default view.
 
-Toaster provides a minimal view that utilizes Tailwind CSS defaults. 
+Toaster provides a minimal view that utilizes Tailwind CSS defaults.
 
 If the default toast appearances suffice your needs, you'll need to register it with Tailwind's purge list:
 
@@ -194,6 +194,25 @@ module.exports = {
         './vendor/masmerise/livewire-toaster/resources/views/*.blade.php', // 👈
     ],
 }
+```
+For Tailwind CSS 4+ you'll need to add this to your `app.css` file:
+```css
+@import "tailwindcss";
+...
+@source '../../vendor/masmerise/livewire-toaster/resources/views/*.blade.php'; /* 👈 */
+```
+or in `tailwind.config.js`:
+```js
+/** @type {import('tailwindcss').Config} */
+export default {
+    content: [
+        "./resources/**/*.blade.php",
+        "./resources/**/*.js",
+        "./resources/**/*.vue",
+        "./vendor/masmerise/livewire-toaster/resources/views/*.blade.php", // 👈
+    ],
+    plugins: [],
+};
 ```
 
 Otherwise, please refer to [View customization](#view-customization).
@@ -233,9 +252,9 @@ final class RegistrationForm extends Component
     public function submit(): void
     {
         $this->validate();
-        
+
         User::create($this->form);
-        
+
         Toaster::success('User created!'); // 👈
     }
 }
@@ -251,9 +270,9 @@ final class RegistrationForm extends Component
     public function submit(): void
     {
         $this->validate();
-        
+
         $user = User::create($this->form);
-        
+
         // 👇
         PendingToast::create()
             ->when($user->isAdmin(),
@@ -283,7 +302,7 @@ final class ProductListing extends Component
         $result = Product::query()
             ->tap(new Available())
             ->count();
-            
+
         if ($result < 5) {
             $this->warning('The quantity on hand is critically low.'); // 👈
         }
@@ -303,14 +322,14 @@ final class CompanyController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validator = Validator::make($request->all(), [...]);
-        
+
         if ($validator->fails()) {
             return Redirect::back()
                 ->error('The form contains several errors'); // 👈
         }
-    
+
         Company::create($validator->validate());
-        
+
         return Redirect::route('dashboard')
             ->info('Company created!'); // 👈
     }
@@ -321,7 +340,7 @@ This is, of course, **not** limited to `Controller`s as you can also redirect in
 
 #### Dependency injection
 
-If you'd like to keep things "pure", you can also inject the `Collector` contract 
+If you'd like to keep things "pure", you can also inject the `Collector` contract
 and use the `ToastBuilder` to dispatch your toasts:
 
 ```php
@@ -335,7 +354,7 @@ final readonly class SendEmailVerifiedNotification
         private ToasterConfig $config,
         private Collector $toasts,
     ) {}
-    
+
     public function handle(Verified $event): void
     {
         $toast = ToastBuilder::create()
@@ -343,7 +362,7 @@ final readonly class SendEmailVerifiedNotification
             ->success()
             ->message("Thank you, {$event->user->name}!")
             ->get();
-            
+
         $this->toasts->collect($toast);
     }
 }
@@ -397,8 +416,8 @@ You can do whatever you want, whenever you want.
 Toaster will add an additional second to a toast's on-screen duration for every 100th word.
 This way, your users will have enough time to read toasts that are a tad larger than usual.
 
-So, if your base duration value is `3 seconds` and your toast contains 223 words, 
-the total on-screen duration of the toast will be `3 + 2 = 5 seconds`  
+So, if your base duration value is `3 seconds` and your toast contains 223 words,
+the total on-screen duration of the toast will be `3 + 2 = 5 seconds`
 
 ### Replacing similar toasts
 
@@ -438,10 +457,10 @@ final class RegisterUserControllerTest extends TestCase
         // Arrange
         Toaster::fake();
         Toaster::assertNothingDispatched();
-        
+
         // Act
         $response = $this->post('users', [ ... ]);
-        
+
         // Assert
         $response->assertRedirect('profile');
         Toaster::assertDispatched('Welcome!');
@@ -451,7 +470,7 @@ final class RegisterUserControllerTest extends TestCase
 
 ### Extending behavior
 
-Imagine that you'd like to keep track of how many toasts are dispatched daily to display on an admin dashboard. 
+Imagine that you'd like to keep track of how many toasts are dispatched daily to display on an admin dashboard.
 First, create a new class that encapsulates this logic:
 
 ```php
@@ -478,7 +497,7 @@ After that, extend the behavior in your `AppServiceProvider`:
 ```php
 public function register(): void
 {
-    $this->app->extend(Collector::class, 
+    $this->app->extend(Collector::class,
         static fn (Collector $next) => new DailyCountingCollector($next)
     );
 }
@@ -496,7 +515,7 @@ You can do so by publishing Toaster's views:
 php artisan vendor:publish --tag=toaster-views
 ```
 
-The `hub.blade.php` view will be published to your application's `resources/views/vendor/toaster` directory. 
+The `hub.blade.php` view will be published to your application's `resources/views/vendor/toaster` directory.
 Feel free to modify anything to your liking.
 
 ### Available `viewData`
