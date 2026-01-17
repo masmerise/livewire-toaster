@@ -24,7 +24,7 @@
         "illuminate/routing": "^11.0 || ^12.0",
         "illuminate/support": "^11.0 || ^12.0",
         "illuminate/view": "^11.0 || ^12.0",
-        "livewire/livewire": "^3.0"
+        "livewire/livewire": "^3.0 || ^4.0"
     },
     "require-dev": {
         "larastan/larastan": "^2.0 || ^3.1",
