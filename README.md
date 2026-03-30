@@ -22,22 +22,22 @@ session or "dispatching browser events" from your Livewire components. Just disp
 <tr><th>Livewire</th><th>PHP</th><th>Laravel</th></tr>
 <tr><td>
 
-| | [LW2](https://laravel-livewire.com/docs/2.x) | [LW3 & LW4](https://livewire.laravel.com/docs) |
+| | [2](https://laravel-livewire.com/docs/2.x) | [3 & 4](https://livewire.laravel.com/docs) |
 |-|-|-|
-| [1.x](https://github.com/masmerise/livewire-toaster/tree/1.3.0) | ✅ | ❌                                              |
+| [1.x](https://github.com/masmerise/livewire-toaster/tree/1.3.0) | ✅ | ❌                                          |
 | 2.x | ❌ | ✅ |
 
 
 </td><td>
 
-| | PHP 8.2 | PHP 8.3 | PHP 8.4 |
-|-|-|-|-|
-| 1.0 - ∞ | ✅ | ✅ | ✅ |
+| | 8.2 | 8.3 | 8.4 | 8.5
+|-|-|-|-|-|
+| 1.0 - ∞ | ✅ | ✅ | ✅ | ✅ |
 
 </td><td>
 
-| | L10 | L11 | L12 | L13
-|-|-|-|-|
+| | 10 | 11 | 12 | 13
+|-|-|-|-|-|
 | 1.0 - 2.1 * | ✅ | ❌ | ❌ | ❌
 | 2.2 - ∞ | ❌ | ✅ | ✅ | ✅
 
